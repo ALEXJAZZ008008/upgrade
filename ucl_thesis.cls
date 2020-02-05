@@ -170,10 +170,10 @@
 %
 %    \begin{macrocode}
 
-\setlength \hoffset{-25.4mm}
-\setlength \voffset{-25.4mm}
+\setlength \hoffset{-25mm}
+\setlength \voffset{-25mm}
 \setlength \textwidth{140mm}
-\setlength \textheight{232mm} % I think you need some extra vertical space for headers and page numbers
+\setlength \textheight{230mm} % I think you need some extra vertical space for headers and page numbers
 \setlength \topmargin{20mm}
 \setlength \oddsidemargin {39mm} % Allow a mm for the bleed.
 \if@twoside
@@ -402,7 +402,7 @@
     \let \thanks = \relax%
     \gdef \@address{}%
     \gdef \@thanks{}%
-    %\gdef \@author{}%
+    \gdef \@author{}%
     \gdef \@department{}%
     \gdef \@title{}%
     \let \maketitle = \relax%
@@ -428,12 +428,12 @@
         {\Large \itshape \@author}\\%
     \end{center}%
     \vfill%
-     %\begin{center}
-   %Supervisors:\\
-   %Prof. Kris Thielemans\\
-  % Prof. Simon Arridge\\
-    %\end{center}
-     %\vfill%
+        \begin{center}
+            Supervisors:\\
+            Prof. Kris Thielemans\\
+            Dr Jamie McClelland\\
+    \end{center}
+    \vfill%
     \begin{center}%
     A dissertation submitted in partial fulfillment \\
     of the requirements for the degree of \\

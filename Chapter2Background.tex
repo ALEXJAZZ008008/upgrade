@@ -1,7 +1,7 @@
 \chapter{Background} \label{background}
     \blindtext
     
-    \section{Positron Emission Tomography}  \label{positron_emission_tomography}
+    \longsection{PET}{pet}
         \blindtext
         % general intro
         
@@ -16,52 +16,63 @@
             \blindtext
             % write a general intro on the scanner structure, and the type of events you detect (true scatter randoms etc)
             
-            \subsubsection{Photon Detection}  \label{photon_detection}
+            \subsubsection{Photon Detection} \label{photon_detection}
                 \blindtext
             
-            \subsubsection{Coincidence Processing}  \label{coincidence_processing}
+            \subsubsection{Coincidence Processing} \label{coincidence_processing}
                 \blindtext
                 % write stuff about coincidence processing , give some info on TOF (or separate section for it, i don't know)
             
-            \subsubsection{Static and Dynamic Acquisition}  \label{static_and_dynamic_acquisition}
+            \subsubsection{Static and Dynamic Acquisition} \label{static_and_dynamic_acquisition}
                 \blindtext
             
-            \subsubsection{Time of Flight PET}  \label{time_of_flight_pet}
+            \subsubsection{Time of Flight PET} \label{tof_pet}
                 \blindtext
-        
-        \subsection{The Physics of CT} \label{the_physics_of_ct}
+            
+        \subsection{Attenuation Correction} \label{attenuation_correction}
             \blindtext
             
-            \subsubsection{Attenuation Correction} \label{attenuation_correction}
+            \subsection{Combined PET/CT} \label{attenuation_correction}
                 \blindtext
     
-    \section{PET Image Reconstruction}  \label{pet_image_reconstruction}
+    \longsection{PET Image Reconstruction}{pet_image_reconstruction}
         \blindtext
         
-        \subsection{Analytic Image Reconstruction}  \label{analytic_image_reconstruction}
+        \subsection{Analytic Image Reconstruction} \label{analytic_image_reconstruction}
             \blindtext
             % mention briefely FBP ?
-            
-        \subsection{Iterative Image Reconstruction}   \label{iterative_image_reconstruction}
+        
+        \subsection{Iterative Image Reconstruction} \label{iterative_image_reconstruction}
             \blindtext
-            % talk about MLEM, OSEM and also gradient ascent methods
+            
+            \subsubsection{Objective Function} \label{iterative_image_reconstruction_objective_function}
+                \blindtext
+                
+            \subsubsection{Optimiser} \label{iterative_image_reconstruction_optimiser}
+                \blindtext
     
-    \section{Respiratory Motion in PET}  \label{respiratory_motion_in_pet}
+    \longsection{Respiratory Motion in PET}{respiratory_motion_in_pet}
         \blindtext
         % general intro
         
-        \subsection{Respiratory Motion Artefacts}   \label{respiratory_motion_artefacts}
+        \subsection{Respiratory Motion Artefacts} \label{respiratory_motion_artefacts}
             \blindtext
             % have a look at https://www.sciencedirect.com/science/article/pii/S0001299808000214?via%3Dihub
             
-        \subsection{Challenges in Combined PET/CT Imaging} \label{challenges_in_combined_pet_ct_imaging}
+        \subsection{Respiratory Motion Challenges in Combined PET/CT Imaging} \label{respiratory_motion_challenges_in_combined_pet_ct_imaging}
             \blindtext
     
-    \section{Motion Correction for PET} \label{motion_correction_for_pet}
+    \longsection{Motion Correction for PET}{motion_correction_for_pet}
         \blindtext
     
         \subsection{Image Registration} \label{image_registration}
             \blindtext
+            
+            \subsubsection{Objective Function} \label{image_registration_objective_function}
+                \blindtext
+                
+            \subsubsection{Optimiser} \label{image_registration_optimiser}
+                \blindtext
             
         \subsection{Respiratory Signal Detection} \label{respiratory_signal_detection}
             \blindtext
@@ -79,16 +90,19 @@
         \subsection{Motion Modelling} \label{motion_modelling}
             \blindtext
         
-        \subsection{Post Image Reconstruction Motion Correction} \label{respiratory_motion_artefacts}
+        \subsection{Applying Motion Correction} \label{applying_motion_correction}
             \blindtext
             
-        \subsection{Iterative Motion Corrected Image Reconstruction} \label{iterative_motion_corrected_image_reconstruction}
-            \blindtext
+            \subsubsection{Post Image Reconstruction Motion Correction} \label{post_image_reconstruction_motion_correction}
+                \blindtext
+                
+            \subsubsection{Iterative Motion Corrected Image Reconstruction} \label{iterative_motion_corrected_image_reconstruction}
+                \blindtext
     
-    \section{Machine Learning for PET} \label{machine_learning_for_pet}
+    \longsection{Machine Learning for PET}{machine_learning_for_pet}
         \blindtext
         
-        \subsection{Machine Learning Introduction} \label{machine_learning_introduction}
+        \subsection{Machine Learning Concepts} \label{machine_learning_concepts}
             \blindtext
         
         \subsection{Machine Learning for PET Image Reconstruction} \label{machine_learning_for_pet_image_reconstruction}

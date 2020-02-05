@@ -66,7 +66,7 @@
 
 % And then some settings in separate files.
 \input{FloatSettings} % For things like figures and tables
-\input{BibSettings}   % For bibliographies
+%\input{BibSettings}   % For bibliographies
 
 % Title Settings
 \setcounter{secnumdepth}{3}
@@ -76,7 +76,7 @@
 \makeglossaries
 \newacronym{mu-map}{mu-map}{Attenuation Map}
 \newacronym{TOF}{TOF}{Time of Flight}
-\newacronym{nonTOF}{nonTOF}{Non Time of Flight}
+\newacronym{NTOF}{NTOF}{Non Time of Flight}
 \newacronym{NAC}{NAC}{Non Attenuation Corrected}
 \newacronym{RCM}{RCM}{Respiratory Correspondence Model}
 \newacronym{MAPE}{MAPE}{Mean Absolute Percentage Error}
@@ -95,8 +95,32 @@
 \newacronym{FWHM}{FWHM}{Full Width at Half Maximum}
 \newacronym{SSD}{SSD}{Sum of Squared Differences}
 \newacronym{MCIR}{MCIR}{Motion Corrected Image Reconstruction}
+\newacronym{PCA}{PCA}{Principal Component Analysis}
+\newacronym{NN}{NN}{Neural Network}
 
-\addbibresource{./example.bib}
+\usepackage[top=6.0cm,bottom=1.25cm,left=6.5cm,right=0.5cm,headheight=1.0cm]{geometry}
+
+\usepackage{fancyhdr}
+\newcommand{\longtitle}[1]
+{%
+    \protect\parbox[.]{0.9\linewidth}{\strut #1 \strut}\hfill\vspace*{1.0cm}%
+}
+
+\newcommand{\longsection}[2]
+{%
+    \section[#1]{#1%
+    \sectionmark{\longtitle{#1}}} \label{#2}%
+    \sectionmark{\longtitle{#1}}%
+}
+
+\newcommand{\boxcite}[1]
+{%
+    [\cite{#1}]%
+}
+
+\headsep=1cm
+
+\addbibresource{./bibtex/bib/Biblio.bib}
 
 \begin{document}
     %\nobibliography*

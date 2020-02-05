@@ -1,7 +1,7 @@
 \chapter{Introduction} \label{introduction}
     \blindtext
     
-    \section{Motivation} \label{motivation}
+    \longsection{Motivation}{motivation}
         \gls{PET}/\gls{CT} is a common medical imaging modality which combines \gls{PET}, a functional imaging modality used to capture images of the internal metabolic processes of a subject, with an X-ray based anatomical imaging modality called \gls{CT}. Every year in the UK just over 150,000 \gls{PET}/\gls{CT} scans are performed, the majority of these scans are used in the diagnosis and treatment of cancer. \gls{PET} scans can take upwards of a few minutes to complete (usually between one and a half and two and a half minutes), a single fast \gls{CT} scan (usually lasting between five and ten seconds) is used to correct for the attenuation of the of the signal of the radioactive tracer by the matter of the patient.
         
         At a basic level, \gls{PET} works by quantifying the distribution of a radioactive tracer, which is injected into the patient, by counting the number and locations of an annihilation between a particle given off by the radioactive tracer and the matter of the subject. The \gls{CT} and \gls{PET} acquisitions of a combined \gls{PET}/\gls{CT} scan take place temporally apart from one another by a few minutes. Any movement during or between the sections of a \gls{PET}/\gls{CT} scan will lead to the occurrence of artefacts and blurring or the reduction of resolution of the final image. Inter acquisition artefacts are caused by a misalignment of the \gls{CT} and \gls{PET} volumes leading to attenuation being corrected for where it should not and vice versa. For intra acquisition blurring, these artefacts are formed in a similar way to how blurring may appear during a long exposure photograph, where counts from one specific location are spread about amongst multiple locations in the final image or volume. These errors lead to difficulty in the detection and location of tumours. Some sources of movement include: cardiac motion, limb or head motion and respiratory motion from patient breathing.
@@ -13,6 +13,6 @@
         \subsection{Objectives of this Work} \label{objectives_of_this_work}
             The aim of this project is to produce PET/CT images which are corrected for respiratory motion and are automatically aligned between PET and CT data. This will be achieved through data-driven gating and image registration. The performance and computation time will be improved by incorporating motion models. Ideally this will enable a work flow that is transparent to both the patient and the clinicians. This will be achieved with minimal impact on the patient and clinical environment, without increased dose, without increasing scanning time, while still maintaining a simple work flow. The method will be evaluated on patient data with a comparison to current industry methods. This project is sponsored by General Electric.
     
-    \section{Overview of this Thesis}  \label{overview_of_this_thesis}
+    \longsection{Overview of this Thesis}{overview_of_this_thesis}
         \blindtext
         % here you say: the first chapter gives an overview of the physics underlying the work, the second chapter presents some initial resulst. we then give an overview of the future plan in chapter 4. chapter 5 gives the main conclusions
