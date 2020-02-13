@@ -393,6 +393,8 @@
 %    We also need a new department variable.
 %    \begin{macrocode}
 \def\department#1{\gdef\@department{#1}}
+\def\supervisors#1{\gdef\@supervisors{#1}}
+\def\field#1{\gdef\@field{#1}}
 \def\@department{\@latex@warning@no@line{No \noexpand\department given}}
 \renewcommand \maketitle{%
     \setcounter{page}{1}%
@@ -404,6 +406,8 @@
     \gdef \@thanks{}%
     \gdef \@author{}%
     \gdef \@department{}%
+    \gdef \@supervisors{}%
+    \gdef \@field{}%
     \gdef \@title{}%
     \let \maketitle = \relax%
 }
@@ -430,8 +434,7 @@
     \vfill%
         \begin{center}
             Supervisors:\\
-            Prof. Kris Thielemans\\
-            Dr Jamie McClelland\\
+            \@supervisors
     \end{center}
     \vfill%
     \begin{center}%
@@ -439,6 +442,7 @@
     of the requirements for the degree of \\
     \textbf{\@degree@string} \\
     of \\
+    \@field \\
     \textbf{University College London}.
     \end{center}%
     \vspace{2em}%
