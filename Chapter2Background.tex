@@ -18,15 +18,42 @@
             \begin{itemize}
                 \item Glucose molecules can be labeled with fluorine $18$ (called \gls{FDG}). Glucose is used by cells, though glycolosis, in the carbohydrate metabolisation process to produce \gls{ATP} to make energy available to a cell. When a cell requires more energy it also requires more glucose and as such uptaken of \gls{FDG} is increased in these regions. Fluorine $18$ collects, over time, intra-cellularly because fluorine $18$ labeled \gls{FDG} cannot be fully metabolised due to the group which is replaced by fluorine $18$ being missing and required for this process. Thus the distribution of fluorine $18$ is a good reflection of glucose metabolisation and uptake over time. \gls{FDG} is by far the most commonly used radiotracer in \gls{PET}.
                 
-                \item Gallium $67$ and gallium $68$ are often used to target \gls{PSMA} which can be used in the detection of prostate cancer.
+                \item Gallium $67$ and gallium $68$ are often used to target \gls{PSMA} which can be used in the detection of prostate cancer. \gls{PSMA} is a protein which is present in prostate cancer cells.
                 
                 \item Rubidium $82$ can be used to image the heart in a scan targeting myocardial perfusion.
             \end{itemize}
             
-            Radionucleides used in \gls{PET} undergo a type of decay called $\beta-$decay. This is where, because the radionuclide is unstable (given to an imbalance of neutrons to protons), a proton in its nucleus converts into a neutron releasing a positron and a neutrino. The emitted positron travels with some decreasing velocity through the body of the patient, for a distance called positron range, before eventually colliding and annihilating with its antiparticle the electron. This annihilation causes the emission of two $511$ \gls{KeV} gamma photons at $180^{\circ}$ apart from one another. However, because the centre of mass of the positron-electron system is not always at rest at the moment of their annihilation, the pair of emitted photons present a certain degree of non-collinearity, according to the laws of conservation of energy and momentum. This means that the gamma photons are never exactly $180^{\circ}$ apart.%, because the positron will usually have a small kinetic energy going into the annihilation. %This kinetic energy is conserved after the annihilation as a force in a different direction, usually, to that of the force from the annihilation itself.
+            Radionucleides used in \gls{PET} undergo a type of decay called $\beta-$decay. This is where, because the radionuclide is unstable (given to an imbalance of neutrons to protons), a proton in its nucleus converts into a neutron releasing a positron and a neutrino. The emitted positron travels with some decreasing velocity, from sequential collisions, through the body of the patient, for a distance called positron range, before its final collision and annihilation with its antiparticle the electron. A \gls{PET} scanner thus does not image, directly, the emission of the positron but, in fact, more closely images the location of the annihilation.
+            
+            This annihilation causes the emission of two $511$ \gls{KeV} gamma photons at $180^{\circ}$ apart from one another. However, because the poistron-electron pair may not be at rest at the moment of their annihilation, the two emitted photons can show a certain degree of non-collinearity, according to the laws of conservation of energy and momentum. This means that the gamma photons are never exactly $180^{\circ}$ apart.%, because the positron will usually have a small kinetic energy going into the annihilation. This kinetic energy is conserved after the annihilation as a force in a different direction, usually, to that of the force from the annihilation itself.
+            
+            The \gls{FOV} of the scanner is the area in which it can detect these gamma photons. Current clinical \gls{PET} scanners, usually, have a cylindrical \gls{FOV} with a length of between $15$ and $25$ centimetres and a diameter of between $50$ and $70$ centimetres. In order to take acquire data over an area of more than the length of the scanner acquisitions can be taken over multiple positions and summed together. Alternatively, whole body \gls{PET} scanners, even though expensive and large, are becoming more viable for research and eventually, hopefully, clinical applications. Whole body \gls{PET} scanners have an axial \gls{FOV} which contains most of the patients body making multiple acquisitions less necessary while also increasing the sensitivity to detecting annihilations.
+            
+            \subsubsection{Static and Dynamic Acquisition} \label{static_and_dynamic_acquisition}
+                There are two main types of \gls{PET} scan useful for determining separate processes, these types of scans and uses are:
+                
+                \begin{itemize}
+                    \item The first and most common type of \gls{PET} scan is a static \gls{PET} scan. This is where the radiotracer is injected into the patient outside of the scanner and the patient is then asked to wait while the radiotracer perfuses through the body and eventually stabilises at a semi-consistant distribution. Then the patient is scanned and while the intensity of the radiotracer will drop throught the acquisition it is not likely to drastically or suddenly change. The time between injection and acquisition depends on the half life and metabolisation of the radiotracer. For \gls{FDG} about $60$ minutes is given.
+                    
+                    \item The second type of \gls{PET} scan is a dynamic scan. This is where the patient is put into the scanner and the acquisition begins before the radiotracer is injected. The injection of the radiotracer during the acquisition allows for what is known as the kinetics of the tracer to be observed where the perfusion of the radiotracer throughout the circulatory system, into the aorta and heart, or in the brain can be directly observed. A method of quantifying the tracer kinetics is through the use of compartmental modelling. An example from earlier of this would be rubidium $82$ as used to image the heart, the half life of this radionuclide practically restricts it to use in dynamic scans.
+                \end{itemize}
             
             \subsubsection{Attenuation} \label{attenuation}
-                \blindtext
+                Attenuation is the amount of signal lost from annihilation to detection by the scanner while the photons are traversing through the body of the patient. Attenuation can amount to a loss of up to $95$ percent of the total initial signal and can cause increased issues in larger bariatric patients who quite literally have more matter that the photons have to survive un-scattered or otherwise un-attenuated through.
+                
+                There are $4$ main ways through which the photon signal can be lost, these are in ascending order of magnitude:
+                
+                \begin{itemize}
+                    \item Pair production can be thought of as the inverse of annihilation (as discussed above). This is where a subatomic particle and its antiparticle, such as a electron and a positron, are created from a fundamental particle, such as a photon, usually in close proximity to an atomic nucleus. However, because of conservation of energy a photon would need to be of at least $1.022$ \gls{MeV} which is not generally possible for photons created through annihilation.
+                    
+                    \item Rayleigh scattering is the elastic scattering of photons without much loss of energy by particles which are much smaller than the wavelength of the photon. A common example of Rayleigh scattering is the scattering of sunlight in the atmosphere which is most obvious as a haze at sunrise and sunset. Because the wavelength of gamma photons is so small the probability of Rayleigh scattering occurring is also small and thus it is normally ignored in \gls{PET}.
+                    
+                    \item Absorption through the photoelectric effect occurs mostly in the detectors of the scanner. It is the process through which the high energy gamma photon hits and transfers its energy to a material causing the emission of lower energy electrons. In the matter of the patient specifically the photoelectric effect is most prevalent at photon energies below $100$ \gls{KeV} and as such the probability of the photoelectric effect occurring here is minimal.
+                    
+                    \item Compton scattering makes up the majority of interactions between the photon and matter, it occurs where the photon interacts with an electron in a close by atom. The recoiling electron causes the photon to be deflected along another path transferring energy from photon to electron. Compton scattering is also known as incoherent scattering because of its effect on trajectory of the photon. The probability of Compton scattering is indirectly proportional to the energy of the photon.
+                \end{itemize}
+                
+                The relationship between the attenuation of the signal and the material through which it is travelling is given by the Beer Lambert law.
         
         \subsection{Data acquisition} \label{data_acquisition}
             \blindtext
@@ -38,9 +65,6 @@
             \subsubsection{Coincidence Processing} \label{coincidence_processing}
                 \blindtext
                 % write stuff about coincidence processing , give some info on TOF (or separate section for it, i don't know)
-            
-            \subsubsection{Static and Dynamic Acquisition} \label{static_and_dynamic_acquisition}
-                \blindtext
             
             \subsubsection{Time of Flight PET} \label{tof_pet}
                 \blindtext
@@ -123,7 +147,7 @@
         
         \subsection{Machine Learning for PET Image Reconstruction} \label{machine_learning_for_pet_image_reconstruction}
             \blindtext
-            %might want to mention this?
+            % might want to mention this?
         
         \subsection{Machine Learning for Motion Correction} \label{machine_learning_for_motion_correction}
             \blindtext
