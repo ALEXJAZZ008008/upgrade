@@ -97,9 +97,31 @@
                 \end{itemize}
             
             \subsubsection{Photon Detection} \label{photon_detection}
-                The actual composition of the detector used in the rings of the scanner is made up of $3$ components; a scintillator crystal, which through the photoelectric effect when exposed to ionising radiation produces visible light through luminescence, and a photomultiplier which amplifies the intensity of an input light similarly to how a vacuum tube or a transistor would amplify an electrical signal.
+                The actual composition of the detector used in the rings of the scanner is made up of $3$ components; a scintillator crystal, which through the photoelectric effect when exposed to ionising radiation produces visible light through luminescence, and a photodetector or photomultiplier which amplifies the intensity of an input light similarly to how a vacuum tube or a transistor would amplify an electrical signal.
                 
-                For use in \gls{PET} the following properties are desirable for a scintillator crystal: Firstly, the crystal should have a high stopping power. This means that the photon does not travel a great distance into the crystal before it undergoes attenuation by the photoelectric effect. Usually the higher the density of the scintillator crystal the greater the stopping power. Secondly, for each incident photon the scintillator should have a high light output. This not only means that the work photomultiplier will have to amplify the output less but it also means that discriminating between scattered and unscattered photons will be easier as the discrepancy between the output intensity of the $2$ will be greater. Thirdly, the scintillator should return to a state where it can luminesce again rapidly after each incident photon. This means that more photons can be detected over time and that the exact moment a photon is attenuated can be better measured. Finally, a scintillator crystal should not be hygroscopic. To be hygroscopic means that something has a tendancy to absorb water.
+                For use in \gls{PET} the following properties are desirable for a scintillator crystal:
+                
+                \begin{itemize}
+                    \item Firstly, the crystal should have a high stopping power. This means that the photon does not travel a great distance into the crystal before it undergoes attenuation by the photoelectric effect. Usually the higher the density of the scintillator crystal the greater the stopping power.
+                    
+                    \item Secondly, for each incident photon the scintillator should have a high light output. This not only means that the work photomultiplier will have to amplify the output less but it also means that discriminating between scattered and unscattered photons will be easier as the discrepancy between the output intensity of the $2$ will be greater.
+                    
+                    \item Thirdly, the scintillator should return to a state where it can luminesce again rapidly after each incident photon. This means that more photons can be detected over time and that the exact moment a photon is attenuated can be better measured.
+                    
+                    \item Finally, a scintillator crystal should not be hygroscopic. To be hygroscopic means that something has a tendency to absorb water.
+                \end{itemize}
+                
+                The first \gls{PET} scanners used \gls{NaI} scintillator crystals before moving to \gls{BGO} and then to \gls{LSO} and \gls{LYSO}. Each new generation of scintillator crystals provided a different balance of the above characteristics. \gls{LSO} and \gls{LYSO} have the best combination of efficiency and time resolution while not being hygroscopic~\boxcite{BGOCherenkovBib, ScintilatorsBib, Mao2013CrystalCrystals}.
+                
+                There are $3$ main types of photodetector or photomultiplier, these are:
+                
+                \begin{itemize}
+                    \item The first kind of photodetector to be used in \gls{PET} was the \gls{PMT}, this device functions using an initial photocathode and a focusing electrode which takes the output from the scintillator and directs it towards a chain of dynodes. Dynodes are an intermediate electrode which when struck by a photoelectron emit more photoelectrons at a more positive electrical potential through secondary emission. Each subsequent dynode is a a higher potential and emits more photoelectrons than the last causing the input signal to be amplified. Some disadvantages of \gls{PMT} are that they are relatively bulky, are effected by a magnetic field and have a relatively low efficiency at approximately $25$ percent~\boxcite{book, SiPmBib}.
+                    
+                    \item To attempt to combat the low efficiency mentioned above the \gls{APD} was developed, this device utilises a semiconductor where there is a junction between positive and negative type silicone, this is similar to a traditional diode. This allows for efficiencies approaching $85$ percent, they are much smaller than \gls{PMT} and are safe to be used in a magnetic field. However, this also comes with the drawbacks that \gls{APD} produces so much heat that it requires an active cooling system and exhibits worse timing characteristics than the \gls{PMT}~\boxcite{AvalanchePhotodiodeBib}. \gls{APD} is the choice of many modern \gls{PET}/\gls{CT} scanners~\boxcite{Vandendriessche2019}.
+                    
+                    \item A further development on \gls{APD} gave \gls{SiPM} and \gls{SSPM}. These devices combine the benefits of both \gls{PMT} and \gls{APD} in that they have a high efficiency, small size, are safe to be used in a magnetic field and have good timing characteristic. \gls{SiPM} and \gls{SSPM} are becoming the new default photodetectors~\boxcite{SiPmBib}.
+                \end{itemize}
             
             \subsubsection{Coincidence Processing} \label{coincidence_processing}
                 \blindtext
