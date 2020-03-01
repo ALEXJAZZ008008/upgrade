@@ -1,23 +1,23 @@
-\chapter{Background} \label{background}
-    \blindtext
+\chapter{Background} \label{sec:background}
     
-    \longsection{PET}{pet}
-        \blindtext
+    
+    \longsection{PET}{sec:pet}
         % general intro
         
-        \subsection{The Physics of PET} \label{the_physics_of_pet}
+        
+        \subsection{The Physics of PET} \label{sec:the_physics_of_pet}
             % write something about radiotracer, functional imaging, radiounclide decays, and photon interaction with matter
             
             \gls{PET} is an example of a type of imaging known as functional imaging. It is functional as rather than capturing images of anatomy for instance the structure and density of bones, it images the metabolic processes of a living thing. This metabolic function is, for instance, how blood flows through and into parts of the body (perfusion) or how glucose is transported to and metabolised by certain cells.
             
             The process through which a \gls{PET} scan takes place is as follows; firstly, a patient is injected with a chemical compound called a radiotracer which is a solution containing radionuclides. A radiotracer is a biologically active molecule which has been labelled with a positron emitting radionuclide. The molecule will have been selected knowing that it will have significant uptake in the \gls{ROI} depending on the target tissue. In other words, after perfusion (through the circulatory system) it will appear with a greater frequency within certain types of cells (post metabolistation). The positron emitting radionuclide is selected because it has the capacity to be labelled to the molecule by replacing one of its groups, not all radionuclides can be labelled to all molecules. % After injection the radiotracer perfuses through the circulatory system of the patient.
             
-            Some examples of common radionuclides used in radiotracers include; fluorine $18$, gallium $67$, gallium $68$, and rubidium $82$. The rate at which a radionuclide decays is measured in terms of half life. The half-life is defined as the amount of time for which the number of atoms of a radioactive material reduces by half. Half lives for various radioisotopes can range from a few microseconds to billions years. For the examples above these half lifes are approximately; $110$ minutes, $67$ minutes and $1.1$ minutes respectively~\boxcite{FDGGuidelines}.
+            Some examples of common radionuclides used in radiotracers include; fluorine $18$, gallium $67$, gallium $68$, and rubidium $82$. The rate at which a radionuclide decays is measured in terms of half life. The half-life is defined as the amount of time for which the number of atoms of a radioactive material reduces by half. Half lives for various radioisotopes can range from a few microseconds to billions of years. For the examples above these half lifes are approximately; \SI{6600.0}{\second}, \SI{3960.0}{\second} and \SI{66.0}{\second} respectively~\boxcite{FDGGuidelines}.
             
             An example of the use of some of these radionuclides are:
             
             \begin{itemize}
-                \item Glucose molecules can be labelled with fluorine $18$ (called \gls{FDG}). Glucose is used by cells, though glycolosis, in the carbohydrate metabolisation process to produce \gls{ATP} to make energy available to a cell. When a cell requires more energy it also requires more glucose and as such uptaken of \gls{FDG} is increased in these regions. Fluorine $18$ collects, over time, intra-cellularly because fluorine $18$ labelled \gls{FDG} cannot be fully metabolised due to the group which is replaced by fluorine $18$ being missing and required for this process. Thus the distribution of fluorine $18$ is a good reflection of glucose metabolisation and uptake over time. \gls{FDG} is by far the most commonly used radiotracer in \gls{PET}~\boxcite{WeissBook, FDGGuidelines}.
+                \item Glucose molecules can be labelled with fluorine $18$ (called \gls{FDG} generically or \gls{F-FDG} in the case of fluorine $18$ labeled \gls{F-FDG}). Glucose is used by cells, though glycolosis, in the carbohydrate metabolisation process to produce \gls{ATP} to make energy available to a cell. When a cell requires more energy it also requires more glucose and as such uptaken of \gls{F-FDG} is increased in these regions. Fluorine $18$ collects, over time, intra-cellularly because fluorine $18$ labelled \gls{F-FDG} cannot be fully metabolised due to the group which is replaced by fluorine $18$ being missing and required for this process. Thus the distribution of fluorine $18$ is a good reflection of glucose metabolisation and uptake over time. \gls{F-FDG} is by far the most commonly used radiotracer in \gls{PET}~\boxcite{WeissBook, FDGGuidelines}.
                 
                 \item Gallium $67$ and gallium $68$ are often used to target \gls{PSMA} which can be used in the detection of prostate cancer. \gls{PSMA} is a protein which is present in prostate cancer cells.
                 
@@ -26,23 +26,23 @@
             
             Radionucleides used in \gls{PET} undergo a type of decay called $\beta-$decay~\boxcite{conti_beta}. This is due to an instability of the radionuclide, given to an imbalance of neutrons to protons. As a consequence, a proton in its nucleus converts into a neutron releasing a positron and a neutrino. The emitted positron travels with some decreasing velocity, from sequential collisions, through the body of the patient, for a distance called positron range, before its final collision and annihilation with its antiparticle the electron~\boxcite{EvansPositronBib}. A \gls{PET} scanner thus does not image, directly, the emission of the positron but, in fact, more closely images the location of the annihilation.
             
-            The annihilation causes the emission of two $511$ \gls{KeV} gamma photons at $180^{\circ}$ apart from one another. However, because the poistron-electron pair may not be at rest at the moment of their annihilation, the two emitted photons can show a certain degree of non-collinearity, according to the laws of conservation of energy and momentum. This means that the gamma photons are never exactly $180^{\circ}$ apart~\boxcite{pet_basic}.%, because the positron will usually have a small kinetic energy going into the annihilation. This kinetic energy is conserved after the annihilation as a force in a different direction, usually, to that of the force from the annihilation itself.
+            The annihilation causes the emission of two $511$ \gls{KeV} gamma photons at $\SI{180}{^{\circ}}$ apart from one another. However, because the poistron-electron pair may not be at rest at the moment of their annihilation, the two emitted photons can show a certain degree of non-collinearity, according to the laws of conservation of energy and momentum. This means that the gamma photons are never exactly $\SI{180}{^{\circ}}$ apart~\boxcite{pet_basic}. %, because the positron will usually have a small kinetic energy going into the annihilation. This kinetic energy is conserved after the annihilation as a force in a different direction, usually, to that of the force from the annihilation itself.
             
-            The \gls{FOV} of the scanner is the area in which it can detect these gamma photons. Current clinical \gls{PET} scanners, usually, have a cylindrical \gls{FOV} with a length of between $15$ and $25$ centimetres and a diameter of between $50$ and $70$ centimetres~\boxcite{Pan2019}. In order to take acquire data over an area of more than the length of the scanner acquisitions can be taken over multiple positions and summed together. Alternatively, whole body \gls{PET} scanners are becoming more viable for research and have a high potential for clinical applications. However, the increased price and size constitute a limitation. Whole body \gls{PET} scanners have an axial \gls{FOV} which contains most of the patients body making multiple acquisitions less necessary while also increasing the sensitivity to detecting annihilations~\boxcite{Cherry2018}.
+            The \gls{FOV} of the scanner is the area in which it can detect these gamma photons. Current clinical \gls{PET} scanners, usually, have a cylindrical \gls{FOV} with a length of between \SI{15.0}{\centi\metre} and \SI{25.0}{\centi\metre} and a diameter of between \SI{50.0}{\centi\metre} and \SI{70.0}{\centi\metre}~\boxcite{Pan2019}. In order to take acquire data over an area of more than the length of the scanner acquisitions can be taken over multiple positions and summed together. Alternatively, whole body \gls{PET} scanners are becoming more viable for research and have a high potential for clinical applications. However, the increased price and size constitute a limitation. Whole body \gls{PET} scanners have an axial \gls{FOV} which contains most of the patients body making multiple acquisitions less necessary while also increasing the sensitivity to detecting annihilations~\boxcite{Cherry2018}.
             
-            \subsubsection{Static and Dynamic Acquisition} \label{static_and_dynamic_acquisition}
+            \subsubsection{Static and Dynamic Acquisition} \label{sec:static_and_dynamic_acquisition}
                 There are two main types of \gls{PET} scan useful for determining separate processes, these types of scans and uses are:
                 
                 \begin{itemize}
-                    \item The first and most common type of \gls{PET} scan is a static \gls{PET} scan. The patient is scanned only when the injected radiotracer has perfused through their body and eventually stabilised at a semi-consistent distribution. The time elapsed between injection and acquisition depends on the half life and metabolisation of the radiotracer. For \gls{FDG} about $60$ minutes is given.
+                    \item The first and most common type of \gls{PET} scan is a static \gls{PET} scan. The patient is scanned only when the injected radiotracer has perfused through their body and eventually stabilised at a semi-consistent distribution. The time elapsed between injection and acquisition depends on the half life and metabolisation of the radiotracer. For \gls{F-FDG} about \SI{3600.0}{\second} is given.
                     
-                    \item The second type of \gls{PET} scan is a dynamic scan. The acquisition begins before the radiotracer is injected into the patient. The injection of the radiotracer during the acquisition allows for the kinetics of the tracer to be observed and quantified with the use of compartmental modelling~\boxcite{Lammertsma2017}. For example, from direct parametric reconstruction in dynamic \gls{PET} \gls{MPI}: in-vivo studies used in conjunction with tracer kinetic modelling enables the quantification of \gls{MBF}. Radiotracers such as rubidium $82$ are particularly indicated for dynamic scans given their short half life~\ref{the_physics_of_pet}.
+                    \item The second type of \gls{PET} scan is a dynamic scan. The acquisition begins before the radiotracer is injected into the patient. The injection of the radiotracer during the acquisition allows for the kinetics of the tracer to be observed and quantified with the use of compartmental modelling~\boxcite{Lammertsma2017}. For example, from direct parametric reconstruction in dynamic \gls{PET} \gls{MPI}: in-vivo studies used in conjunction with tracer kinetic modelling enables the quantification of \gls{MBF}. Radiotracers such as rubidium $82$ are particularly indicated for dynamic scans given their short half life, seen in~\Fref{sec:the_physics_of_pet}.
                 \end{itemize}
             
-            \subsubsection{Attenuation} \label{attenuation}
-                Attenuation is the amount of counts lost from annihilation to detection by the scanner while the photons are traversing through the body of the patient. Attenuation can amount to a loss of up to $95$ percent of the total initial signal and can cause increased issues in larger bariatric patients who quite literally have more matter that the photons have to pass through increasing the likelihood that they will be scattered or otherwise attenuated~\boxcite{book, Essential2012}.
+            \subsubsection{Attenuation} \label{sec:attenuation}
+                Attenuation is the amount of counts lost from annihilation to detection by the scanner while the photons are traversing through the body of the patient. Attenuation can amount to a loss of up to \SI{95.0}{\percent} of the total initial signal and can cause increased issues in larger bariatric patients who quite literally have more matter that the photons have to pass through increasing the likelihood that they will be scattered or otherwise attenuated~\boxcite{book, Essential2012}.
                 
-                There are $4$ main ways through which the photon signal can be lost~\boxcite{book2}, these are in ascending order of magnitude:
+                There are four main ways through which the photon signal can be lost~\boxcite{book2}, these are in ascending order of magnitude:
                 
                 \begin{itemize}
                     \item Pair production can be thought of as the inverse process compared to annihilation (as discussed above). This is where a subatomic particle and its antiparticle, such as a electron and a positron, are created from a fundamental particle, such as a photon, usually in close proximity to an atomic nucleus. However, because of conservation of energy a photon would need to be of at least $1.022$ \gls{MeV} which is not generally possible for photons created through electron positron annihilation.
@@ -56,27 +56,27 @@
                 
                 The relationship between the attenuation of the signal and the material through which it is travelling is given by the Beer-Lambert law. Given $I_0$ incident photons travelling across a path of length $D$, the number of non-attenuated photons $\rmI_{\rmD}$ is given by:
                  
-                \begin{equation} \label{eq:beer_lambert_law}
+                \begin{equation} \label{sec:eq:beer_lambert_law}
                     \rmI_{\rmD} := \rmI_{0} \cdot \exp\Bigg(\int_{\rmD} - \mu_E(r)\rmd r \Bigg)
                 \end{equation}
 
                 \noindent where $\mu_E(r)$ is the attenuation coefficient of the media crossed by the photons of energy $E$.
         
-        \subsection{Data acquisition} \label{data_acquisition}
+        \subsection{Data acquisition} \label{sec:data_acquisition}
             % write a general intro on the scanner structure, and the type of events you detect (true scatter randoms etc)
             
-            As discussed above~\ref{the_physics_of_pet}, the structure of a \gls{PET} scanner used to detect the gamma photons, emitted from within the patient, is that of concentric rings of detectors offset along a central axis by the width of the ring plus some small margin. These rings detect each incident photon and attempt to temporally and spatially link opposing photons along a \gls{LOR} through the scanner. The methods though which the scanner attempts to detect incident photons and then link relative photons together will be discussed in the following sections~\ref{photon_detection},~\ref{coincidence_processing}.
+            As discussed in~\Fref{sec:the_physics_of_pet}, the structure of a \gls{PET} scanner is that of concentric rings of detectors offset along a central axis by the width of the ring plus some small margin. These rings detect each incident photon and attempt to temporally and spatially link opposing photons along a \gls{LOR} through the scanner. The methods though which the scanner attempts to detect incident photons and then link relative photons together will be discussed in the following~\Fref{sec:photon_detection} and~\Fref{sec:coincidence_processing}.
             
-            Because of the photons interaction in matter~\ref{attenuation}, there are $4$ different types of event or prompts that can be detected by the scanner, these are:
+            Because of the photons interaction in matter shown in~\Fref{sec:attenuation}, there are four different types of event or prompts that can be detected by the scanner, these are:
             
             \begin{itemize}
                 \item Firstly, the prompts that originate from the same annihilation event and pass through the body of the patient to the detector without being scattered or attenuated. These prompts are called true coincidences as they approximately accurately reflect the position of the originating annihilation.
                 
-                \item Secondly, there are prompts, which may have originated from the same annihilation event but, from which $1$ or more of the incident photons has undergone Compton scattering before detection. These prompts are called scattered coincidences.
+                \item Secondly, there are prompts, which may have originated from the same annihilation event but, from which one or more of the incident photons has undergone Compton scattering before detection. These prompts are called scattered coincidences.
                 
-                \item Thirdly, there are prompts where the \gls{LOR} is determined from $2$ photons from $2$ distinct annihilation events, thus the \gls{LOR} does not reflect an actual annihilation in reality. This could occur because $1$ or more of the photons, from the original pair of photons, may have been attenuated or scattered so that it does not arrive at the detector within a reasonable time of its photon pair. These are called random coincidences.
+                \item Thirdly, there are prompts where the \gls{LOR} is determined from two photons from two distinct annihilation events, thus the \gls{LOR} does not reflect an actual annihilation in reality. This could occur because one or more of the photons, from the original pair of photons, may have been attenuated or scattered so that it does not arrive at the detector within a reasonable time of its photon pair. These are called random coincidences.
                 
-                \item Fourthly, there could be a situation where $3$ or more photons are detected within close temporal proximity to one another. Because of the close time of detection, in this case it is not possible to determine which photons reflect an actual annihilation and which are random coincidences. These prompts could be called multiple coincidences.
+                \item Fourthly, there could be a situation where three or more photons are detected within close temporal proximity to one another. Because of the close time of detection, in this case it is not possible to determine which photons reflect an actual annihilation and which are random coincidences. These prompts are called multiple coincidences.
             \end{itemize}
             
             The total prompts detected during a \gls{PET} acquisition $P$ can be expressed as:
@@ -87,8 +87,8 @@
             
             \noindent where $T$ is the number of true coincidences, $S$ is the number of scattered coincidences and $R$ is the number of random coincidences. Thus the usual total sum of scattered and random coincidences when compared to true coincidences is a ratio of $2$ to $1$.
             
-            \subsubsection{2D and 3D Acquisition} \label{2d_and_3d_acquisition}
-                There are $2$ different methods used in \gls{PET} to determine or constrain to be certain of the spatial position or angle of the \gls{LOR} along the axis of the scanner, these are:
+            \subsubsection{2D and 3D Acquisition} \label{sec:2d_and_3d_acquisition}
+                There are two different methods used in \gls{PET} to determine or constrain to be certain of the spatial position or angle of the \gls{LOR} along the axis of the scanner, these are:
                 
                 \begin{itemize}
                     \item The method which was used for a long time in other applications (such as \gls{SPECT}) and until recently in \gls{PET} was; to place a block of, usually, tungsten metal (for its photon absorbing properties) in front of all of the detectors, this block is called s septa. The septa has very small slits cut into it which would only allow photons to pass through which entered the slits at an acute angle. Thus the septa constrains the photons to being almost perpendicular to the detector (on axis) and as such each detector only receives signal from annihilations that occur within its ring. This process is called collimation and the subsequent acquisition is called a \gls{2D} acquisition, \gls{2D} not because it results in a single image but because it is comprised of distinct \gls{2D} projections.
@@ -96,15 +96,15 @@
                     \item The more modern method is to simply remove the septa from the scanner and to record coincidences between all rings. This is significantly more computationally expensive than a \gls{2D} acquisition but it also increases the sensitivity of the scanner meaning that scanning times can be reduced. Because this method produces projections between all rings it is known as a \gls{3D} acquisition~\boxcite{Schmitz2013}.
                 \end{itemize}
             
-            \subsubsection{Photon Detection} \label{photon_detection}
-                The actual composition of the detector used in the rings of the scanner is made up of $3$ components; a scintillator crystal, which through the photoelectric effect when exposed to ionising radiation produces visible light through luminescence, and a photodetector or photomultiplier which amplifies the intensity of an input light similarly to how a vacuum tube or a transistor would amplify an electrical signal.
+            \subsubsection{Photon Detection} \label{sec:photon_detection}
+                PET detectors consist of three main components; a scintillator crystal, which, because of the photoelectric effect, when exposed to ionising radiation produces visible light through luminescence, and a photodetector or photomultiplier which amplifies the intensity of an input light similarly to how a vacuum tube or a transistor would amplify an electrical signal.
                 
                 For use in \gls{PET} the following properties are desirable for a scintillator crystal:
                 
                 \begin{itemize}
                     \item Firstly, the crystal should have a high stopping power. This means that the photon does not travel a great distance into the crystal before it undergoes attenuation by the photoelectric effect. Usually the higher the density of the scintillator crystal the greater the stopping power.
                     
-                    \item Secondly, for each incident photon the scintillator should have a high light output. This not only means that the work photomultiplier will have to amplify the output less but it also means that discriminating between scattered and unscattered photons will be easier as the discrepancy between the output intensity of the $2$ will be greater.
+                    \item Secondly, for each incident photon the scintillator should have a high light output. This not only means that the work photomultiplier will have to amplify the output less but it also means that discriminating between scattered and unscattered photons will be easier as the discrepancy between the output intensity of the two will be greater.
                     
                     \item Thirdly, the scintillator should return to a state where it can luminesce again rapidly after each incident photon. This means that more photons can be detected over time and that the exact moment a photon is attenuated can be better measured.
                     
@@ -113,112 +113,152 @@
                 
                 The first \gls{PET} scanners used \gls{NaI} scintillator crystals before moving to \gls{BGO} and then to \gls{LSO} and \gls{LYSO}. Each new generation of scintillator crystals provided a different balance of the above characteristics. \gls{LSO} and \gls{LYSO} have the best combination of efficiency and time resolution while not being hygroscopic~\boxcite{BGOCherenkovBib, ScintilatorsBib, Mao2013CrystalCrystals}.
                 
-                There are $3$ main types of photodetector or photomultiplier, these are:
+                There are three main types of photodetector or photomultiplier, these are:
                 
                 \begin{itemize}
-                    \item The first kind of photodetector to be used in \gls{PET} was the \gls{PMT}, this device functions using an initial photocathode and a focusing electrode which takes the output from the scintillator and directs it towards a chain of dynodes. Dynodes are an intermediate electrode which when struck by a photoelectron emit more photoelectrons at a more positive electrical potential through secondary emission. Each subsequent dynode is a a higher potential and emits more photoelectrons than the last causing the input signal to be amplified. Some disadvantages of \gls{PMT} are that they are relatively bulky, are effected by a magnetic field and have a relatively low efficiency at approximately $25$ percent~\boxcite{book, SiPmBib}.
+                    \item The first kind of photodetector to be used in \gls{PET} was the \gls{PMT}, this device functions using an initial photocathode and a focusing electrode which takes the output from the scintillator and directs it towards a chain of dynodes. Dynodes are an intermediate electrode which when struck by a photoelectron emit more photoelectrons at a more positive electrical potential through secondary emission. Each subsequent dynode is a a higher potential and emits more photoelectrons than the last causing the input signal to be amplified. Some disadvantages of \gls{PMT} are that they are relatively bulky, are effected by a magnetic field and have a relatively low efficiency at approximately \SI{25.0}{\percent}~\boxcite{book, SiPmBib}.
                     
-                    \item To attempt to combat the low efficiency mentioned above the \gls{APD} was developed, this device utilises a semiconductor where there is a junction between positive and negative type silicone, this is similar to a traditional diode. This allows for efficiencies approaching $85$ percent, they are much smaller than \gls{PMT} and are safe to be used in a magnetic field. However, this also comes with the drawbacks that \gls{APD} produces so much heat that it requires an active cooling system and exhibits worse timing characteristics than the \gls{PMT}~\boxcite{AvalanchePhotodiodeBib}. \gls{APD} is the choice of many modern \gls{PET}/\gls{CT} scanners~\boxcite{Vandendriessche2019}.
+                    \item To attempt to combat the low efficiency mentioned above the \gls{APD} was developed, this device utilises a semiconductor where there is a junction between positive and negative type silicone, this is similar to a traditional diode. This allows for efficiencies approaching \SI{85.0}{\percent}, they are much smaller than \gls{PMT} and are safe to be used in a magnetic field. However, this also comes with the drawbacks that \gls{APD} produces so much heat that it requires an active cooling system and exhibits worse timing characteristics than the \gls{PMT}~\boxcite{AvalanchePhotodiodeBib}. \gls{APD} is the choice of many modern \gls{PET}/\gls{CT} scanners~\boxcite{Vandendriessche2019}.
                     
                     \item A further development on \gls{APD} gave \gls{SiPM} and \gls{SSPM}. These devices combine the benefits of both \gls{PMT} and \gls{APD} in that they have a high efficiency, small size, are safe to be used in a magnetic field and have good timing characteristic. \gls{SiPM} and \gls{SSPM} are becoming the new default photodetectors~\boxcite{SiPmBib}.
                 \end{itemize}
             
-            \subsubsection{Coincidence Processing} \label{coincidence_processing}
+            \subsubsection{Coincidence Processing} \label{sec:coincidence_processing}
                 % write stuff about coincidence processing , give some info on TOF (or separate section for it, i don't know)
                 
-                In order for a \gls{LOR} to be determined detected photons must be paired together in some way, as briefly mentioned above~\ref{data_acquisition}. First, the photons are filtered by selecting photons which only fall within an energy window of the scanner, \gls{GE} Discovery 690/710 \gls{PET}/\gls{CT} this energy window fall approximately between $425$ and $600$ \gls{KeV}~\boxcite{Bettinardi2011}. Additionally, to attempt to determine temporally if two detected photons belong to the same annihilation event a coincidence window is used. If the events arrive more then the coincidence window apart then they are determined to be unrelated. A standard coincidence window size would be about $5$ nanoseconds.
+                In order for a \gls{LOR} to be determined detected photons must be paired together in some way, as briefly mentioned above in~\Fref{sec:data_acquisition}. First, the photons are filtered by selecting photons which only fall within an energy window of the scanner, for the \gls{GE} Discovery 690/710 \gls{PET}/\gls{CT} this energy window fall approximately between $425$ and $600$ \gls{KeV}~\boxcite{Bettinardi2011}. Additionally, to attempt to determine temporally if two detected photons belong to the same annihilation event a coincidence window is used. If the events arrive more than the time of the coincidence window apart then they are determined to be unrelated. A standard coincidence window size would be about \SI{5.0}{\nano\second}.
             
-            \subsubsection{Time of Flight PET} \label{tof_pet}
-                \blindtext
-            
-            \subsubsection{Data Output} \label{data_output}
-                \blindtext
-            
-            \subsubsection{PET resolution} \label{pet_resolution}
-                \blindtext
-            
-        \subsection{Attenuation Correction} \label{attenuation_correction}
-            \blindtext
-            
-                \subsubsection{Combined PET/CT} \label{combined_pet_ct}
-                    \blindtext
-    
-    \longsection{PET Image Reconstruction}{pet_image_reconstruction}
-        \blindtext
-        
-        \subsection{Analytic Image Reconstruction} \label{analytic_image_reconstruction}
-            \blindtext
-            % mention briefely FBP ?
-        
-        \subsection{Iterative Image Reconstruction} \label{iterative_image_reconstruction}
-            \blindtext
-            
-            \subsubsection{Objective Function} \label{iterative_image_reconstruction_objective_function}
-                \blindtext
+            \subsubsection{Time of Flight PET} \label{sec:tof_pet}
+                As stated above in~\Fref{sec:coincidence_processing}, in order for the coincidence window to have a concept of the proximity of the arrival time of each photon, the scanner must be aware of the absolute time at which it detects each incident photon. It had been hypothesised for some time (since the 1960s) that given the speed of light and the difference in arrival time at each detector then it should be possible to approximately calculate the position upon the \gls{LOR} at which a given annihilation occurred~\boxcite{Surti2015, TOFPhotodetectorsBib}.
                 
-            \subsubsection{Optimiser} \label{iterative_image_reconstruction_optimiser}
-                \blindtext
+                The reason for the uncertainty of the position along the \gls{LOR} is because of the relatively course timing resolution of each given scanner. Generally modern scanners have a timing resolution ranging between \SI{200.0}{\pico\second} and \SI{600.0}{\pico\second}, which represents an approximate spatial uncertainty of between \SI{60.0}{\milli\metre} and \SI{180.0}{\milli\metre}. The uncertainty within these \gls{TOF} bins is modelled using a Gaussian distribution centred around the estimated position of annihilation by the scanner.
+                
+                The timing resolution of the scanner is mainly dictated by the timing properties of both the scintillation crystal and the photodetector used. For the scintillation crystal, almost ubiquitously \gls{LSO} and \gls{LYSO} are used in modern \gls{PET} scanners which utilise \gls{TOF}. This is because they are the only scintillation crystals where they stop the photon and return to their base state post luminescence in a suitable time such that the time of arrival can be determined to any useful degree~\boxcite{TOFLSOBib}. For the photodetector, though \gls{PMT} possessed suitable timing properties to be used for \gls{TOF} now \gls{SiPM} and \gls{SSPM} are suppassing \gls{PMT} both in their timing properties and because they are not affected by magnetic fields and such can be used in both \gls{PET}/\gls{CT} as well as \gls{PET}/\gls{MR} scanners.
+                
+                Currently, \gls{TOF} is a focus for research because of the drastic improvements that it can have on the \gls{SNR}~\boxcite{Lecoq2017, Cates2018}. \gls{TOF} has such an impact on the resolution and reconstruction of \gls{PET} that it is used as a pseudo attenuation correction technique outside of the \gls{FOV} of the \gls{MR} in some \gls{PET}/\gls{MR} systems, such as the \gls{GE} Signa~\boxcite{Pan2019}.
+                
+                The \gls{PET}/\gls{CT} scanner with the highest \gls{TOF} resolution which is commercially available is the Siemans Vision with an approximate \gls{FWHM} of \SI{210.0}{\pico\second} or \SI{63.0}{\milli\metre}~\boxcite{VanSluis2019}. The \gls{PET}/\gls{MR} scanner with the highest \gls{TOF} resolution which is commercially available is the \gls{GE} Signa with an approximate \gls{FWHM} that is sub \SI{400.0}{\pico\second} or \SI{120.0}{\milli\metre}~\boxcite{Hsu2017StudiesSystem, Grant2016NEMASystem, Caribe2019NEMAIsotopes}.
+            
+            \subsubsection{Data Output} \label{sec:data_output}
+                The output from a \gls{PET} scanner must be stored in a universally understood file format in order to be of any use. This file format will usually contain information related to the prompts from the acquisition, discussed above in~\Fref{sec:data_acquisition}. Each prompt stored represents a \gls{LOR} connecting the centre of two detectors, where \gls{TOF} information is available it is stored as an extra dimension in this file. This file can then be taken and reconstructed in order to estimate the original distribution of the radiotracer in the patient, this will be discussed later in~\Fref{sec:pet_image_reconstruction}. The data output from a \gls{PET} scan are usually expressed in \gls{kBq/mL}, however for pseudo quantitative analysis the values are usually normalised to \gls{SUV} by dividing the activity by, for instance, the mass of the patient and the injected activity.
+                
+                There are two main formats in which this information is stored from the scanner, these are:
+                
+                \begin{itemize}
+                    \item The most common way, that is used in clinical practise, is a format called a sinogram. During acquisition, if a sinogram output is specified, then the coincidences detected by the scanner are binned into a histogram which represents their plane orthogonal to the scanner, their orientation angle, their average axial location and their distance from the centre of the gantry. If a single point source were imaged it would produce a sinusoid when binned into a sinogram, hence the name. Because data is being binned into a histogram with this method then information is lost, it could be considered a lossy compression method.
+                    
+                    \item A less common method but one which is becoming more prevalent is a format called listmode data. Here each coincidence is recorded sequentially in a file. The information stored for each coincidence includes its arrival time, the coordinates of the detector and coincidence and its detected energy. A listmode file can be directly reconstructed or unlisted into a sinogram post acquisition. Because a listmode file does not compress the output from the scanner, such as by binning the data into a histogram like with a sinogram, then the size of a listmode file will always be inherently larger than an equivalent sinogram.
+                \end{itemize}
+            
+            \subsubsection{PET resolution} \label{sec:pet_resolution}
+                There are five main effects which impact the resolution of a \gls{PET} acquisition, these are:
+                
+                \begin{itemize}
+                    \item Firstly, there is, as has been discussed above in~\Fref{sec:the_physics_of_pet}, the effect of positron range. Because the positron travels a small distance before annihilating the \gls{PET} scanner will always, at best, be measuring the position of the annihilation rather than the position of the decay and as such not directly measuring the position of the radiotracer~\boxcite{PositronRangeLevinHoffmanBib}.
+                    
+                    \item Secondly, again as discussed above in~\Fref{sec:attenuation}, because the positron will almost always enter the annihilation event with some velocity then the gamma photons produced will exit with the same additional velocity. This velocity is also almost always in a direction other than that which the gamma photon would otherwise travel in, this causes the photons to travel in a direction which is not exactly $\SI{180}{^{\circ}}$ apart from one another. This effect is exacerbated by the amount of time that the photons are allowed to travel, thus the larger the bore of the \gls{PET} scanner the larger this effect will have on the resolution. The effect of acolliniarity on \gls{F-FDG} gives an error of approximately $\SI{0.54}{^{\circ}}$~\boxcite{AccollinearityBib}
+                    
+                    \item Thirdly, the size of each detector dictates the angular resolution of the scanner, or the number of \gls{LOR} covering any $\SI{360}{^{\circ}}$ slice is directly proportional to the number of detectors in each ring. Thus the resolution at which you can reconstruct before the sparsity of the \gls{LOR} means that some voxels will have zero \gls{LOR} passing through them is determined by the size of each individual detector.
+                    
+                    \item Fourthly, The block construction of each detector negatively impacts the resolution. This is because a number of scintillation crystals is paired with, usually, fewer photodetectors. This means if a photon interacts with one crystal it may incorrectly be attributed to another crystal.
+                    
+                    \item Finally, as discussed in~\Fref{sec:photon_detection}, a scintillation crystal has some stopping power, this power describes the approximate depth at which photons will undergo attenuation by the photoelectric effect. In some instances, depending upon the position and angle at which the incident photon hits the scintillation crystal it is possible for the photon to travel through the crystal and into an adjacent crystal before being detected. This means that the photon is incorrectly positioned and will result in blurring of the reconstructed volume.
+                \end{itemize}
+        
+        \subsection{Combined PET/CT} \label{sec:combined_pet_ct}
+            A \gls{CT} scanner consists of two straight parallel devices which sit one on either side of the bore of the scanner. One device is an X-ray emitter and the other is an X-ray detector. If the X-ray emitter were to operate in one fixed position the result would be similar to a standard diagnostic X-ray, the difference comes in that for \gls{CT} during a continuous acquisition the device spins around the axis of the scanner taking continuous measurements. This allows for an X-ray image at every angular position. While spinning the \gls{CT} scanner also travels along the axis of the scanner, this allows for the collection of data over a \gls{3D} volume (as what \gls{PET} collects over).
+            
+            When the X-ray beam intersects with the body of a patient it is possible for the beam to be attenuated by the photoelectric effect, similarly to discussed in~\Fref{sec:attenuation}. Where the intensity of the beam detected is less it can be assumed that there is a more dense object attenuating more of the beam between it and the emitter. If this information is collected over a \gls{3D} volume it allows for the generation of a \gls{3D} volume that reflects the attenuation of the body of the patient, for instance. This attenuation is normally expressed in \gls{HU}.
+            
+            The energy of the X-ray used in \gls{CT} consists of many different wavelengths, or polychromatic. The wavelength range usually used in a \gls{PET}/\gls{CT} acquisition is between $40$ and $140$ \gls{KeV}~\boxcite{CTattenuationenergyBib}. The wavelength range is determined by the settings of the scanner, these mainly consist of the peak \gls{kVp} and the electric current applied, in milliamps.
+            
+            In a standard \gls{PET}/\gls{CT} scan the \gls{CT} component comes first before the \gls{PET}. In modern \gls{PET}/\gls{CT} scanners the \gls{CT} and \gls{PET} are inline one the same bed, however the first \gls{PET}/\gls{CT} scans were taken on different machines entirely and as such the position of the patient differed more drastically between scans. A standard \gls{CT} scan over the thoracic region will last approximately between \SI{2.0}{\second} and \SI{3.0}{\second}~\boxcite{PETCTImagingTechnicalConsiderationsBib}.
+        
+            \subsubsection{Attenuation Correction} \label{sec:attenuation_correction}
+                As discussed previously in~\Fref{sec:attenuation} attenuation represents the loss of coincidences by photon interactions in matter. Attenuation is an issue in \gls{PET} as it causes the loss of signal and a degradation in image quality, this is the opposite for \gls{CT} where the modality itself relies on attenuation in order to differentiate anatomical structure. In order to find reasonable quantitative results the attenuation of the patient must be taken into account in \gls{PET}. Both \gls{PET} and \gls{CT} follow the Beer-Lambert law.
+                
+                One method to acquire a \gls{mu-map}, for attenuation correction, is to acquire a transmission scan of a known point source rotated around the body of the  prior to the injection of the radiotracer. This allows for the estimation of the attenuation for each angle~\boxcite{TransmissionatnBib}. Another method involves the use of the known attenuation from the \gls{CT} scan.
+                
+                In order to apply the \gls{CT} based \gls{mu-map} to attenuation correction in \gls{PET} first it must undergo either bilinear or trilinear conversion to asses the attenuation coefficient factors, this is because of the relative energy difference of the two modalities~\boxcite{Carney2006}. As discussed above in~\Fref{sec:coincidence_processing} and~\Fref{sec:combined_pet_ct} \gls{PET} and \gls{CT} operate at two different energy levels of between between $425$ and $600$ \gls{KeV} and between $40$ and $140$ \gls{KeV} respectively~\boxcite{Bettinardi2011, CTattenuationenergyBib}.
+                
+                Issues with \gls{CT} based attenuation correction include: Firstly, as mentioned above in~\Fref{sec:combined_pet_ct}, \gls{CT} is acquired sequentially to \gls{PET} rather than simultaneously meaning that there can be mismatches in anatomy between the scans. Secondly, the propagation of any artefacts from the \gls{CT} volume into the \gls{PET} volume. Regardless of these issues \gls{CT} is currently regarded as the best method for \gls{mu-map} estimation for attenuation correction. transmission scans are now very rarely used because of their sensitivity to user error, inclusion of an additional external source and their significant increase in scan time.
     
-    \longsection{Respiratory Motion in PET}{respiratory_motion_in_pet}
-        \blindtext
+    \longsection{PET Image Reconstruction}{sec:pet_image_reconstruction}
+        
+        
+        \subsection{Analytic Image Reconstruction} \label{sec:analytic_image_reconstruction}
+            % mention briefely FBP ?
+            
+        
+        \subsection{Iterative Image Reconstruction} \label{sec:iterative_image_reconstruction}
+            
+            
+            \subsubsection{Objective Function} \label{sec:iterative_image_reconstruction_objective_function}
+                
+                
+            \subsubsection{Optimiser} \label{sec:iterative_image_reconstruction_optimiser}
+                
+    
+    \longsection{Respiratory Motion in PET}{sec:respiratory_motion_in_pet}
         % general intro
         
-        \subsection{Respiratory Motion Artefacts} \label{respiratory_motion_artefacts}
-            \blindtext
+        
+        \subsection{Respiratory Motion Artefacts} \label{sec:respiratory_motion_artefacts}
             % have a look at https://www.sciencedirect.com/science/article/pii/S0001299808000214?via%3Dihub
             
-        \subsection{Respiratory Motion Challenges in Combined PET/CT Imaging} \label{respiratory_motion_challenges_in_combined_pet_ct_imaging}
-            \blindtext
             
-            \subsubsection{Attenuation Correction Techniques in Respiratory Motion Correction} \label{attenuation_correction_techniques_in_respiratory_motion_correction}
-                \blindtext
+        \subsection{Respiratory Motion Challenges in Combined PET/CT Imaging} \label{sec:respiratory_motion_challenges_in_combined_pet_ct_imaging}
+            
+            
+            \subsubsection{Attenuation Correction Techniques in Respiratory Motion Correction} \label{sec:attenuation_correction_techniques_in_respiratory_motion_correction}
+                
     
-    \longsection{Motion Correction for PET}{motion_correction_for_pet}
-        \blindtext
+    \longsection{Motion Correction for PET}{sec:motion_correction_for_pet}
+        
     
-        \subsection{Image Registration} \label{image_registration}
-            \blindtext
+        \subsection{Image Registration} \label{sec:image_registration}
             
-            \subsubsection{Objective Function} \label{image_registration_objective_function}
-                \blindtext
-                
-            \subsubsection{Optimiser} \label{image_registration_optimiser}
-                \blindtext
             
-        \subsection{Respiratory Signal Detection} \label{respiratory_signal_detection}
-            \blindtext
+            \subsubsection{Objective Function} \label{sec:image_registration_objective_function}
+                
+                
+            \subsubsection{Optimiser} \label{sec:image_registration_optimiser}
+                
             
-            \subsubsection{External Devices} \label{external_devices}
-                \blindtext
+        \subsection{Respiratory Signal Detection} \label{sec:respiratory_signal_detection}
+            
+            
+            \subsubsection{External Devices} \label{sec:external_devices}
                 
-            \subsubsection{Data Driven} \label{data_driven}
-                \blindtext
                 
-        \subsection{Respiratory Gating} \label{respiratory_gating}
-            \blindtext
+            \subsubsection{Data Driven} \label{sec:data_driven}
+                
+                
+        \subsection{Respiratory Gating} \label{sec:respiratory_gating}
             % brief intro
             
-        \subsection{Motion Modelling} \label{motion_modelling}
-            \blindtext
-        
-        \subsection{Applying Motion Correction} \label{applying_motion_correction}
-            \blindtext
             
-            \subsubsection{Post Image Reconstruction Motion Correction} \label{post_image_reconstruction_motion_correction}
-                \blindtext
+        \subsection{Motion Modelling} \label{sec:motion_modelling}
+            
+        
+        \subsection{Applying Motion Correction} \label{sec:applying_motion_correction}
+            
+            
+            \subsubsection{Post Image Reconstruction Motion Correction} \label{sec:post_image_reconstruction_motion_correction}
                 
-            \subsubsection{Iterative Motion Corrected Image Reconstruction} \label{iterative_motion_corrected_image_reconstruction}
-                \blindtext
+                
+            \subsubsection{Iterative Motion Corrected Image Reconstruction} \label{sec:iterative_motion_corrected_image_reconstruction}
+                
     
-    \longsection{Machine Learning for PET}{machine_learning_for_pet}
-        \blindtext
+    \longsection{Machine Learning for PET}{sec:machine_learning_for_pet}
         
-        \subsection{Machine Learning Concepts} \label{machine_learning_concepts}
-            \blindtext
         
-        \subsection{Machine Learning for PET Image Reconstruction} \label{machine_learning_for_pet_image_reconstruction}
-            \blindtext
+        \subsection{Machine Learning Concepts} \label{sec:machine_learning_concepts}
+            
+        
+        \subsection{Machine Learning for PET Image Reconstruction} \label{sec:machine_learning_for_pet_image_reconstruction}
             % might want to mention this?
+            
         
-        \subsection{Machine Learning for Motion Correction} \label{machine_learning_for_motion_correction}
-            \blindtext
+        \subsection{Machine Learning for Motion Correction} \label{sec:machine_learning_for_motion_correction}
+            

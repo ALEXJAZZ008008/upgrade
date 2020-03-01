@@ -90,6 +90,7 @@
 \newacronym{OSEM}{OSEM}{Ordered Subset Expectation Maximisation}
 \newacronym{LOR}{LOR}{Line of Response}
 \newacronym{FDG}{FDG}{Fludeoxyglucose}
+\newacronym{F-FDG}{F-FDG}{Fluorine $18$ Fludeoxyglucose}
 \newacronym{STIR}{STIR}{Software for Tomographic Image Reconstruction}
 \newacronym{SIRF}{SIRF}{Synergistic Image Reconstruction Framework}
 \newacronym{FWHM}{FWHM}{Full Width at Half Maximum}
@@ -112,8 +113,8 @@
 \newacronym{AC}{AC}{Attenuation Corrected}
 \newacronym{ROI}{ROI}{Region of Interest}
 \newacronym{PSMA}{PSMA}{Region of Interest}
-\newacronym{KeV}{KeV}{Kilo electron Volt}
-\newacronym{MeV}{KeV}{Mega electron Volt}
+\newacronym{KeV}{KeV}{Kilo Electron Volt}
+\newacronym{MeV}{KeV}{Mega Electron Volt}
 \newacronym{ATP}{ATP}{Adenosine Triphosphate}
 \newacronym{MPI}{MPI}{Myocardial Perfusion Imaging}
 \newacronym{MBF}{MBF}{Myocardial Blood Flow}
@@ -128,9 +129,15 @@
 \newacronym{SiPM}{SiPM}{Silicon Photomultiplier}
 \newacronym{SSPM}{SSPM}{Solid State Photomultiplier}
 \newacronym{GE}{GE}{General Electric}
+\newacronym{SNR}{SNR}{Signal to Noise Ratio}
+\newacronym{kVp}{kVp}{Kilo Voltage}
+\newacronym{HU}{HU}{Hounsfield Units}
+\newacronym{kBq/mL}{kBq/mL}{Kilo Becquerel per Millilitre}
+\newacronym{SUV}{SUV}{Standard Uptake Value}
 
 \usepackage[top=6.0cm,bottom=1.25cm,left=6.5cm,right=0.5cm,headheight=1.0cm]{geometry}
 
+\usepackage{fancyref}
 \usepackage{fancyhdr}
 \newcommand{\longtitle}[1]
 {%
@@ -152,6 +159,9 @@
 \newcommand{\rmd}{\mathrm{d}}
 \newcommand{\rmD}{\mathrm{D}}
 \newcommand{\rmI}{\mathrm{I}}
+
+\usepackage{siunitx}
+
 \headsep=1cm
 
 \addbibresource{./bibtex/bib/Biblio.bib}
