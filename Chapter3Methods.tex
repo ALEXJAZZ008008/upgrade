@@ -47,14 +47,14 @@
                 In addition, the \gls{COM} of the lesion was also tracked over the six gates, by warping a volume only including the lesion in the reference position as above, and then computing the \gls{COM}.
             
         \subsection{Results} \label{sec:impact_of_tof_on_respiratory_motion_modelling_using_nac_pet_results}
-            \begin{figure*}
+            \begin{figure}
                 \centering
                 
-                \includegraphics[width=1.0\linewidth]{figures/output.png}
+                \includegraphics[width=1.0\linewidth]{figures/result_1_output.png}
                 
                 \captionsetup{singlelinecheck=false, justification=raggedright}
                 \caption{All volumes correspond to end inhalation. First row from left to right: \gls{XCAT} \gls{PET} data, \gls{NAC} \gls{NTOF} reconstructed data and \gls{NAC} \gls{TOF} reconstructed data. Second row: \gls{RCM} applied to mean position \gls{XCAT} data with \gls{RCM} derived from \gls{XCAT} \gls{PET} data (left), \gls{NAC} \gls{NTOF} (middle) and \gls{NAC} \gls{TOF} (right) volumes. Colour map ranges are consistent for all images on this row. The third row from left to right: The difference between the estimated volumes from the second row with the \gls{XCAT} end-inhalation volume. Colour map ranges are consistent for all images on this row.} \label{fig:impact_of_tof_on_respiratory_motion_modelling_using_nac_pet_results_output}
-            \end{figure*}
+            \end{figure}
             
             \begin{table}
                 \centering
@@ -84,7 +84,7 @@
             \begin{figure}
                 \centering
                 
-                \includegraphics[width=1.0\linewidth]{figures/TOF.png}
+                \includegraphics[width=1.0\linewidth]{figures/result_1_TOF.png}
                 
                 \captionsetup{singlelinecheck=false, justification=raggedright}
                 \caption{The path of the \gls{COM} of the lesion. Horizontal (respectively vertical) axis corresponds to motion in the \gls{AP} (respectively \gls{SI}) direction over the six gates. Different curves denote \gls{COM} displacement for  ground truth data, the estimated data from the \gls{XCAT} based \gls{RCM}, the estimated data from the \gls{NAC} \gls{NTOF} based \gls{RCM} and the estimated data from the \gls{NAC} \gls{TOF} based \gls{RCM}.} \label{fig:impact_of_tof_on_respiratory_motion_modelling_using_nac_pet_results_com_graph}

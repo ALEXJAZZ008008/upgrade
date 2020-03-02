@@ -8,27 +8,45 @@
         \subsection{The Physics of PET} \label{sec:the_physics_of_pet}
             % write something about radiotracer, functional imaging, radiounclide decays, and photon interaction with matter
             
-            \gls{PET} is an example of a type of imaging known as functional imaging. It is functional as rather than capturing images of anatomy for instance the structure and density of bones, it images the metabolic processes of a living thing. This metabolic function is, for instance, how blood flows through and into parts of the body (perfusion) or how glucose is transported to and metabolised by certain cells.
-            
-            The process through which a \gls{PET} scan takes place is as follows; firstly, a patient is injected with a chemical compound called a radiotracer which is a solution containing radionuclides. A radiotracer is a biologically active molecule which has been labelled with a positron emitting radionuclide. The molecule will have been selected knowing that it will have significant uptake in the \gls{ROI} depending on the target tissue. In other words, after perfusion (through the circulatory system) it will appear with a greater frequency within certain types of cells (post metabolistation). The positron emitting radionuclide is selected because it has the capacity to be labelled to the molecule by replacing one of its groups, not all radionuclides can be labelled to all molecules. % After injection the radiotracer perfuses through the circulatory system of the patient.
-            
-            Some examples of common radionuclides used in radiotracers include; fluorine $18$, gallium $67$, gallium $68$, and rubidium $82$. The rate at which a radionuclide decays is measured in terms of half life. The half-life is defined as the amount of time for which the number of atoms of a radioactive material reduces by half. Half lives for various radioisotopes can range from a few microseconds to billions of years. For the examples above these half lifes are approximately; \SI{6600.0}{\second}, \SI{3960.0}{\second} and \SI{66.0}{\second} respectively~\boxcite{FDGGuidelines}.
-            
-            An example of the use of some of these radionuclides are:
-            
-            \begin{itemize}
-                \item Glucose molecules can be labelled with fluorine $18$ (called \gls{FDG} generically or \gls{F-FDG} in the case of fluorine $18$ labeled \gls{F-FDG}). Glucose is used by cells, though glycolosis, in the carbohydrate metabolisation process to produce \gls{ATP} to make energy available to a cell. When a cell requires more energy it also requires more glucose and as such uptaken of \gls{F-FDG} is increased in these regions. Fluorine $18$ collects, over time, intra-cellularly because fluorine $18$ labelled \gls{F-FDG} cannot be fully metabolised due to the group which is replaced by fluorine $18$ being missing and required for this process. Thus the distribution of fluorine $18$ is a good reflection of glucose metabolisation and uptake over time. \gls{F-FDG} is by far the most commonly used radiotracer in \gls{PET}~\boxcite{WeissBook, FDGGuidelines}.
+            \subsubsection{Radiotracers} \label{sec:radiotracers}
+                \gls{PET} is an example of a type of imaging known as functional imaging. It is functional as rather than capturing images of anatomy for instance the structure and density of bones, it images the metabolic processes of a living thing. This metabolic function is, for instance, how blood flows through and into parts of the body (perfusion) or how glucose is transported to and metabolised by certain cells.
                 
-                \item Gallium $67$ and gallium $68$ are often used to target \gls{PSMA} which can be used in the detection of prostate cancer. \gls{PSMA} is a protein which is present in prostate cancer cells.
+                The process through which a \gls{PET} scan takes place is as follows; firstly, a patient is injected with a chemical compound called a radiotracer which is a solution containing radionuclides. A radiotracer is a biologically active molecule which has been labelled with a positron emitting radionuclide. The molecule will have been selected knowing that it will have significant uptake in the \gls{ROI} depending on the target tissue. In other words, after perfusion (through the circulatory system) it will appear with a greater frequency within certain types of cells (post metabolistation). The positron emitting radionuclide is selected because it has the capacity to be labelled to the molecule by replacing one of its groups, not all radionuclides can be labelled to all molecules. % After injection the radiotracer perfuses through the circulatory system of the patient.
                 
-                \item Rubidium $82$ can be used to image the heart in a scan targeting myocardial perfusion~\boxcite{Selwyn1982}.
-            \end{itemize}
+                Some examples of common radionuclides used in radiotracers include; fluorine $18$, gallium $67$, gallium $68$, and rubidium $82$. The rate at which a radionuclide decays is measured in terms of half life. The half-life is defined as the amount of time for which the number of atoms of a radioactive material reduces by half. Half lives for various radioisotopes can range from a few microseconds to billions of years. For the examples above these half lifes are approximately; \SI{6600.0}{\second}, \SI{3960.0}{\second} and \SI{66.0}{\second} respectively~\boxcite{FDGGuidelines}.
+                
+                An example of the use of some of these radionuclides are:
+                
+                \begin{itemize}
+                    \item Glucose molecules can be labelled with fluorine $18$ (called \gls{FDG} generically or \gls{F-FDG} in the case of fluorine $18$ labeled \gls{F-FDG}). Glucose is used by cells, though glycolosis, in the carbohydrate metabolisation process to produce \gls{ATP} to make energy available to a cell. When a cell requires more energy it also requires more glucose and as such uptaken of \gls{F-FDG} is increased in these regions. The concentration of fluorine $18$ intra-cellularly increases in certain areas over time because; fluorine $18$ labelled \gls{F-FDG} cannot be fully metabolised due to the group which is replaced by fluorine $18$ being missing and required for this process. Thus the distribution of fluorine $18$ is a good reflection of glucose metabolisation and uptake over time. \gls{F-FDG} is by far the most commonly used radiotracer in \gls{PET}~\boxcite{WeissBook, FDGGuidelines}.
+                    
+                    \item Gallium $67$ and gallium $68$ are often used to target \gls{PSMA} which can be used in the detection of prostate cancer. \gls{PSMA} is a protein which is present in prostate cancer cells.
+                    
+                    \item Rubidium $82$ can be used to image the heart in a scan targeting myocardial perfusion~\boxcite{Selwyn1982}.
+                \end{itemize}
             
-            Radionucleides used in \gls{PET} undergo a type of decay called $\beta-$decay~\boxcite{conti_beta}. This is due to an instability of the radionuclide, given to an imbalance of neutrons to protons. As a consequence, a proton in its nucleus converts into a neutron releasing a positron and a neutrino. The emitted positron travels with some decreasing velocity, from sequential collisions, through the body of the patient, for a distance called positron range, before its final collision and annihilation with its antiparticle the electron~\boxcite{EvansPositronBib}. A \gls{PET} scanner thus does not image, directly, the emission of the positron but, in fact, more closely images the location of the annihilation.
-            
-            The annihilation causes the emission of two $511$ \gls{KeV} gamma photons at $\SI{180}{^{\circ}}$ apart from one another. However, because the poistron-electron pair may not be at rest at the moment of their annihilation, the two emitted photons can show a certain degree of non-collinearity, according to the laws of conservation of energy and momentum. This means that the gamma photons are never exactly $\SI{180}{^{\circ}}$ apart~\boxcite{pet_basic}. %, because the positron will usually have a small kinetic energy going into the annihilation. This kinetic energy is conserved after the annihilation as a force in a different direction, usually, to that of the force from the annihilation itself.
-            
-            The \gls{FOV} of the scanner is the area in which it can detect these gamma photons. Current clinical \gls{PET} scanners, usually, have a cylindrical \gls{FOV} with a length of between \SI{15.0}{\centi\metre} and \SI{25.0}{\centi\metre} and a diameter of between \SI{50.0}{\centi\metre} and \SI{70.0}{\centi\metre}~\boxcite{Pan2019}. In order to take acquire data over an area of more than the length of the scanner acquisitions can be taken over multiple positions and summed together. Alternatively, whole body \gls{PET} scanners are becoming more viable for research and have a high potential for clinical applications. However, the increased price and size constitute a limitation. Whole body \gls{PET} scanners have an axial \gls{FOV} which contains most of the patients body making multiple acquisitions less necessary while also increasing the sensitivity to detecting annihilations~\boxcite{Cherry2018}.
+            \subsubsection{Decay and Annihilation} \label{sec:decay_and_annihilation}
+                \begin{figure}
+                    \centering
+                    
+                    \includegraphics[width=1.0\linewidth]{figures/background_beta_plus_decay.png}
+                    
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{This figure shows a graphical example of $\beta+$-decay. Here in the top left of the figure a nucleus can be seen which is unstable as it has an imbalance of protons and neutrons. a positron can be seen exiting the nucleus as a byproduct of $\beta+$-decay converting a proton into a neutron. In the bottom right of the figure a closer example of this can be seen. Here it directly shows a specific proton and the neutron, positron and neutrino which are produced by $\beta+$-decay.} \label{fig:decay_and_annihilation_beta_plus_decay}
+                \end{figure}
+                
+                \begin{figure}
+                    \centering
+                    
+                    \includegraphics[width=1.0\linewidth]{figures/background_positron_range.png}
+                    
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{This figure shows a graphical example of positron range. Here on the right of the figure an atom can be seen traveling with some velocity, a positron is emitted from the nucleus of the atom by $\beta+$-decay. The path that this positron takes can be seen in the centre of the figure represented by a blue line, this path is the positron range. On the left of the figure the annihilation of the positron with an electron occurs and the $\gamma$-photons emitted $\SI{180}{^{\circ}}$ apart are shown.} \label{fig:decay_and_annihilation_positron_range}
+                \end{figure}
+                
+                Radionucleides used in \gls{PET} undergo a type of decay called $\beta+$-decay~\boxcite{conti_beta}. This is due to an instability of the radionuclide, given to an imbalance of neutrons to protons. As a consequence, a proton in its nucleus converts into a neutron releasing a positron and a neutrino, this can be seen in~\Fref{fig:decay_and_annihilation_beta_plus_decay}. The emitted positron travels with some decreasing velocity, from sequential collisions, through the body of the patient, for a distance called positron range, before its final collision and annihilation with its antiparticle the electron, this can be seen in~\Fref{fig:decay_and_annihilation_positron_range}~\boxcite{EvansPositronBib}. A \gls{PET} scanner thus does not image, directly, the emission of the positron but, in fact, more closely images the location of the annihilation.
+                
+                The annihilation causes the emission of two $511$ \gls{KeV} $\gamma$-photons at $\SI{180}{^{\circ}}$ apart from one another. However, because the poistron-electron pair may not be at rest at the moment of their annihilation, the two emitted photons can show a certain degree of non-collinearity, according to the laws of conservation of energy and momentum. This means that the $\gamma$-photons are never exactly $\SI{180}{^{\circ}}$ apart~\boxcite{pet_basic}. %, because the positron will usually have a small kinetic energy going into the annihilation. This kinetic energy is conserved after the annihilation as a force in a different direction, usually, to that of the force from the annihilation itself.
             
             \subsubsection{Static and Dynamic Acquisition} \label{sec:static_and_dynamic_acquisition}
                 There are two main types of \gls{PET} scan useful for determining separate processes, these types of scans and uses are:
@@ -36,10 +54,41 @@
                 \begin{itemize}
                     \item The first and most common type of \gls{PET} scan is a static \gls{PET} scan. The patient is scanned only when the injected radiotracer has perfused through their body and eventually stabilised at a semi-consistent distribution. The time elapsed between injection and acquisition depends on the half life and metabolisation of the radiotracer. For \gls{F-FDG} about \SI{3600.0}{\second} is given.
                     
-                    \item The second type of \gls{PET} scan is a dynamic scan. The acquisition begins before the radiotracer is injected into the patient. The injection of the radiotracer during the acquisition allows for the kinetics of the tracer to be observed and quantified with the use of compartmental modelling~\boxcite{Lammertsma2017}. For example, from direct parametric reconstruction in dynamic \gls{PET} \gls{MPI}: in-vivo studies used in conjunction with tracer kinetic modelling enables the quantification of \gls{MBF}. Radiotracers such as rubidium $82$ are particularly indicated for dynamic scans given their short half life, seen in~\Fref{sec:the_physics_of_pet}.
+                    \item The second type of \gls{PET} scan is a dynamic scan. The acquisition begins before the radiotracer is injected into the patient. The injection of the radiotracer during the acquisition allows for the kinetics of the tracer to be observed and quantified with the use of compartmental modelling~\boxcite{Lammertsma2017}. For example, from direct parametric reconstruction in dynamic \gls{PET} \gls{MPI}: in-vivo studies used in conjunction with tracer kinetic modelling enables the quantification of \gls{MBF}. Radiotracers such as rubidium $82$ are particularly indicated for dynamic scans given their short half life, seen in~\Fref{sec:decay_and_annihilation}.
+                \end{itemize}
+            
+            \subsubsection{PET FOV} \label{sec:pet_fov}
+                \begin{figure}
+                    \centering
+                    
+                    \includegraphics[width=1.0\linewidth]{figures/background_total_body_pet.png}
+                    
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{This figure shows a graphical representation of the difference between a total body \gls{PET} scanner and a standard \gls{PET} scanner. On the left of the figure a total body \gls{PET} scanner can be seen where the rings of detectors completely engulf the patient. However, on the right of the figure a standard \gls{PET} scanner can be seen where the rings of detectors only cover a portion of the patient. On the case on the right of the figure in order to take a scan over the entire body either individual acquisitions will be needed and concatenated or the bed would have to move while the acquisition was ongoing.} \label{fig:pet_fov_total_body_pet}
+                \end{figure}
+                
+                The \gls{FOV} of the scanner is the area in which it can detect these $\gamma$-photons. Current clinical \gls{PET} scanners, usually, have a cylindrical \gls{FOV} with a length of between \SI{15.0}{\centi\metre} and \SI{25.0}{\centi\metre} and a diameter of between \SI{50.0}{\centi\metre} and \SI{70.0}{\centi\metre}~\boxcite{Pan2019}.
+                
+                There are multiple ways to acquire data over more than the axial length of scanner, three of these methods are:
+                
+                \begin{itemize}
+                    \item The most simple and widely used method is to take acquisitions over multiple bed positions and concatenate them.
+                    
+                    \item A method which is still viable on standard axial length scanners is; to continually move the bed through the rings of the scanner while acquiring data. This allows, for instance, for the input function for dynamic scans to be acquired from the aorta before then moving to brain imaging or for scatter to be corrected for that come from outside the \gls{FOV}. A disadvantage of this though is that it introduces another source of motion to the acquisition from moving the bed, this makes standard motion correction much more difficult.
+                    
+                    \item Alternatively, total body \gls{PET} scanners are becoming more viable for research and have a high potential for clinical applications. Total body \gls{PET} scanners have an axial \gls{FOV} which contains most of the patients body making multiple acquisitions less necessary while also increasing the sensitivity to detecting annihilations, this can be seen in~\Fref{fig:pet_fov_total_body_pet}~\boxcite{Cherry2018}. However, the increased price and size constitute a limitation.
                 \end{itemize}
             
             \subsubsection{Attenuation} \label{sec:attenuation}
+                \begin{figure}
+                    \centering
+                    
+                    \includegraphics[width=1.0\linewidth]{figures/background_scatter.png}
+                    
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{This figure shows a graphical representation of a $\gamma$-photon scattering off of a particle. The $\gamma$-photon can be seen entering the figure on the left hand side before scattering off of a particle in the centre of the figure by an angle $\theta$ and exiting the figure on the top right hand corner. The particle exits the scatter event with some velocity represented by the arrow towards the bottom right. The trajectory of the $\gamma$-photon, had it not been scattered, is shown by the dotted line on the right hand side of the figure.} \label{fig:attenuation_scatter}
+                \end{figure}
+                
                 Attenuation is the amount of counts lost from annihilation to detection by the scanner while the photons are traversing through the body of the patient. Attenuation can amount to a loss of up to \SI{95.0}{\percent} of the total initial signal and can cause increased issues in larger bariatric patients who quite literally have more matter that the photons have to pass through increasing the likelihood that they will be scattered or otherwise attenuated~\boxcite{book, Essential2012}.
                 
                 There are four main ways through which the photon signal can be lost~\boxcite{book2}, these are in ascending order of magnitude:
@@ -47,11 +96,11 @@
                 \begin{itemize}
                     \item Pair production can be thought of as the inverse process compared to annihilation (as discussed above). This is where a subatomic particle and its antiparticle, such as a electron and a positron, are created from a fundamental particle, such as a photon, usually in close proximity to an atomic nucleus. However, because of conservation of energy a photon would need to be of at least $1.022$ \gls{MeV} which is not generally possible for photons created through electron positron annihilation.
                     
-                    \item Rayleigh scattering is the elastic scattering of photons without loss of significant energy by particles which are much smaller than the wavelength of the photon. A common example of Rayleigh scattering is the scattering of sunlight in the atmosphere which is causes the blue colour of the sky during the day and the red colour of the sky at sunset. Because the wavelength of gamma photons is comparably small, compared to most particles, the probability of Rayleigh scattering occurring is negligible and thus it is normally ignored in \gls{PET}.
+                    \item Rayleigh scattering is the elastic scattering of photons without loss of significant energy by particles which are much smaller than the wavelength of the photon. A common example of Rayleigh scattering is the scattering of sunlight in the atmosphere which is causes the blue colour of the sky during the day and the red colour of the sky at sunset. Because the wavelength of $\gamma$-photons is comparably small, compared to most particles, the probability of Rayleigh scattering occurring is negligible and thus it is normally ignored in \gls{PET}.
                     
-                    \item Absorption through the photoelectric effect is the process through which the high energy gamma photon hits and transfers its energy to a material causing the emission of lower energy electrons. The likelihood of the photoelectric effect is inversely proportional to the cube of the photon energy; it also increases as the atomic number of the attenuating material increases. In the matter of the patient the photoelectric effect is most prevalent at photon energies below $100$ \gls{KeV} and as such the probability of the photoelectric effect occurring here is minimal~\boxcite{book}. Photoelectric effect occurs mostly in the detectors of the scanner.
+                    \item Absorption through the photoelectric effect is the process through which the high energy $\gamma$-photon hits and transfers its energy to a material causing the emission of lower energy electrons. The likelihood of the photoelectric effect is inversely proportional to the cube of the photon energy; it also increases as the atomic number of the attenuating material increases. In the matter of the patient the photoelectric effect is most prevalent at photon energies below $100$ \gls{KeV} and as such the probability of the photoelectric effect occurring here is minimal~\boxcite{book}. Photoelectric effect occurs mostly in the detectors of the scanner.
                     
-                    \item Compton scattering comprises the majority of interactions between the photon and matter, it occurs where the photon interacts with an electron in a close by atom. The recoiling electron causes the photon to be deflected along another path transferring energy from photon to electron. Compton scattering is also known as incoherent scattering because of its effect on trajectory of the photon. The probability of Compton scattering is indirectly proportional to the energy of the photon~\boxcite{book}.
+                    \item Compton scattering comprises the majority of interactions between the photon and matter, it occurs where the photon interacts with an electron in a close by atom. The recoiling electron causes the photon to be deflected along another path transferring energy from photon to electron, this can be seen in~\Fref{fig:attenuation_scatter}. Compton scattering is also known as incoherent scattering because of its effect on the trajectory of the photon. The probability of Compton scattering is indirectly proportional to the energy of the photon~\boxcite{book}.
                 \end{itemize}
                 
                 The relationship between the attenuation of the signal and the material through which it is travelling is given by the Beer-Lambert law. Given $I_0$ incident photons travelling across a path of length $D$, the number of non-attenuated photons $\rmI_{\rmD}$ is given by:
@@ -65,19 +114,30 @@
         \subsection{Data acquisition} \label{sec:data_acquisition}
             % write a general intro on the scanner structure, and the type of events you detect (true scatter randoms etc)
             
-            As discussed in~\Fref{sec:the_physics_of_pet}, the structure of a \gls{PET} scanner is that of concentric rings of detectors offset along a central axis by the width of the ring plus some small margin. These rings detect each incident photon and attempt to temporally and spatially link opposing photons along a \gls{LOR} through the scanner. The methods though which the scanner attempts to detect incident photons and then link relative photons together will be discussed in the following~\Fref{sec:photon_detection} and~\Fref{sec:coincidence_processing}.
+            \begin{figure}
+                \centering
+                
+                \includegraphics[width=1.0\linewidth]{figures/background_coincidence.png}
+                
+                \captionsetup{singlelinecheck=false, justification=raggedright}
+                \caption{This figure shows a graphical representation of the different types of coincidences possible in \gls{PET}. On the left of the figure a true coincidence can be seen, this is where the $\gamma$-photons from one annihilation are both detected without scattering. In the middle of the figure a scattered coincidence can be seen, this is where the $\gamma$-photons from one annihilation are both detected, however in this case on of them has scattered. On the right of the figure a random coincidence can be seen, this is where the $\gamma$-photons from two unrelated annihilation are both detected.} \label{fig:data_acquisition_coincidence}
+            \end{figure}
             
-            Because of the photons interaction in matter shown in~\Fref{sec:attenuation}, there are four different types of event or prompts that can be detected by the scanner, these are:
+            As discussed in~\Fref{sec:pet_fov}, the structure of a \gls{PET} scanner is that of concentric rings of detectors offset along a central axis. These rings detect each incident photon and attempt to temporally and spatially link opposing photons along a \gls{LOR} through the scanner. The methods though which the scanner attempts to detect incident photons and then link relative photons together will be discussed in the following~\Fref{sec:photon_detection} and~\Fref{sec:coincidence_processing}.
+            
+            Because of the photons interaction in matter shown in~\Fref{sec:attenuation}, there are four different types of event or coincidences that can be detected by the scanner, these are:
             
             \begin{itemize}
-                \item Firstly, the prompts that originate from the same annihilation event and pass through the body of the patient to the detector without being scattered or attenuated. These prompts are called true coincidences as they approximately accurately reflect the position of the originating annihilation.
+                \item Firstly, the coincidences that originate from the same annihilation event and pass through the body of the patient to the detector without being scattered or attenuated. These coincidences are called true coincidences as they approximately accurately reflect the position of the originating annihilation.
                 
-                \item Secondly, there are prompts, which may have originated from the same annihilation event but, from which one or more of the incident photons has undergone Compton scattering before detection. These prompts are called scattered coincidences.
+                \item Secondly, there are coincidences, which may have originated from the same annihilation event but, from which one or more of the incident photons has undergone Compton scattering before detection. These coincidences are called scattered coincidences.
                 
-                \item Thirdly, there are prompts where the \gls{LOR} is determined from two photons from two distinct annihilation events, thus the \gls{LOR} does not reflect an actual annihilation in reality. This could occur because one or more of the photons, from the original pair of photons, may have been attenuated or scattered so that it does not arrive at the detector within a reasonable time of its photon pair. These are called random coincidences.
+                \item Thirdly, there are coincidences where the \gls{LOR} is determined from two photons from two distinct annihilation events, thus the \gls{LOR} does not reflect an actual annihilation in reality. This could occur because one or more of the photons, from the original pair of photons, may have been attenuated or scattered so that it does not arrive at the detector within a reasonable time of its photon pair. These are called random coincidences.
                 
-                \item Fourthly, there could be a situation where three or more photons are detected within close temporal proximity to one another. Because of the close time of detection, in this case it is not possible to determine which photons reflect an actual annihilation and which are random coincidences. These prompts are called multiple coincidences.
+                \item Fourthly, there could be a situation where three or more photons are detected within close temporal proximity to one another. Because of the close time of detection, in this case it is not possible to determine which photons reflect an actual annihilation and which are random coincidences. These coincidences are called multiple coincidences.
             \end{itemize}
+            
+            An example of some of the types of coincidences from above can be seen in~\Fref{fig:data_acquisition_coincidence}.
             
             The total prompts detected during a \gls{PET} acquisition $P$ can be expressed as:
             
@@ -88,6 +148,15 @@
             \noindent where $T$ is the number of true coincidences, $S$ is the number of scattered coincidences and $R$ is the number of random coincidences. Thus the usual total sum of scattered and random coincidences when compared to true coincidences is a ratio of $2$ to $1$.
             
             \subsubsection{2D and 3D Acquisition} \label{sec:2d_and_3d_acquisition}
+                \begin{figure}
+                    \centering
+                    
+                    \includegraphics[width=1.0\linewidth]{figures/background_septa.png}
+                    
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{} \label{fig:2d_and_3d_acquisition_septa}
+                \end{figure}
+                
                 There are two different methods used in \gls{PET} to determine or constrain to be certain of the spatial position or angle of the \gls{LOR} along the axis of the scanner, these are:
                 
                 \begin{itemize}
@@ -97,6 +166,24 @@
                 \end{itemize}
             
             \subsubsection{Photon Detection} \label{sec:photon_detection}
+                \begin{figure}
+                    \centering
+                    
+                    \includegraphics[width=1.0\linewidth]{figures/background_detector.png}
+                    
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{} \label{fig:photon_detection_detector}
+                \end{figure}
+                
+                \begin{figure}
+                    \centering
+                    
+                    \includegraphics[width=1.0\linewidth]{figures/background_photomultiplier.png}
+                    
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{} \label{fig:photon_detection_photomultiplier}
+                \end{figure}
+                
                 PET detectors consist of three main components; a scintillator crystal, which, because of the photoelectric effect, when exposed to ionising radiation produces visible light through luminescence, and a photodetector or photomultiplier which amplifies the intensity of an input light similarly to how a vacuum tube or a transistor would amplify an electrical signal.
                 
                 For use in \gls{PET} the following properties are desirable for a scintillator crystal:
@@ -120,15 +207,33 @@
                     
                     \item To attempt to combat the low efficiency mentioned above the \gls{APD} was developed, this device utilises a semiconductor where there is a junction between positive and negative type silicone, this is similar to a traditional diode. This allows for efficiencies approaching \SI{85.0}{\percent}, they are much smaller than \gls{PMT} and are safe to be used in a magnetic field. However, this also comes with the drawbacks that \gls{APD} produces so much heat that it requires an active cooling system and exhibits worse timing characteristics than the \gls{PMT}~\boxcite{AvalanchePhotodiodeBib}. \gls{APD} is the choice of many modern \gls{PET}/\gls{CT} scanners~\boxcite{Vandendriessche2019}.
                     
-                    \item A further development on \gls{APD} gave \gls{SiPM} and \gls{SSPM}. These devices combine the benefits of both \gls{PMT} and \gls{APD} in that they have a high efficiency, small size, are safe to be used in a magnetic field and have good timing characteristic. \gls{SiPM} and \gls{SSPM} are becoming the new default photodetectors~\boxcite{SiPmBib}.
+                    \item A further development on \gls{APD} gave \gls{SiPM} and \gls{SSPM}. These devices combine the benefits of both \gls{PMT} and \gls{APD} in that they have a high efficiency, small size, are safe to be used in a magnetic field and have good timing characteristic. \gls{SiPM} and \gls{SSPM} are becoming the new default photodetectors in \gls{GE} scanners~\boxcite{SiPmBib}.
                 \end{itemize}
             
             \subsubsection{Coincidence Processing} \label{sec:coincidence_processing}
                 % write stuff about coincidence processing , give some info on TOF (or separate section for it, i don't know)
                 
+                \begin{figure}
+                    \centering
+                    
+                    \includegraphics[width=1.0\linewidth]{figures/background_coincidence_processing.png}
+                    
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{} \label{fig:coincidence_processing_coincidence_processing}
+                \end{figure}
+                
                 In order for a \gls{LOR} to be determined detected photons must be paired together in some way, as briefly mentioned above in~\Fref{sec:data_acquisition}. First, the photons are filtered by selecting photons which only fall within an energy window of the scanner, for the \gls{GE} Discovery 690/710 \gls{PET}/\gls{CT} this energy window fall approximately between $425$ and $600$ \gls{KeV}~\boxcite{Bettinardi2011}. Additionally, to attempt to determine temporally if two detected photons belong to the same annihilation event a coincidence window is used. If the events arrive more than the time of the coincidence window apart then they are determined to be unrelated. A standard coincidence window size would be about \SI{5.0}{\nano\second}.
             
-            \subsubsection{Time of Flight PET} \label{sec:tof_pet}
+            \subsubsection{Time of Flight PET} \label{sec:time_of_flight_pet}
+                \begin{figure}
+                    \centering
+                    
+                    \includegraphics[width=1.0\linewidth]{figures/background_tof.png}
+                    
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{} \label{fig:time_of_flight_pet_tof}
+                \end{figure}
+                
                 As stated above in~\Fref{sec:coincidence_processing}, in order for the coincidence window to have a concept of the proximity of the arrival time of each photon, the scanner must be aware of the absolute time at which it detects each incident photon. It had been hypothesised for some time (since the 1960s) that given the speed of light and the difference in arrival time at each detector then it should be possible to approximately calculate the position upon the \gls{LOR} at which a given annihilation occurred~\boxcite{Surti2015, TOFPhotodetectorsBib}.
                 
                 The reason for the uncertainty of the position along the \gls{LOR} is because of the relatively course timing resolution of each given scanner. Generally modern scanners have a timing resolution ranging between \SI{200.0}{\pico\second} and \SI{600.0}{\pico\second}, which represents an approximate spatial uncertainty of between \SI{60.0}{\milli\metre} and \SI{180.0}{\milli\metre}. The uncertainty within these \gls{TOF} bins is modelled using a Gaussian distribution centred around the estimated position of annihilation by the scanner.
@@ -137,7 +242,7 @@
                 
                 Currently, \gls{TOF} is a focus for research because of the drastic improvements that it can have on the \gls{SNR}~\boxcite{Lecoq2017, Cates2018}. \gls{TOF} has such an impact on the resolution and reconstruction of \gls{PET} that it is used as a pseudo attenuation correction technique outside of the \gls{FOV} of the \gls{MR} in some \gls{PET}/\gls{MR} systems, such as the \gls{GE} Signa~\boxcite{Pan2019}.
                 
-                The \gls{PET}/\gls{CT} scanner with the highest \gls{TOF} resolution which is commercially available is the Siemans Vision with an approximate \gls{FWHM} of \SI{210.0}{\pico\second} or \SI{63.0}{\milli\metre}~\boxcite{VanSluis2019}. The \gls{PET}/\gls{MR} scanner with the highest \gls{TOF} resolution which is commercially available is the \gls{GE} Signa with an approximate \gls{FWHM} that is sub \SI{400.0}{\pico\second} or \SI{120.0}{\milli\metre}~\boxcite{Hsu2017StudiesSystem, Grant2016NEMASystem, Caribe2019NEMAIsotopes}.
+                The \gls{PET}/\gls{CT} scanner with the highest \gls{TOF} resolution which is commercially available is the Siemans Vision with an approximate \gls{FWHM} of \SI{210.0}{\pico\second} or \SI{63.0}{\milli\metre}~\boxcite{VanSluis2019}. The \gls{PET}/\gls{MR} scanner with the highest \gls{TOF} resolution which is commercially available is the \gls{GE} Signa with an approximate \gls{FWHM} that is sub \SI{400.0}{\pico\second} or \SI{120.0}{\milli\metre}~\boxcite{SIGNA, Hsu2017StudiesSystem, Grant2016NEMASystem, Caribe2019NEMAIsotopes}.
             
             \subsubsection{Data Output} \label{sec:data_output}
                 The output from a \gls{PET} scanner must be stored in a universally understood file format in order to be of any use. This file format will usually contain information related to the prompts from the acquisition, discussed above in~\Fref{sec:data_acquisition}. Each prompt stored represents a \gls{LOR} connecting the centre of two detectors, where \gls{TOF} information is available it is stored as an extra dimension in this file. This file can then be taken and reconstructed in order to estimate the original distribution of the radiotracer in the patient, this will be discussed later in~\Fref{sec:pet_image_reconstruction}. The data output from a \gls{PET} scan are usually expressed in \gls{kBq/mL}, however for pseudo quantitative analysis the values are usually normalised to \gls{SUV} by dividing the activity by, for instance, the mass of the patient and the injected activity.
@@ -154,15 +259,15 @@
                 There are five main effects which impact the resolution of a \gls{PET} acquisition, these are:
                 
                 \begin{itemize}
-                    \item Firstly, there is, as has been discussed above in~\Fref{sec:the_physics_of_pet}, the effect of positron range. Because the positron travels a small distance before annihilating the \gls{PET} scanner will always, at best, be measuring the position of the annihilation rather than the position of the decay and as such not directly measuring the position of the radiotracer~\boxcite{PositronRangeLevinHoffmanBib}.
+                    \item Firstly, there is, as has been discussed above in~\Fref{sec:decay_and_annihilation}, the effect of positron range. Because the positron travels a small distance before annihilating the \gls{PET} scanner will always, at best, be measuring the position of the annihilation rather than the position of the decay and as such not directly measuring the position of the radiotracer~\boxcite{PositronRangeLevinHoffmanBib}.
                     
-                    \item Secondly, again as discussed above in~\Fref{sec:attenuation}, because the positron will almost always enter the annihilation event with some velocity then the gamma photons produced will exit with the same additional velocity. This velocity is also almost always in a direction other than that which the gamma photon would otherwise travel in, this causes the photons to travel in a direction which is not exactly $\SI{180}{^{\circ}}$ apart from one another. This effect is exacerbated by the amount of time that the photons are allowed to travel, thus the larger the bore of the \gls{PET} scanner the larger this effect will have on the resolution. The effect of acolliniarity on \gls{F-FDG} gives an error of approximately $\SI{0.54}{^{\circ}}$~\boxcite{AccollinearityBib}
+                    \item Secondly, again as discussed above in~\Fref{sec:attenuation}, because the positron will almost always enter the annihilation event with some velocity then the $\gamma$-photons produced will exit with the same additional velocity. This velocity is also almost always in a direction other than that which the $\gamma$-photon would otherwise travel in, this causes the photons to travel in a direction which is not exactly $\SI{180}{^{\circ}}$ apart from one another. This effect is exacerbated by the amount of time that the photons are allowed to travel, thus the larger the bore of the \gls{PET} scanner the larger this effect will have on the resolution. The effect of acolliniarity on \gls{F-FDG} gives an error of approximately $\SI{0.54}{^{\circ}}$~\boxcite{AccollinearityBib}
                     
-                    \item Thirdly, the size of each detector dictates the angular resolution of the scanner, or the number of \gls{LOR} covering any $\SI{360}{^{\circ}}$ slice is directly proportional to the number of detectors in each ring. Thus the resolution at which you can reconstruct before the sparsity of the \gls{LOR} means that some voxels will have zero \gls{LOR} passing through them is determined by the size of each individual detector.
+                    \item Thirdly, the size of each detector dictates the angular resolution of the scanner, or the number of \gls{LOR} covering any $\SI{360}{^{\circ}}$ slice is directly proportional to the number of detectors in each ring. Thus the resolution at which you can reconstruct before the sparsity of the \gls{LOR} means that some voxels will have zero \gls{LOR} passing through them is determined by the size of each individual detector~\boxcite{Nieman2015}.
                     
-                    \item Fourthly, The block construction of each detector negatively impacts the resolution. This is because a number of scintillation crystals is paired with, usually, fewer photodetectors. This means if a photon interacts with one crystal it may incorrectly be attributed to another crystal.
+                    \item Fourthly, The block construction of each detector negatively impacts the resolution. This is because a number of scintillation crystals is paired with, usually, fewer photodetectors. This means if a photon interacts with one crystal it may incorrectly be attributed to another crystal~\boxcite{Nieman2015}.
                     
-                    \item Finally, as discussed in~\Fref{sec:photon_detection}, a scintillation crystal has some stopping power, this power describes the approximate depth at which photons will undergo attenuation by the photoelectric effect. In some instances, depending upon the position and angle at which the incident photon hits the scintillation crystal it is possible for the photon to travel through the crystal and into an adjacent crystal before being detected. This means that the photon is incorrectly positioned and will result in blurring of the reconstructed volume.
+                    \item Finally, as discussed in~\Fref{sec:photon_detection}, a scintillation crystal has some stopping power, this power describes the approximate depth at which photons will undergo attenuation by the photoelectric effect. In some instances, depending upon the position and angle at which the incident photon hits the scintillation crystal it is possible for the photon to travel through the crystal and into an adjacent crystal before being detected. This means that the photon is incorrectly positioned and will result in blurring of the reconstructed volume~\boxcite{Nieman2015}.
                 \end{itemize}
         
         \subsection{Combined PET/CT} \label{sec:combined_pet_ct}
