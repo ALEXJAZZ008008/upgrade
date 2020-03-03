@@ -154,13 +154,13 @@
                     \includegraphics[width=1.0\linewidth]{figures/background_septa.png}
                     
                     \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{} \label{fig:2d_and_3d_acquisition_septa}
+                    \caption{This figure shows a graphical representation of the cross section of the septa used for collimation in \gls{2D} \gls{PET} acquisitions. In this figure a point can be shown casting paths into the slits of the septa, as can be seen the paths from the point can only pass through the slits of the septa in positions where the angle of the line with respect the the walls of the septa is acute.} \label{fig:2d_and_3d_acquisition_septa}
                 \end{figure}
                 
                 There are two different methods used in \gls{PET} to determine or constrain to be certain of the spatial position or angle of the \gls{LOR} along the axis of the scanner, these are:
                 
                 \begin{itemize}
-                    \item The method which was used for a long time in other applications (such as \gls{SPECT}) and until recently in \gls{PET} was; to place a block of, usually, tungsten metal (for its photon absorbing properties) in front of all of the detectors, this block is called s septa. The septa has very small slits cut into it which would only allow photons to pass through which entered the slits at an acute angle. Thus the septa constrains the photons to being almost perpendicular to the detector (on axis) and as such each detector only receives signal from annihilations that occur within its ring. This process is called collimation and the subsequent acquisition is called a \gls{2D} acquisition, \gls{2D} not because it results in a single image but because it is comprised of distinct \gls{2D} projections.
+                    \item The method which was used for a long time in other applications (such as \gls{SPECT}) and until recently in \gls{PET} was; to place a block of, usually, tungsten metal (for its photon absorbing properties) in front of all of the detectors, this block is called s septa, this can be seen in~\Fref{fig:2d_and_3d_acquisition_septa}. The septa has very small slits cut into it which would only allow photons to pass through which entered the slits at an acute angle. Thus the septa constrains the photons to being almost perpendicular to the detector (on axis) and as such each detector only receives signal from annihilations that occur within its ring. This process is called collimation and the subsequent acquisition is called a \gls{2D} acquisition, \gls{2D} not because it results in a single image but because it is comprised of distinct \gls{2D} projections.
                     
                     \item The more modern method is to simply remove the septa from the scanner and to record coincidences between all rings. This is significantly more computationally expensive than a \gls{2D} acquisition but it also increases the sensitivity of the scanner meaning that scanning times can be reduced. Because this method produces projections between all rings it is known as a \gls{3D} acquisition~\boxcite{Schmitz2013}.
                 \end{itemize}
@@ -172,7 +172,7 @@
                     \includegraphics[width=1.0\linewidth]{figures/background_detector.png}
                     
                     \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{} \label{fig:photon_detection_detector}
+                    \caption{This figure shows a graphical representation of the block detector structure of the scintillator crystal and the photodetector (with multiple scintillator crystals per photodetector), on the left of the figure, and an example of how these block detectors would be combined to construct a ring of a \gls{PET} scanner, on the right of this figure.} \label{fig:photon_detection_detector}
                 \end{figure}
                 
                 \begin{figure}
@@ -181,10 +181,10 @@
                     \includegraphics[width=1.0\linewidth]{figures/background_photomultiplier.png}
                     
                     \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{} \label{fig:photon_detection_photomultiplier}
+                    \caption{This figure shows a graphical representation of a scintillator crystal coupled to a \gls{PMT}. On the right of this figure a photon can be seen impinging upon the scintillator crystal and then being attenuated by the photoelectric effect at some depth. The electrons produced by this can then be seen, in the centre of this figure, interacting with the photocathode before being focused onto the first dynode. On the right of this figure, a naive representation, the amplification of the electons can be seen by subsequent dynodes} \label{fig:photon_detection_photomultiplier}
                 \end{figure}
                 
-                PET detectors consist of three main components; a scintillator crystal, which, because of the photoelectric effect, when exposed to ionising radiation produces visible light through luminescence, and a photodetector or photomultiplier which amplifies the intensity of an input light similarly to how a vacuum tube or a transistor would amplify an electrical signal.
+                PET detectors consist of two main components; a scintillator crystal, which, because of the photoelectric effect, when exposed to ionising radiation produces visible light through luminescence, and a photodetector or photomultiplier which amplifies the intensity of an input light similarly to how a vacuum tube or a transistor would amplify an electrical signal. These can be seen in~\Fref{fig:photon_detection_detector}.
                 
                 For use in \gls{PET} the following properties are desirable for a scintillator crystal:
                 
@@ -203,7 +203,7 @@
                 There are three main types of photodetector or photomultiplier, these are:
                 
                 \begin{itemize}
-                    \item The first kind of photodetector to be used in \gls{PET} was the \gls{PMT}, this device functions using an initial photocathode and a focusing electrode which takes the output from the scintillator and directs it towards a chain of dynodes. Dynodes are an intermediate electrode which when struck by a photoelectron emit more photoelectrons at a more positive electrical potential through secondary emission. Each subsequent dynode is a a higher potential and emits more photoelectrons than the last causing the input signal to be amplified. Some disadvantages of \gls{PMT} are that they are relatively bulky, are effected by a magnetic field and have a relatively low efficiency at approximately \SI{25.0}{\percent}~\boxcite{book, SiPmBib}.
+                    \item The first kind of photodetector to be used in \gls{PET} was the \gls{PMT}, this device functions using an initial photocathode and a focusing electrode which takes the output from the scintillator and directs it towards a chain of dynodes. Dynodes are an intermediate electrode which when struck by a photoelectron emit more photoelectrons at a more positive electrical potential through secondary emission. Each subsequent dynode is a a higher potential and emits more photoelectrons than the last causing the input signal to be amplified, this can be seen in~\Fref{fig:photon_detection_photomultiplier}. Some disadvantages of \gls{PMT} are that they are relatively bulky, are effected by a magnetic field and have a relatively low efficiency at approximately \SI{25.0}{\percent}~\boxcite{book, SiPmBib}.
                     
                     \item To attempt to combat the low efficiency mentioned above the \gls{APD} was developed, this device utilises a semiconductor where there is a junction between positive and negative type silicone, this is similar to a traditional diode. This allows for efficiencies approaching \SI{85.0}{\percent}, they are much smaller than \gls{PMT} and are safe to be used in a magnetic field. However, this also comes with the drawbacks that \gls{APD} produces so much heat that it requires an active cooling system and exhibits worse timing characteristics than the \gls{PMT}~\boxcite{AvalanchePhotodiodeBib}. \gls{APD} is the choice of many modern \gls{PET}/\gls{CT} scanners~\boxcite{Vandendriessche2019}.
                     
@@ -219,10 +219,10 @@
                     \includegraphics[width=1.0\linewidth]{figures/background_coincidence_processing.png}
                     
                     \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{} \label{fig:coincidence_processing_coincidence_processing}
+                    \caption{This figure shows a graphical representation of the workflow from annihilation, to physical detection by the scanner, to then coincidence processing by the electronics of the scanner, before finaly displaying some output to the user.} \label{fig:coincidence_processing_coincidence_processing}
                 \end{figure}
                 
-                In order for a \gls{LOR} to be determined detected photons must be paired together in some way, as briefly mentioned above in~\Fref{sec:data_acquisition}. First, the photons are filtered by selecting photons which only fall within an energy window of the scanner, for the \gls{GE} Discovery 690/710 \gls{PET}/\gls{CT} this energy window fall approximately between $425$ and $600$ \gls{KeV}~\boxcite{Bettinardi2011}. Additionally, to attempt to determine temporally if two detected photons belong to the same annihilation event a coincidence window is used. If the events arrive more than the time of the coincidence window apart then they are determined to be unrelated. A standard coincidence window size would be about \SI{5.0}{\nano\second}.
+                In order for a \gls{LOR} to be determined detected photons must be paired together in some way, as briefly mentioned above in~\Fref{sec:data_acquisition}. First, the photons are filtered by selecting photons which only fall within an energy window of the scanner, for the \gls{GE} Discovery 690/710 \gls{PET}/\gls{CT} this energy window fall approximately between $425$ and $600$ \gls{KeV}~\boxcite{Bettinardi2011}. Additionally, to attempt to determine temporally if two detected photons belong to the same annihilation event a coincidence window is used. If the events arrive more than the time of the coincidence window apart then they are determined to be unrelated. A standard coincidence window size would be about \SI{5.0}{\nano\second}. A naive representation of the workflow for coincidence processing can be seen in~\Fref{fig:coincidence_processing_coincidence_processing}.
             
             \subsubsection{Time of Flight PET} \label{sec:time_of_flight_pet}
                 \begin{figure}
@@ -231,26 +231,53 @@
                     \includegraphics[width=1.0\linewidth]{figures/background_tof.png}
                     
                     \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{} \label{fig:time_of_flight_pet_tof}
+                    \caption{This figure shows a graphical representation of the concept of \gls{TOF}. The top middle of this figure shows the position where a hypothetical annihilation has ocured, plus the $\gamma$-photos from this annihilation which have then gone on to be detected by the scanner. The bottom left of this figure shows a traditional \gls{NTOF} acquisition where the probability of the position of the annihilation along the \gls{LOR} is constant. The bottom right of this figure shows a \gls{TOF} acquisition where the probability of the position of the annihilation along the \gls{LOR} can be approximated with a Gaussian based upon the difference in arrival time of both photons.} \label{fig:time_of_flight_pet_tof}
                 \end{figure}
                 
-                As stated above in~\Fref{sec:coincidence_processing}, in order for the coincidence window to have a concept of the proximity of the arrival time of each photon, the scanner must be aware of the absolute time at which it detects each incident photon. It had been hypothesised for some time (since the 1960s) that given the speed of light and the difference in arrival time at each detector then it should be possible to approximately calculate the position upon the \gls{LOR} at which a given annihilation occurred~\boxcite{Surti2015, TOFPhotodetectorsBib}.
+                \begin{figure}
+                    \centering
+                    
+                    \includegraphics[width=1.0\linewidth]{figures/background_non_tof_example.png}
+                    
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{This figure shows an example of some \gls{NAC} \gls{NTOF} data, with noise, of the thorax with a spherical lesion in the lungs.} \label{fig:time_of_flight_pet_non_tof_example}
+                \end{figure}
+                
+                \begin{figure}
+                    \centering
+                    
+                    \includegraphics[width=1.0\linewidth]{figures/background_tof_example.png}
+                    
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{This figure shows an example of some \gls{NAC} \gls{TOF} data, with noise, of the thorax with a spherical lesion in the lungs.} \label{fig:time_of_flight_pet_tof_example}
+                \end{figure}
+                
+                As stated above in~\Fref{sec:coincidence_processing}, in order for the coincidence window to have a concept of the proximity of the arrival time of each photon, the scanner must be aware of the absolute time at which it detects each incident photon. It had been hypothesised for some time (since the 1960s) that given the speed of light and the difference in arrival time at each detector then it should be possible to approximately calculate the position upon the \gls{LOR} at which a given annihilation occurred, this would be known as \gls{TOF}, this can be seen in~\Fref{fig:time_of_flight_pet_tof}~\boxcite{Surti2015, TOFPhotodetectorsBib}.
                 
                 The reason for the uncertainty of the position along the \gls{LOR} is because of the relatively course timing resolution of each given scanner. Generally modern scanners have a timing resolution ranging between \SI{200.0}{\pico\second} and \SI{600.0}{\pico\second}, which represents an approximate spatial uncertainty of between \SI{60.0}{\milli\metre} and \SI{180.0}{\milli\metre}. The uncertainty within these \gls{TOF} bins is modelled using a Gaussian distribution centred around the estimated position of annihilation by the scanner.
                 
                 The timing resolution of the scanner is mainly dictated by the timing properties of both the scintillation crystal and the photodetector used. For the scintillation crystal, almost ubiquitously \gls{LSO} and \gls{LYSO} are used in modern \gls{PET} scanners which utilise \gls{TOF}. This is because they are the only scintillation crystals where they stop the photon and return to their base state post luminescence in a suitable time such that the time of arrival can be determined to any useful degree~\boxcite{TOFLSOBib}. For the photodetector, though \gls{PMT} possessed suitable timing properties to be used for \gls{TOF} now \gls{SiPM} and \gls{SSPM} are suppassing \gls{PMT} both in their timing properties and because they are not affected by magnetic fields and such can be used in both \gls{PET}/\gls{CT} as well as \gls{PET}/\gls{MR} scanners.
                 
-                Currently, \gls{TOF} is a focus for research because of the drastic improvements that it can have on the \gls{SNR}~\boxcite{Lecoq2017, Cates2018}. \gls{TOF} has such an impact on the resolution and reconstruction of \gls{PET} that it is used as a pseudo attenuation correction technique outside of the \gls{FOV} of the \gls{MR} in some \gls{PET}/\gls{MR} systems, such as the \gls{GE} Signa~\boxcite{Pan2019}.
+                Currently, \gls{TOF} is a focus for research because of the drastic improvements that it can have on the \gls{SNR}~\boxcite{Lecoq2017, Cates2018}. \gls{TOF} has such an impact on the resolution and reconstruction of \gls{PET} that it is used as a pseudo attenuation correction technique outside of the \gls{FOV} of the \gls{MR} in some \gls{PET}/\gls{MR} systems, such as the \gls{GE} Signa~\boxcite{Pan2019}. An example of some \gls{NAC} \gls{NTOF} and \gls{NAC} \gls{TOF} data can be seen in~\Fref{fig:time_of_flight_pet_non_tof_example} and~\Fref{fig:time_of_flight_pet_tof_example} respectively, notice the difference in distribution of counts in the centre of the thorax and lungs.
                 
                 The \gls{PET}/\gls{CT} scanner with the highest \gls{TOF} resolution which is commercially available is the Siemans Vision with an approximate \gls{FWHM} of \SI{210.0}{\pico\second} or \SI{63.0}{\milli\metre}~\boxcite{VanSluis2019}. The \gls{PET}/\gls{MR} scanner with the highest \gls{TOF} resolution which is commercially available is the \gls{GE} Signa with an approximate \gls{FWHM} that is sub \SI{400.0}{\pico\second} or \SI{120.0}{\milli\metre}~\boxcite{SIGNA, Hsu2017StudiesSystem, Grant2016NEMASystem, Caribe2019NEMAIsotopes}.
             
             \subsubsection{Data Output} \label{sec:data_output}
+                \begin{figure}
+                    \centering
+                    
+                    \includegraphics[width=1.0\linewidth]{figures/background_projection_data_example.png}
+                    
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{This figure shows an example of some simulated projection data, with no noise, of the thorax with a spherical lesion in the lungs.} \label{fig:data_output_projection_data_example}
+                \end{figure}
+                
                 The output from a \gls{PET} scanner must be stored in a universally understood file format in order to be of any use. This file format will usually contain information related to the prompts from the acquisition, discussed above in~\Fref{sec:data_acquisition}. Each prompt stored represents a \gls{LOR} connecting the centre of two detectors, where \gls{TOF} information is available it is stored as an extra dimension in this file. This file can then be taken and reconstructed in order to estimate the original distribution of the radiotracer in the patient, this will be discussed later in~\Fref{sec:pet_image_reconstruction}. The data output from a \gls{PET} scan are usually expressed in \gls{kBq/mL}, however for pseudo quantitative analysis the values are usually normalised to \gls{SUV} by dividing the activity by, for instance, the mass of the patient and the injected activity.
                 
                 There are two main formats in which this information is stored from the scanner, these are:
                 
                 \begin{itemize}
-                    \item The most common way, that is used in clinical practise, is a format called a sinogram. During acquisition, if a sinogram output is specified, then the coincidences detected by the scanner are binned into a histogram which represents their plane orthogonal to the scanner, their orientation angle, their average axial location and their distance from the centre of the gantry. If a single point source were imaged it would produce a sinusoid when binned into a sinogram, hence the name. Because data is being binned into a histogram with this method then information is lost, it could be considered a lossy compression method.
+                    \item The most common way, that is used in clinical practise, is a format called a sinogram. During acquisition, if a sinogram output is specified, then the coincidences detected by the scanner are binned into a histogram which represents their plane orthogonal to the scanner, their orientation angle, their average axial location and their distance from the centre of the gantry. If a single point source were imaged it would produce a sinusoid when binned into a sinogram, hence the name. An example of some projection data, with no noise, can be seen in~\Fref{fig:data_output_projection_data_example}. Because data is being binned into a histogram with this method then information is lost, it could be considered a lossy compression method.
                     
                     \item A less common method but one which is becoming more prevalent is a format called listmode data. Here each coincidence is recorded sequentially in a file. The information stored for each coincidence includes its arrival time, the coordinates of the detector and coincidence and its detected energy. A listmode file can be directly reconstructed or unlisted into a sinogram post acquisition. Because a listmode file does not compress the output from the scanner, such as by binning the data into a histogram like with a sinogram, then the size of a listmode file will always be inherently larger than an equivalent sinogram.
                 \end{itemize}
@@ -265,7 +292,7 @@
                     
                     \item Thirdly, the size of each detector dictates the angular resolution of the scanner, or the number of \gls{LOR} covering any $\SI{360}{^{\circ}}$ slice is directly proportional to the number of detectors in each ring. Thus the resolution at which you can reconstruct before the sparsity of the \gls{LOR} means that some voxels will have zero \gls{LOR} passing through them is determined by the size of each individual detector~\boxcite{Nieman2015}.
                     
-                    \item Fourthly, The block construction of each detector negatively impacts the resolution. This is because a number of scintillation crystals is paired with, usually, fewer photodetectors. This means if a photon interacts with one crystal it may incorrectly be attributed to another crystal~\boxcite{Nieman2015}.
+                    \item Fourthly, The block construction of each detector negatively impacts the resolution. This is because a number of scintillation crystals is paired with, usually, fewer photodetectors, this can be seen in~\Fref{fig:photon_detection_detector}. This means if a photon interacts with one crystal it may incorrectly be attributed to another crystal~\boxcite{Nieman2015}.
                     
                     \item Finally, as discussed in~\Fref{sec:photon_detection}, a scintillation crystal has some stopping power, this power describes the approximate depth at which photons will undergo attenuation by the photoelectric effect. In some instances, depending upon the position and angle at which the incident photon hits the scintillation crystal it is possible for the photon to travel through the crystal and into an adjacent crystal before being detected. This means that the photon is incorrectly positioned and will result in blurring of the reconstructed volume~\boxcite{Nieman2015}.
                 \end{itemize}
@@ -280,30 +307,42 @@
             In a standard \gls{PET}/\gls{CT} scan the \gls{CT} component comes first before the \gls{PET}. In modern \gls{PET}/\gls{CT} scanners the \gls{CT} and \gls{PET} are inline one the same bed, however the first \gls{PET}/\gls{CT} scans were taken on different machines entirely and as such the position of the patient differed more drastically between scans. A standard \gls{CT} scan over the thoracic region will last approximately between \SI{2.0}{\second} and \SI{3.0}{\second}~\boxcite{PETCTImagingTechnicalConsiderationsBib}.
         
             \subsubsection{Attenuation Correction} \label{sec:attenuation_correction}
-                As discussed previously in~\Fref{sec:attenuation} attenuation represents the loss of coincidences by photon interactions in matter. Attenuation is an issue in \gls{PET} as it causes the loss of signal and a degradation in image quality, this is the opposite for \gls{CT} where the modality itself relies on attenuation in order to differentiate anatomical structure. In order to find reasonable quantitative results the attenuation of the patient must be taken into account in \gls{PET}. Both \gls{PET} and \gls{CT} follow the Beer-Lambert law.
+                \begin{figure}
+                    \centering
+                    
+                    \includegraphics[width=1.0\linewidth]{figures/background_mu_map_example.png}
+                    
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{This figure shows an example of a simulated \gls{mu-map}, with no noise, of the thorax with a spherical lesion in the lungs.} \label{fig:combined_pet_ct_mu_map_example}
+                \end{figure}
                 
-                One method to acquire a \gls{mu-map}, for attenuation correction, is to acquire a transmission scan of a known point source rotated around the body of the  prior to the injection of the radiotracer. This allows for the estimation of the attenuation for each angle~\boxcite{TransmissionatnBib}. Another method involves the use of the known attenuation from the \gls{CT} scan.
+                As discussed previously in~\Fref{sec:attenuation} attenuation represents the loss of coincidences by photon interactions in matter. Attenuation is an issue in \gls{PET} as it causes the loss of signal and a degradation in image quality, this is the opposite for \gls{CT} where the modality itself relies on attenuation in order to differentiate anatomical structure, an example of a \gls{mu-map} can be seen in~\Fref{fig:combined_pet_ct_mu_map_example}. In order to find reasonable quantitative results the attenuation of the patient must be taken into account in \gls{PET}. Both \gls{PET} and \gls{CT} follow the Beer-Lambert law.
+                
+                Methods to acquire \gls{mu-map}, for attenuation correction include; to take a transmission scan of a known point source rotated around the body of the  prior to the injection of the radiotracer. This allows for the estimation of the attenuation for each angle~\boxcite{TransmissionatnBib}. Another method involves the use of the known attenuation from the \gls{CT} scan.
                 
                 In order to apply the \gls{CT} based \gls{mu-map} to attenuation correction in \gls{PET} first it must undergo either bilinear or trilinear conversion to asses the attenuation coefficient factors, this is because of the relative energy difference of the two modalities~\boxcite{Carney2006}. As discussed above in~\Fref{sec:coincidence_processing} and~\Fref{sec:combined_pet_ct} \gls{PET} and \gls{CT} operate at two different energy levels of between between $425$ and $600$ \gls{KeV} and between $40$ and $140$ \gls{KeV} respectively~\boxcite{Bettinardi2011, CTattenuationenergyBib}.
                 
-                Issues with \gls{CT} based attenuation correction include: Firstly, as mentioned above in~\Fref{sec:combined_pet_ct}, \gls{CT} is acquired sequentially to \gls{PET} rather than simultaneously meaning that there can be mismatches in anatomy between the scans. Secondly, the propagation of any artefacts from the \gls{CT} volume into the \gls{PET} volume. Regardless of these issues \gls{CT} is currently regarded as the best method for \gls{mu-map} estimation for attenuation correction. transmission scans are now very rarely used because of their sensitivity to user error, inclusion of an additional external source and their significant increase in scan time.
+                Issues with \gls{CT} based attenuation correction include: Firstly, as mentioned above in~\Fref{sec:combined_pet_ct}, \gls{CT} is acquired sequentially to \gls{PET} rather than simultaneously meaning that there can be mismatches in anatomy between the scans. Secondly, the propagation of any artefacts from the \gls{CT} volume into the \gls{PET} volume. Regardless of these issues \gls{CT} is currently considered to be the gold standard for \gls{mu-map} estimation for attenuation correction. Transmission scans are now very rarely used because of their sensitivity to user error, inclusion of an additional external source and their significant increase in scan time.
     
+    \longsection{Inverse Problems and Optimisation}{sec:inverse_problems_and_optimisation}
+        
+        
+        \subsection{Objective Function} \label{sec:objective_function}
+            
+            
+        \subsection{Optimiser} \label{sec:optimiser}
+            
+            
     \longsection{PET Image Reconstruction}{sec:pet_image_reconstruction}
         
         
         \subsection{Analytic Image Reconstruction} \label{sec:analytic_image_reconstruction}
             % mention briefely FBP ?
             
-        
+            
         \subsection{Iterative Image Reconstruction} \label{sec:iterative_image_reconstruction}
-            
-            
-            \subsubsection{Objective Function} \label{sec:iterative_image_reconstruction_objective_function}
                 
                 
-            \subsubsection{Optimiser} \label{sec:iterative_image_reconstruction_optimiser}
-                
-    
     \longsection{Respiratory Motion in PET}{sec:respiratory_motion_in_pet}
         % general intro
         
@@ -324,10 +363,10 @@
         \subsection{Image Registration} \label{sec:image_registration}
             
             
-            \subsubsection{Objective Function} \label{sec:image_registration_objective_function}
+            \subsubsection{Rigid Transformations} \label{sec:rigid_transformations}
                 
                 
-            \subsubsection{Optimiser} \label{sec:image_registration_optimiser}
+            \subsubsection{Non-Rigid Transformations} \label{sec:non_rigid_transformations}
                 
             
         \subsection{Respiratory Signal Detection} \label{sec:respiratory_signal_detection}
