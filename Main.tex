@@ -134,6 +134,14 @@
 \newacronym{HU}{HU}{Hounsfield Units}
 \newacronym{kBq/mL}{kBq/mL}{Kilo Becquerel per Millilitre}
 \newacronym{SUV}{SUV}{Standard Uptake Value}
+\newacronym{MAE}{MAE}{Mean Absolute Error}
+\newacronym{MSE}{MSE}{Mean Squared Error}
+\newacronym{MLE}{MLE}{Maximum Likelihood Estimation}
+\newacronym{GD}{GD}{Gradient Descent}
+\newacronym{SGD}{GD}{Stochastic Gradient Descent}
+\newacronym{CG}{CG}{Conjugate Gradient}
+\newacronym{BP}{BP}{Backprojection}
+\newacronym{FBP}{FBP}{Filtered Backprojection}
 
 \usepackage[top=6.0cm,bottom=1.25cm,left=6.5cm,right=0.5cm,headheight=1.0cm]{geometry}
 
@@ -146,6 +154,7 @@
 
 \newcommand{\longsection}[2]
 {%
+    \newpage%
     \section[#1]{#1%
     \sectionmark{\longtitle{#1}}} \label{#2}%
     \sectionmark{\longtitle{#1}}%
@@ -185,8 +194,9 @@
     \include{Preamble}
     \include{Chapter1Introduction}
     \include{Chapter2Background}
-    \include{Chapter3Methods}
-    \include{Chapter4DiscussionAndConclusion}
+    \include{Chapter3MotionCorrectionResults}
+    \include{Chapter4DataDrivenSurrogateSignalExtractionResults}
+    \include{Chapter5DiscussionAndConclusion}
     % \include{Appendices} 
     % You could separate these out into different files if you have
     %  particularly large appendices.
