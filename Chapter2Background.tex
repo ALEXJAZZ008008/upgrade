@@ -184,7 +184,7 @@
                     \caption{This figure shows a graphical representation of a scintillator crystal coupled to a \gls{PMT}. On the left of this figure a photon can be seen impinging upon the scintillator crystal and then being attenuated by the photoelectric effect at some depth. The electrons produced by this can then be seen, in the centre of this figure, interacting with the photocathode before being focused onto the first dynode. On the right of this figure, a naive representation, the amplification of the electrons can be seen by subsequent dynodes.} \label{fig:photon_detection_photomultiplier}
                 \end{figure}
                 
-                PET detectors consist of two main components; a scintillator crystal, which, because of the photoelectric effect, when exposed to ionising radiation produces visible light through luminescence, and a photodetector or photomultiplier which amplifies the intensity of an input light similarly to how a vacuum tube or a transistor would amplify an electrical signal. These can be seen in~\Fref{fig:photon_detection_detector}.
+                PET detectors consist of two main components; a scintillator crystal, which, partially because of the photoelectric effect, when exposed to ionising radiation produces visible light through luminescence, and a photodetector or photomultiplier which amplifies the intensity of an input light similarly to how a vacuum tube or a transistor would amplify an electrical signal. These can be seen in~\Fref{fig:photon_detection_detector}.
                 
                 For use in \gls{PET} the following properties are desirable for a scintillator crystal:
                 
@@ -222,7 +222,7 @@
                     \caption{This figure shows a graphical representation of the workflow from annihilation, to physical detection by the scanner, to then coincidence processing by the electronics of the scanner, before finaly displaying some output to the user.} \label{fig:coincidence_processing_coincidence_processing}
                 \end{figure}
                 
-                In order for a \gls{LOR} to be determined, detected photons must be paired together in some way, as briefly mentioned above in~\Fref{sec:data_acquisition}. First, the photons are filtered by selecting photons which only fall within an energy window of the scanner, for the \gls{GE} Discovery 690/710 \gls{PET}/\gls{CT} this energy window fall approximately between $425$ and $600$ \gls{KeV}~\boxcite{Bettinardi2011}. Additionally, to attempt to determine temporally if two detected photons belong to the same annihilation event a coincidence window is used. If the events arrive more than the time of the coincidence window apart then they are determined to be unrelated. A standard coincidence window size would be about \SI{5.0}{\nano\second}. A naive representation of the workflow for coincidence processing can be seen in~\Fref{fig:coincidence_processing_coincidence_processing}.
+                In order for a \gls{LOR} to be determined, the annihilation from which pairs of detected photons come from must be determined, ie they must be paired together in some way, as briefly mentioned above in~\Fref{sec:data_acquisition}. First, before pairing, the photons are filtered by selecting ones which only fall within an energy window of the scanner, for the \gls{GE} Discovery 690/710 \gls{PET}/\gls{CT} this energy window fall approximately between $425$ and $600$ \gls{KeV}~\boxcite{Bettinardi2011}. Additionally, to attempt to determine temporally if two detected photons belong to the same annihilation event a coincidence window is used. If the events arrive more than the time of the coincidence window apart then they are determined to be unrelated. A standard coincidence window size would be about \SI{5.0}{\nano\second}. A naive representation of the workflow for coincidence processing can be seen in~\Fref{fig:coincidence_processing_coincidence_processing}.
             
             \subsubsection{Time of Flight PET} \label{sec:time_of_flight_pet}
                 \begin{figure}
@@ -231,7 +231,7 @@
                     \includegraphics[width=1.0\linewidth]{figures/background_tof.png}
                     
                     \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{This figure shows a graphical representation of the concept of \gls{TOF}. The top middle of this figure shows the position where a hypothetical annihilation has occured, plus the $\gamma$-photos from this annihilation which have then gone on to be detected by the scanner. The bottom left of this figure shows a traditional \gls{NTOF} acquisition where the probability of the position of the annihilation along the \gls{LOR} is constant. The bottom right of this figure shows a \gls{TOF} acquisition where the probability of the position of the annihilation along the \gls{LOR} can be approximated with a Gaussian based upon the difference in arrival time of both photons.} \label{fig:time_of_flight_pet_tof}
+                    \caption{This figure shows a graphical representation of the concept of \gls{TOF}. The top middle of this figure shows the position where a hypothetical annihilation has occurred, plus the $\gamma$-photos from this annihilation which have then gone on to be detected by the scanner. The bottom left of this figure shows a traditional \gls{NTOF} acquisition where the probability of the position of the annihilation along the \gls{LOR} is constant. The bottom right of this figure shows a \gls{TOF} acquisition where the probability of the position of the annihilation along the \gls{LOR} can be approximated with a Gaussian based upon the difference in arrival time of both photons.} \label{fig:time_of_flight_pet_tof}
                 \end{figure}
                 
                 \begin{figure}
@@ -252,9 +252,9 @@
                     \caption{This figure shows an example of some \gls{NAC} \gls{TOF} data, with noise, of the thorax with a spherical lesion in the lungs.} \label{fig:time_of_flight_pet_tof_example}
                 \end{figure}
                 
-                As stated above in~\Fref{sec:coincidence_processing}, in order for the coincidence window to have a concept of the proximity of the arrival time of each photon, the scanner must be aware of the absolute time at which it detects each incident photon. It had been hypothesised for some time (since the 1960s) that given the speed of light and the difference in arrival time at each detector then it should be possible to approximately calculate the position upon the \gls{LOR} at which a given annihilation occurred, known as \gls{TOF}. This can be seen in~\Fref{fig:time_of_flight_pet_tof}~\boxcite{Surti2015, TOFPhotodetectorsBib}.
+                As stated above in~\Fref{sec:coincidence_processing}, in order for the coincidence window based method to determine which specific detected photons represent \gls{LOR}, the scanner must be able to asses the difference in arrival time of each photon. Because of this the scanner must record the absolute time at which it detects each incident photon. It had been hypothesised for some time (since the 1960s) that given the speed of light and the difference in arrival time at each detector, for each photon that makes a specific \gls{LOR}, then it should be possible to approximately calculate the position upon the \gls{LOR} at which a given annihilation occurred, known as \gls{TOF}. This can be seen in~\Fref{fig:time_of_flight_pet_tof}~\boxcite{Surti2015, TOFPhotodetectorsBib}.
                 
-                The reason for the uncertainty of the position along the \gls{LOR} is because of the relatively course timing resolution of each given scanner. Generally modern scanners have a timing resolution ranging between \SI{200.0}{\pico\second} and \SI{600.0}{\pico\second}, which represents an approximate spatial uncertainty of between \SI{60.0}{\milli\metre} and \SI{180.0}{\milli\metre}. The uncertainty within these \gls{TOF} bins is usually modelled using a Gaussian distribution centred around the estimated position of annihilation by the scanner.
+                The reason for the uncertainty of the position along the \gls{LOR} is because of the relatively course timing resolution of each given scanner. Generally modern \gls{PET}/\gls{CT} scanners have a timing resolution ranging between \SI{200.0}{\pico\second} and \SI{600.0}{\pico\second}, which represents an approximate spatial uncertainty of between \SI{60.0}{\milli\metre} and \SI{180.0}{\milli\metre}. The uncertainty within these \gls{TOF} bins is usually modelled using a Gaussian distribution centred around the estimated position of annihilation by the scanner.
                 
                 The timing resolution of the scanner is mainly dictated by the timing properties of both the scintillation crystal and the photodetector used. For the scintillation crystal, almost ubiquitously \gls{LSO} and \gls{LYSO} are used in modern \gls{PET} scanners which utilise \gls{TOF}. This is because they are the only scintillation crystals where they stop the photon and return to their base state post luminescence in a suitable time such that the time of arrival can be determined to any useful degree~\boxcite{TOFLSOBib}. For the photodetector, though \gls{PMT} possessed suitable timing properties to be used for \gls{TOF} now \gls{SiPM} and \gls{SSPM} are suppassing \gls{PMT} both in their timing properties and because they are not affected by magnetic fields and such can be used in both \gls{PET}/\gls{CT} as well as \gls{PET}/\gls{MR} scanners.
                 
@@ -292,7 +292,7 @@
                     
                     \item Thirdly, the size of each detector dictates the angular resolution of the scanner, or the number of \gls{LOR} covering any $\SI{360}{^{\circ}}$ slice is directly proportional to the number of detectors in each ring. Thus the resolution at which you can reconstruct before the sparsity of the \gls{LOR} means that some voxels will have zero \gls{LOR} passing through them is determined by the size of each individual detector~\boxcite{Nieman2015}.
                     
-                    \item Fourthly, The block construction of each detector negatively impacts the resolution. This is because a number of scintillation crystals is paired with, usually, fewer photodetectors, this can be seen in~\Fref{fig:photon_detection_detector}. This means if a photon interacts with one crystal it may incorrectly be attributed to another crystal~\boxcite{Nieman2015}.
+                    \item Fourthly, The block construction of each detector negatively impacts the resolution. This is because a number of scintillation crystals is paired with, usually, fewer photodetectors, this can be seen in~\Fref{fig:photon_detection_detector}. This means if a photon interacts with one crystal it may incorrectly be attributed to another crystal~\boxcite{Nieman2015}. So called digital \gls{PET} scanners are beginning to be seen which use a $1:1$ ratio of photodetectors to scintillation crystal, effectively removing issues related to block construction~\boxcite{Schillaci2019DigitalImaging}.
                     
                     \item Finally, as discussed in~\Fref{sec:photon_detection}, a scintillation crystal has some stopping power, this power describes the approximate depth at which photons will undergo attenuation by the photoelectric effect. In some instances, depending upon the position and angle at which the incident photon hits the scintillation crystal it is possible for the photon to travel through the crystal and into an adjacent crystal before being detected. This means that the photon is incorrectly positioned and will result in blurring of the reconstructed volume~\boxcite{Nieman2015}.
                 \end{itemize}
@@ -319,19 +319,19 @@
                 \begin{figure}
                     \centering
                     
-                    \includegraphics[width=1.0\linewidth]{figures/background_nac_tof_example.png}
+                    \includegraphics[width=1.0\linewidth]{figures/background_nac_example.png}
                     
                     \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{This figure shows an example of simulated \gls{NAC} \gls{TOF} data, with no noise, of the thorax with a spherical lesion in the lungs.} \label{fig:combined_pet_ct_nac_tof_example}
+                    \caption{This figure shows an example of simulated \gls{NAC} \gls{TOF} data, with no noise randoms or scatters, of the thorax with a spherical lesion in the lungs.} \label{fig:combined_pet_ct_nac_tof_example}
                 \end{figure}
                 
                 \begin{figure}
                     \centering
                     
-                    \includegraphics[width=1.0\linewidth]{figures/background_ac_tof_example.png}
+                    \includegraphics[width=1.0\linewidth]{figures/background_ac_example.png}
                     
                     \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{This figure shows an example of simulated \gls{AC} \gls{TOF} data, with no noise, of the thorax with a spherical lesion in the lungs.} \label{fig:combined_pet_ct_ac_tof_example}
+                    \caption{This figure shows an example of simulated \gls{AC} \gls{NTOF} data, with no noise, randoms or scatters, of the thorax with a spherical lesion in the lungs.} \label{fig:combined_pet_ct_ac_tof_example}
                 \end{figure}
                 
                 As discussed previously in~\Fref{sec:attenuation} attenuation represents the loss of coincidences by photon interactions in matter. Attenuation is an issue in \gls{PET} as it causes the loss of signal and a degradation in image quality, this is the opposite for \gls{CT} where the modality itself relies on attenuation in order to differentiate anatomical structure, an example of a \gls{mu-map} can be seen in~\Fref{fig:combined_pet_ct_mu_map_example}. An example of some \gls{NAC} \gls{TOF} and \gls{AC} \gls{TOF} data can be seen in~\Fref{fig:combined_pet_ct_nac_tof_example} and~\Fref{fig:combined_pet_ct_ac_tof_example} respectively. In order to find reasonable quantitative results the attenuation of the patient must be taken into account in \gls{PET}. Both \gls{PET} and \gls{CT} follow the Beer-Lambert law.
@@ -345,11 +345,12 @@
     \longsection{Inverse Problems and Optimisation}{sec:inverse_problems_and_optimisation}
         
         
-        \subsection{Introduction to Inverse Problems and Optimisation} \label{sec:introduction_to_inverse_problems_and_optimisation}
+        \subsection{Inverse Problem Concepts} \label{sec:inverse_problem_concepts}
             An inverse problem is one where the original conditions of a system are attempted to be derived from the effects of the system. For instance, the data from a \gls{PET} scanner represents the observations of the distribution of the radiotracer in the patient, reconstruction is an attempt to find the distribution from these observations.
             
-            Because it is not usually possible to directly invert to find the solution, because of the size of the problem for instance, then the solution must be optimised for. In order to attempt to find the solution to an inverse problem there are two things which are required; first the forward operator is required which is the inverse of the inverse problem, which is being solved, or the forward problem, second, at least, a model of the noise present in the system is required.
-            
+            Because it is not usually possible to directly invert to find the solution, because of the size of a given matrix for instance causing the computation time to find an inverse to be large, then the solution must be optimised for. In order to attempt to find the solution to an inverse problem there are two things which are required; first the forward operator is required which is the inverse of the inverse problem, which is being solved, or the forward problem, second, at least, a model of the noise present in the system is required.
+        
+        \subsection{Optimisation Concepts} \label{sec:optimisation_concepts}
             Optimisation means to find some values that best paramatarise some given function. For instance, in reconstruction an optimisation could be to find the image that when it has the forward operator applied to it best matches the measured data. Another example of an optimisation would be to find the motion parameters that when applied to a given image most closely warp that image to match another image. Optimisation is also used in fields such as when training neural networks, here the optimisation finds parameters for a model that maps one set of values to another, this will be discussed later in~\Fref{sec:machine_learning_for_pet}.
             
             In order to perform a basic optimisation there are two things which are required; first an objective function to optimise is requires and then a method to optimise some given values based on this function is required, these will be discussed in the following sections in~\Fref{sec:objective_function} and~\Fref{sec:optimiser} respectively.
@@ -357,14 +358,14 @@
         \subsection{Objective Function} \label{sec:objective_function}
             Optimisation of some values requires a function that represents, for instance, the similarity of two measures or the likelihood of something given a measure. This function is required because in a sense the optimiser attempts to find some solution by either maximising or minimising the result of applying this function iteratively until either a maximum number of iterations or some other stopping criteria is reached.
             
-            An example of an objective function would be \gls{MAE}. For a vector of some values \gls{MAE} subtracts the estimated value from the true value, finds the absolute of this so all negative values are multiplied by $-1.0$ (this is because the error should be the distance to the true value regardless of if the estimated value is greater or less than the true value) and then sums together this value for all values in the vector and divides by the number of values in the vector. This method finds the mean error over all estimated values. If the estimated values approach the true values then the value of the \gls{MAE} will approach zero in a linear fashion. If \gls{MSE} is used then rather than taking the absolute of the error the square is taken instead, taking the square causes the error to increase exponentially as it becomes larger. \gls{MAE} and \gls{MSE} are usually used in regression like problems where a line is fit though a data set.
+            An example of an objective function would be \gls{MAE}. For a vector of some values, \gls{MAE} subtracts the estimated value from the true value, finds the absolute of this, sums together this value for all values in the vector and divides by the number of values in the vector. The absolute value is taken because the error should be the distance to the true value regardless of if the estimated value is greater or less than the true value. This method finds the mean error over all estimated values. If the estimated values approach the true values then the value of the \gls{MAE} will approach zero in a linear fashion. If \gls{MSE} is used then rather than taking the absolute of the error the square is taken instead, taking the square causes the error to increase exponentially as it becomes larger. \gls{MAE} and \gls{MSE} are usually used in regression like problems where a line is fit though a data set.
             
             Another example of an objective function would be likelihood. This function for any given sample of data returns the goodness of fit to a statistical model. The likelihood function describes a planes whose peak, if there is one distinct peak, represents the values which maximises the probability of drawing the sample obtained~\boxcite{Myung2003TutorialEstimation}. \gls{MLE} is often used in \gls{PET} image reconstruction.
             
         \subsection{Optimiser} \label{sec:optimiser}
             The optimiser takes an initial estimate of the values that are to be optimised and at least a function to either minimise or maximise the output of with the input of the estimate. The method by which the optimiser goes about updating the value of the estimate is what differentiates most optimisation algorithms.
             
-            \gls{GD} is a commonly used optimisation algorithm. \gls{GD} attempts to find the gradient of the objective function over time and takes steps, of a given size, through the plane of the estimate in the direction calculated from the gradient which most shrinks the value of the objective function. The step size of \gls{GD} can be set to a value or found using a line search which optimises the step size. Momentum can be used in \gls{GD} where the current update direction is linear combination, with a predefined weighting, of the current gradient and the previous update direction. Momentum attempts to reduce the effect of local minimum solutions or non-convex solution spaces by reducing the likelihood of the current update causing the optimisation to jump back and forth between two close values. 
+            \gls{GD} is a commonly used optimisation algorithm. \gls{GD} attempts to find the gradient of the objective function over time and takes steps, of a given size, through the plane of the estimate in the direction calculated from the gradient which most shrinks the value of the objective function. The step size of \gls{GD} can be set to a fixed value or found using a line search which optimises the step size. Momentum can be used in \gls{GD} where the current update direction is linear combination, with a predefined weighting, of the current gradient and the previous update direction. Momentum attempts to reduce the effect of local minimum solutions or non-convex solution spaces by reducing the likelihood of the current update causing the optimisation to jump back and forth between two close values. 
             
             \gls{SGD} is an extension of \gls{GD} where the current update is calculated using the gradients of a randomly selected subset of the estimate, this is significantly more computationally efficient that \gls{GD} as it reduces the number of calculations needed for each update.
             
@@ -378,23 +379,49 @@
             \begin{figure}
                 \centering
                 
+                \includegraphics[width=1.0\linewidth]{figures/background_bp_example.png}
+                
+                \captionsetup{singlelinecheck=false, justification=raggedright}
+                \caption{This figure shows an example of a simulated \gls{AC} \gls{NTOF} \gls{BP} reconstruction, with noise, with no randoms or scatters, of the thorax with a spherical lesion in the lungs.}
+                \label{fig:analytic_image_reconstruction_bp_example}
+            \end{figure}
+            
+            \begin{figure}
+                \centering
+                
                 \includegraphics[width=1.0\linewidth]{figures/background_fbp_example.png}
                 
                 \captionsetup{singlelinecheck=false, justification=raggedright}
-                \caption{This figure shows an example of a simulated \gls{TOF} \gls{FBP} reconstruction, with noise, of the thorax with a spherical lesion in the lungs.}
+                \caption{This figure shows an example of a simulated \gls{AC} \gls{NTOF} \gls{FBP} reconstruction, with noise, with no randoms or scatters, of the thorax with a spherical lesion in the lungs.}
                 \label{fig:analytic_image_reconstruction_fbp_example}
             \end{figure}
             
-            An analytic solution is one which offers a direct mathematical method through which one thing can be transformed to another. All analytical solutions can be proven. An analytical solution for \gls{PET} reconstruction is \gls{BP}, in \gls{2D} \gls{BP} is the Radon transform. To apply the Radon transform to a \gls{2D} sinogram; first the rows of the sinogram, corresponding to $\SI{0}{^{\circ}}$ through $\SI{180}{^{\circ}}$, are taken individually and have the Fourier transform applied to them. Then the result of this is reshaped to polar coordinates so that each row is the diameter of a circle and a \gls{2D} Fourier transform is applied giving the final output image.
+            An analytic solution is one which offers a direct mathematical method through which one thing can be transformed to another. All analytical solutions can have a proof. An analytical solution for \gls{PET} reconstruction is \gls{BP}, in \gls{2D} \gls{BP} is the inverse Radon transform. To apply the Radon transform to a \gls{2D} sinogram; first the rows of the sinogram, corresponding to $\SI{0}{^{\circ}}$ through $\SI{180}{^{\circ}}$, are taken individually and have the Fourier transform applied to them. Then the result of this is reshaped to polar coordinates so that each row is the diameter of a circle and a \gls{2D} Fourier transform is applied giving the final output image. The Fourier transform decomposes a function into its constituent frequencies. The \gls{2D} Fourier transform of a function computed along a line is equivalent to the 1D Fourier transform of the Radon transform along that line. This is called projection slice theorem.
             
-            \gls{BP} gives a low quality image but is computationally fast. \gls{BP} will usually result in there being numerous streak like artefacts in the output image, the artefacts are exacerbated as noise increases. Artefacts can be caused because \gls{BP} does not account for the stochastic nature of the acquisition process, neither does \gls{BP} account for other factors such as positron range as discussed in~\Fref{sec:attenuation}.
+            \gls{FBP} was proposed as a solution to some of the issues apparent in \gls{BP}, like the fact that \gls{BP} suffers from low frequency bluring. In \gls{FBP} a high pass ramp filter is applied to the sinogram before it is Fourier transformed, thus removing some low frequency information or blurring. A low pass ramp filter can also be applied at the same time which removes some high frequency information or noise, this then would be a band pass filter. An example of a \gls{BP} and \gls{FBP} reconstruction can be seen in~\Fref{fig:analytic_image_reconstruction_bp_example} and~\Fref{fig:analytic_image_reconstruction_fbp_example}. Because of its speed and good quantitative results \gls{FBP} was the gold standard of \gls{PET} image reconstruction, however because of the issues mentions above it has now almost entirely been replaced by iterative reconstruction methods. \gls{FBP} is now almost solely used in longitudinal studies which started before the use of iterative reconstruction methods became prevalent~\boxcite{FBPReviewBib, PETCTReviewBib}.
             
-            \gls{FBP} was proposed as a solution to some of the issues apparent in \gls{BP}. In \gls{FBP} a ramp filter is applied to the sinogram before it is Fourier transformed, thus removing some high frequency information or noise, an example of a \gls{FBP} reconstruction can be seen in~\Fref{fig:analytic_image_reconstruction_fbp_example}. Because of its speed and good quantitative results \gls{FBP} was the gold standard of \gls{PET} image reconstruction, however because of the issues mentions above it has now almost entirely been replaced by iterative reconstruction methods. \gls{FBP} is now almost solely used in longitudinal studies which started before the use of iterative reconstruction methods became prevalent~\boxcite{FBPReviewBib, PETCTReviewBib}.
+            \gls{BP} and \gls{FBP} reconstruct a low quality image but are computationally fast. \gls{BP} will usually result in there being numerous streak like artefacts in the output image, the artefacts are exacerbated as noise increases. Artefacts can be caused because neither \gls{BP} nor \gls{FBP} account for the stochastic nature of the acquisition process, neither do they account for other factors such as positron range as discussed in~\Fref{sec:attenuation}.
             
             
         \subsection{Iterative Image Reconstruction} \label{sec:iterative_image_reconstruction}
+            \begin{figure}
+                \centering
                 
+                \includegraphics[width=1.0\linewidth]{figures/background_osem_example.png}
                 
+                \captionsetup{singlelinecheck=false, justification=raggedright}
+                \caption{This figure shows an example of a simulated \gls{AC} \gls{NTOF} \gls{OSEM} reconstruction, with noise, with no randoms or scatters, of the thorax with a spherical lesion in the lungs.}
+                \label{fig:iterative_image_reconstruction_osem_example}
+            \end{figure}
+            
+            As discussed above in~\Fref{sec:inverse_problems_and_optimisation} an inverse problem, which \gls{PET} reconstruction is, can be solved by an iterative optimisation problem. In order to implement an iterative optimisation problem a few criteria must first be met; a forward operator which takes an image and return the projections which would result from acquiring the image is required. As discussed above in~\Fref{sec:optimisation_concepts} an objective function to assess the accuracy of the fit and an optimisation algorithm to improve the fit are required. Also, an initial estimate, which could be a volume the size of the output image filled with ones or zeros, and some method to cease execution, for instance stopping when the objective function reaches a certain value or the number of iterations reaches a certain value, are also necessary.
+            
+            An iterative method has the advantage that the model which is used can take into account the noise properties of the data and also the physical properties of the scanner itself. The noise associated with \gls{PET} is often assumed to be Poisson distributed. However, iterative methods have the disadvantage that because they are often significantly complex then they require substantial computational effort to execute which can take much longer than an analytical reconstruction.
+            
+            \gls{ML} is a commonly used objective function for iterative \gls{PET} reconstruction, this builds on the concepts, specifically \gls{MLE}, mentioned in~\Fref{sec:objective_function}. When maximising the likelihood the natural logarithm of the likelihood, also known as the log likelihood, is often taken for computational efficiency. \gls{ML} is often combined with the \gls{EM} algorithm for the optimisation of the model parameters and in this case is called \gls{MLEM}~\boxcite{MLEMBib,PETMLEMBib,PETMLEM2Bib}. The output from \gls{MLEM} commonly has a Gaussian blur applied in order to attempt to smooth noise~\boxcite{PETMLEMFiltBib}. Disadvantages associates with \gls{MLEM} include that for clinical data iterating for too long can cause the output to accentuate the noise present in the data, one way to avoid this is to purposefully cease iterating early~\boxcite{PETMLEMTerminationBib}. Another issue, as mentioned earlier, is that \gls{MLEM} is exceptionally slow.
+            
+            To combat the slow execution speed of \gls{MLEM} \gls{OSEM} was developed. In \gls{OSEM} \gls{LOR} or detector pairs of the scanner are binned into a number of subsets, in \gls{MLEM} there would be one subset and \gls{MLEM} would be applied to all \gls{LOR} or detector pairs simultaneously. However, in \gls{OSEM} the \gls{LOR} or detector pairs would be binned into at lease two subsets and then \gls{MLEM} would be applied to each subset, in a specific order, sequentially~\boxcite{OrderedSubsetsHudsonBib, OrderedSubsetsHuttonBib}. Because the image is updated after each iteration of \gls{MLEM} on each subset of \gls{OSEM} then the execution speed of \gls{OSEM} is increased by the number of subsets used. However, if more than two subsets are used then then \gls{OSEM} will converge to a limit cycle around true convergence~\boxcite{Mettivier2011}. If a reasonable number of subsets are used then it has been found that \gls{OSEM} will accelerate \gls{MLEM} without too much of an effect on quantification~\boxcite{Morey2013}. An example of an \gls{OSEM} reconstructed image can be seen in~\Fref{fig:iterative_image_reconstruction_osem_example}.
+            
     \longsection{Respiratory Motion in PET}{sec:respiratory_motion_in_pet}
         % general intro
         
@@ -405,9 +432,6 @@
             
         \subsection{Respiratory Motion Challenges in Combined PET/CT Imaging} \label{sec:respiratory_motion_challenges_in_combined_pet_ct_imaging}
             
-            
-            \subsubsection{Attenuation Correction Techniques in Respiratory Motion Correction} \label{sec:attenuation_correction_techniques_in_respiratory_motion_correction}
-                
     
     \longsection{Motion Correction for PET}{sec:motion_correction_for_pet}
         
