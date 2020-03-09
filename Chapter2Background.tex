@@ -20,7 +20,7 @@
                 \begin{itemize}
                     \item Glucose molecules can be labelled with fluorine $18$ (called \gls{FDG} generically or \gls{F-FDG} in the case of fluorine $18$ labeled \gls{F-FDG}). Glucose is used by cells, though glycolosis, in the carbohydrate metabolisation process to produce \gls{ATP} to make energy available to a cell. When a cell requires more energy it also requires more glucose and as such uptaken of \gls{F-FDG} is increased in these regions. The concentration of fluorine $18$ intra-cellularly increases in certain areas over time because; fluorine $18$ labelled \gls{F-FDG} cannot be fully metabolised due to the group which is replaced by fluorine $18$ being missing and required for this process. Thus the distribution of fluorine $18$ is a good reflection of glucose metabolisation and uptake over time. \gls{F-FDG} is by far the most commonly used radiotracer in \gls{PET}~\boxcite{WeissBook, FDGGuidelines}.
                     
-                    \item Gallium $67$ and gallium $68$ are often used to target \gls{PSMA} which can be used in the detection of prostate cancer. \gls{PSMA} is a protein which is present in prostate cancer cells.
+                    \item Gallium $67$ and Gallium $68$ are often used to target \gls{PSMA} which can be used in the detection of prostate cancer. \gls{PSMA} is a protein which is present in prostate cancer cells.
                     
                     \item Rubidium $82$ can be used to image the heart in a scan targeting myocardial perfusion~\boxcite{Selwyn1982}.
                 \end{itemize}
@@ -32,7 +32,7 @@
                     \includegraphics[width=1.0\linewidth]{figures/background_beta_plus_decay.png}
                     
                     \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{Graphical example of $\beta+$-decay. Here in the top left of the figure a nucleus can be seen which is unstable as it has an imbalance of protons and neutrons. a positron can be seen exiting the nucleus as a byproduct of $\beta+$-decay converting a proton into a neutron. In the bottom right of the figure a closer example of this can be seen. Here it directly shows a specific proton and the neutron, positron and neutrino which are produced by $\beta+$-decay.} \label{fig:decay_and_annihilation_beta_plus_decay}
+                    \caption{Graphical example of $\beta+$-decay. Here in the top left of the figure a nucleus can be seen which is unstable as it has an imbalance of protons and neutrons. A positron can be seen exiting the nucleus as a byproduct of $\beta+$-decay converting a proton into a neutron. In the bottom right of the figure a closer example of this can be seen. Here it directly shows a specific proton and the neutron, positron and neutrino which are produced by $\beta+$-decay.} \label{fig:decay_and_annihilation_beta_plus_decay}
                 \end{figure}
                 
                 \begin{figure}
@@ -41,7 +41,7 @@
                     \includegraphics[width=1.0\linewidth]{figures/background_positron_range.png}
                     
                     \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{Graphical example of positron range. Here on the right of the figure an atom can be seen traveling with some velocity, a positron is emitted from the nucleus of the atom by $\beta+$-decay. The path that this positron takes can be seen in the centre of the figure represented by a blue line, this path is the positron range. On the left of the figure the annihilation of the positron with an electron occurs and the $\gamma$-photons emitted $\SI{180}{^{\circ}}$ apart are shown.} \label{fig:decay_and_annihilation_positron_range}
+                    \caption{Graphical example of positron range. Here on the right of the figure an atom can be seen travelling with some velocity, a positron is emitted from the nucleus of the atom by $\beta+$-decay. The path that this positron takes can be seen in the centre of the figure represented by a blue line, this path is the positron range. On the left of the figure the annihilation of the positron with an electron occurs and the $\gamma$-photons emitted $\SI{180}{^{\circ}}$ apart are shown.} \label{fig:decay_and_annihilation_positron_range}
                 \end{figure}
                 
                 Radionucleides used in \gls{PET} undergo a type of decay called $\beta+$-decay~\boxcite{conti_beta}. This is due to an instability of the radionuclide, given to an imbalance of neutrons to protons. As a consequence, a proton in its nucleus converts into a neutron releasing a positron and a neutrino, this can be seen in~\Fref{fig:decay_and_annihilation_beta_plus_decay}. The emitted positron travels with some decreasing velocity, from sequential collisions, through the body of the patient, for a distance called positron range, before its final collision and annihilation with its antiparticle the electron, this can be seen in~\Fref{fig:decay_and_annihilation_positron_range}~\boxcite{EvansPositronBib}. A \gls{PET} scanner thus does not image, directly, the emission of the positron but, in fact, more closely images the location of the annihilation.
@@ -487,14 +487,28 @@
         
     
         \subsection{Image Registration} \label{sec:image_registration}
+            Image registration is an optimisation problem which attempts to take either an image or volume (called the static image or volume) to either a single or multiple images or volumes (called the dynamic images or volumes). The way that one image is taken to another image is through the use of a transformation, there are multiple different kinds of deformations including \gls{RD} and \gls{NRD} which will be discussed in the following sections. These deformations directly deform or warp the static image so that it best matches the dynamic image, if there are multiple dynamic images then the optimisation will produce a transformation for each image. The images used for image registration do not necessarily need to be from the same modality and as such \gls{CT} data can be warped to \gls{PET} data and vice versa. A common use for image registration in medical imaging is to help in the process of motion correction.
             
+            As discussed in~\Fref{sec:optimisation_concepts} an optimisation requires an objective function, in the case of image registration the most common objective functions are \gls{MSE}, \gls{CC} and \gls{MI}. \gls{MSE} is discussed in~\Fref{sec:objective_function} but simply assumes that once the static image has been deformed to the dynamic then the images should be identical, thus \gls{MSE} is best used when the only difference between the two images is from motion, for instance. \gls{CC} and \gls{MI} are less reliant on the specific intensity values of an image and instead look for relationships between intensities, thus they are more suitable to registering between different modalities~\boxcite{Hill2001, Oliveira2014}.
             
-            \subsubsection{Rigid Transformations} \label{sec:rigid_transformations}
-                
-                
-            \subsubsection{Non-Rigid Transformations} \label{sec:non_rigid_transformations}
-                
+            One difference between the optimisation for image registration and for image reconstruction is that the stochastic nature of the data is not usually taken into account in the model for image registration.
             
+            \subsubsection{Rigid Deformation} \label{sec:rigid_transformations}
+                A \gls{RD} would be a rotation or a translation of the entire contents of an image where the same rotation or translation is applied at every point. A \gls{RD} is one where the euclidean distance between every pair of points in the image is consistent before and after the deformation is applied. \gls{RD} is a subset of a type of deformation called an \gls{AD}. A \gls{3D} \gls{RD} has six degrees of freedom, rotation and translation in every axis whereas a \gls{3D} \gls{AD} has $12$ degrees of freedom, rotation, translation, scaling and sheering in every axis. a \gls{AD} does not guarantee that the euclidean distance between pairs of points are maintained.
+                
+                \gls{RD} are often used in medical imaging where the anatomy which is being registered is not expected to undergo individual internal motion, for instance \gls{RD} is often used in the registration of patient head motion. \gls{AD} are not often used in medical imaging as anatomy does not usually deform specifically in ways that \gls{RD} cannot capture but \gls{AD} can, although an initial \gls{AD} can be used as an initial starting point for more complex \gls{NRD}.
+                
+                The output from a \gls{RD} or \gls{AD} is usually the values from the six or $12$ value transformation matrix respectively and as such they do not take up much computational memory or storage.
+                
+            \subsubsection{Non-Rigid Deformation} \label{sec:non_rigid_transformations}
+                A \gls{NRD} is one where the euclidean distance between pairs of points is not maintained. For example the motion of a fluid is a \gls{NRD} as pairs of points can move past each other by different amounts. \gls{NRD} is commonly seen in medical imaging in respiratory motion as the diaphragm and lungs move past and displace different parts of the patients anatomy by different amounts. A \gls{NRD} is often parameterised as a \gls{DVF} where, in the simplest case, the warp is represented by a volume the same size, with the same number of elements, as the data where each element in the warp is a vector that either points from the position of the static image to the new position in the dynamic image or vice versa. However, for reasons of computational efficiency and to regularise the image registration optimisation, somewhat, usually the size of the warp volume is smaller than the data volume. Here \gls{CP} on a \gls{CPG} are interpolated using, for instance, linear or b-spline interpolation to find the vector to be applied to each point~\boxcite{Bardinet1996, Rueckert1999, Mattes2003, JacobsonFesslerMotionCorrectionBib}.
+                
+                Regularisation terms are often employed for \gls{NRD} image registration as otherwise with a high enough resolution \gls{CPG} it's possible for the optimisation to fit the noise present in the data rather than fitting the motion. One common form of traditional regularisation term used is the smoothness penalty from \gls{TPS}. Here, the term is calculated as the integral of the square of the second derivative of the \gls{DVF}, this term is multiplied by some value $\epsilon$ representing the weighting of this penalty term and then summed to the current value of the objective function. This regularisation term attempts to enforce that adjacent \gls{CP} should not rapidly change as this type of motion is unlikely physically~\boxcite{Duchon1977SplinesSpaces}.
+        
+        \subsection{Respiratory Gating} \label{sec:respiratory_gating}
+            % brief intro
+            
+        
         \subsection{Respiratory Signal Detection} \label{sec:respiratory_signal_detection}
             
             
@@ -503,22 +517,16 @@
                 
             \subsubsection{Data Driven} \label{sec:data_driven}
                 
-                
-        \subsection{Respiratory Gating} \label{sec:respiratory_gating}
-            % brief intro
-            
             
         \subsection{Motion Modelling} \label{sec:motion_modelling}
             
         
         \subsection{Applying Motion Correction} \label{sec:applying_motion_correction}
-            
-            
-            \subsubsection{Post Image Reconstruction Motion Correction} \label{sec:post_image_reconstruction_motion_correction}
+            \begin{itemize}
+                \item Post-image reconstruction motion correction
                 
-                
-            \subsubsection{Iterative Motion Corrected Image Reconstruction} \label{sec:iterative_motion_corrected_image_reconstruction}
-                
+                \item Iterative image reconstruction and motion correction
+            \end{itemize}
     
     \longsection{Machine Learning for PET}{sec:machine_learning_for_pet}
         
