@@ -158,7 +158,9 @@
 \newacronym{RPM}{RPM}{Real-time Position Management}
 \newacronym{LED}{LED}{Light Emitting Diode}
 \newacronym{1D}{1D}{$1$-Dimensional}
-\newacronym{PC}{PC}{Point Cloud}
+\newacronym{3DPC}{3DPC}{\gls{3D} Point Cloud}
+\newacronym{SVD}{SVD}{Singular Value Decomposition}
+\newacronym{PC}{PC}{Principal Component}
 
 \usepackage[top=6.0cm,bottom=1.25cm,left=6.5cm,right=0.5cm,headheight=1.0cm]{geometry}
 
@@ -207,7 +209,10 @@
     
     % At last, content! Remember filenames are case-sensitive and 
     %  *must not* include spaces.
+    \glsunsetall
     \include{Preamble}
+    \glsresetall
+    
     \include{Chapter1Introduction}
     \include{Chapter2Background}
     \include{Chapter3MotionCorrectionResults}
