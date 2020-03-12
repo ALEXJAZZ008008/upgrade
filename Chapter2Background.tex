@@ -86,7 +86,7 @@
                     \item The most simple and widely used method is to take acquisitions over multiple bed positions and concatenate them.
                     
                     \item A method available on some  standard axial length scanners is; to continually move the bed through the rings of the scanner while acquiring data. This is advantageous as it is more comfortable for the patent and provides potentially less movement of the patient. %KT both these advantages can be done with the above step-and-shoot as well. I guess the advantages are patient comfort and potentially less moveemnt of the patient %ACW done
-                    A disadvantage of this though is that it introduces another source of motion to the acquisition from moving the bed. This makes standard motion correction much more difficult.
+                    A disadvantage of this though is that it introduces another source of motion to the acquisition from moving the bed. This makes standard \gls{MC} much more difficult.
                     
                     \item Alternatively, total body \gls{PET} scanners are becoming more viable for research. %KT let's remove the ``high potential for  clinical applicatoin''. as you note below,price prevents this %ACW done
                     Total body \gls{PET} scanners have an axial \gls{FOV} which contains most of the patients body making multiple acquisitions less necessary while also increasing the sensitivity to detecting annihilations, this can be seen in~\Fref{fig:pet_fov_total_body_pet}~\boxcite{Cherry2018}. However, the increased price and size constitute a limitation.
@@ -421,41 +421,41 @@
             
             In order to perform a basic optimisation there are four things which are required; an objective function to optimise  and a method to optimise some given values based on this function. Also, an initial estimate, which could be a volume the size of the output image filled with ones or zeros, and some method to cease execution, for instance stopping when the objective function reaches a certain value or the number of iterations exceeds a threshold, are also necessary. These will be discussed in the following sections in~\Fref{sec:objective_function} and~\Fref{sec:optimiser} respectively.
         
-        \subsection{Objective Function} \label{sec:objective_function}
-            Optimisation of some values requires a function that represents, for instance, the similarity of two measures or the likelihood of something given a measure. This function is required because in a sense the optimiser attempts to find some solution by either maximising or minimising the result of applying this function iteratively until either a maximum number of iterations or some other stopping criteria is reached.
-            
-            An example of an objective function would be \gls{MAE}. For a vector of some values, \gls{MAE} subtracts the estimated value from the true value, finds the absolute of this, sums together this value for all values in the vector and divides by the number of values in the vector. The absolute value is taken because the error should be the distance to the true value regardless of if the estimated value is greater or less than the true value. This method finds the mean error over all estimated values. If the estimated values approach the true values then the value of the \gls{MAE} will approach zero in a linear fashion. If \gls{MSE} is used then rather than taking the absolute of the error the square is taken instead, taking the square causes the error to increase quadratically as it becomes larger. %KT exponentially? no,quadratically %ACW done
-            \gls{MAE} and \gls{MSE} are usually used in regression like problems where a line is fit though a data set.
-            
-            Another example of an objective function would be the likelihood. This function for any given sample of data returns the goodness of fit to a statistical model. %KT stricyl speaking, the likelihood will be related to minus the goodness of fit (higher likelihood, better fit, lower goodness-of-fit weirdly enough). maybe ignore
-            The likelihood function describes a planes whose peak, if there is one distinct peak, %KT???
-            represents the values which is %KT not maximise, it is the probability %ACW done
-            the probability of drawing the sample obtained~\boxcite{Myung2003TutorialEstimation}. \gls{MLE} is often used in \gls{PET} image reconstruction.
-            %KT could add 1 sentence that often an additional penalty is used to decrease sensitivity to noise
-            
-            Additionally to the objective function a regularisation term is often added, summed to the objective function value (after being scaled by an $\epsilon$), in order to decrease sensitivity to noise. An example of a regularisation term is \gls{RDP} used by \gls{GE} in Q.Clear~\boxcite{RossQ.Clear}.
-            
-        \subsection{Optimiser} \label{sec:optimiser}
-            \begin{figure}
-                \centering
-                    
-                \includegraphics[width=1.0\linewidth]{figures/background_optimisation.png}
-                    
-                \captionsetup{singlelinecheck=false, justification=raggedright}
-                \caption{Graphical representation of a \gls{2D} solution space and an optimiser stepping through this space. In the bottom left of this figure the initial estimate for some optimisation can be seen at $x$, the subsequent iterations $1$ through $4$ can then be seen taking this estimate closer to the centre of the contour plot. Here the contour plot could either be showing a maximisation or a minimisation depending on how it is visualised.} \label{fig:optimiser_optimisation}
-            \end{figure}
-            
-            The optimiser takes an initial estimate of the values that are to be optimised and at least a function to either minimise or maximise the output of with the input of the estimate. This can be seen in~\Fref{fig:optimiser_optimisation}. The method by which the optimiser goes about updating the value of the estimate is what differentiates most optimisation algorithms.
-            
-            \gls{GD} is a commonly used optimisation algorithm. \gls{GD} finds the gradient of the objective function at the current estimate %KT?you mean ``at the current estimate'' %ACW done
-            and takes steps, of a given size,  in the direction calculated from the gradient. %which most shrinks the value of the objective function. %KT ``most'' I think is only true for ``Steepest GD''. I'd cut the 2nd half of the sentence %ACW done
-            The step size of \gls{GD} can be set to a fixed value or found using a line search which optimises the step size. Momentum can be used as an improvement of \gls{GD} where the current update direction is a linear combination, with a predefined weighting, of the current gradient and the previous update direction. %KT ok, although I wouldn't call it GD anymore. I'd therefore say ``Momentum can be used as an improvement of GD'' or so %ACW done
-            %Momentum attempts to reduce the effect of local minimum solutions or non-convex solution spaces by reducing the likelihood of the current update causing the optimisation to jump back and forth between two close values. %KT I disagree with tis sentence. they just try to go faster. This methods have no clue about local minima etc %ACW done
-            
-            \gls{SGD} is an extension of \gls{GD} where the current update is calculated using the gradients of a randomly selected subset of the data, %KT of the data (not the estimate) %ACW done
-            this is significantly more computationally efficient that \gls{GD} as it reduces the number of calculations needed for each update.
-            
-            \gls{CG} is another extension of \gls{GD}. Here the direction of subsequent updates are confined so that they are orthogonal to the previous update direction, this can decrease convergence time~\boxcite{Tustison2009}. %KT remove the ``can avoid the same issue''. CG also attempts to go to a local minimum %ACW done
+            \subsubsection{Objective Function} \label{sec:objective_function}
+                Optimisation of some values requires a function that represents, for instance, the similarity of two measures or the likelihood of something given a measure. This function is required because in a sense the optimiser attempts to find some solution by either maximising or minimising the result of applying this function iteratively until either a maximum number of iterations or some other stopping criteria is reached.
+                
+                An example of an objective function would be \gls{MAE}. For a vector of some values, \gls{MAE} subtracts the estimated value from the true value, finds the absolute of this, sums together this value for all values in the vector and divides by the number of values in the vector. The absolute value is taken because the error should be the distance to the true value regardless of if the estimated value is greater or less than the true value. This method finds the mean error over all estimated values. If the estimated values approach the true values then the value of the \gls{MAE} will approach zero in a linear fashion. If \gls{MSE} is used then rather than taking the absolute of the error the square is taken instead, taking the square causes the error to increase quadratically as it becomes larger. %KT exponentially? no,quadratically %ACW done
+                \gls{MAE} and \gls{MSE} are usually used in regression like problems where a line is fit though a data set.
+                
+                Another example of an objective function would be the likelihood. This function for any given sample of data returns the goodness of fit to a statistical model. %KT stricyl speaking, the likelihood will be related to minus the goodness of fit (higher likelihood, better fit, lower goodness-of-fit weirdly enough). maybe ignore
+                The likelihood function describes a planes whose peak, if there is one distinct peak, %KT???
+                represents the values which is %KT not maximise, it is the probability %ACW done
+                the probability of drawing the sample obtained~\boxcite{Myung2003TutorialEstimation}. \gls{MLE} is often used in \gls{PET} image reconstruction.
+                %KT could add 1 sentence that often an additional penalty is used to decrease sensitivity to noise
+                
+                Additionally to the objective function a regularisation term is often added, summed to the objective function value (after being scaled by an $\epsilon$), in order to decrease sensitivity to noise. An example of a regularisation term is \gls{RDP} used by \gls{GE} in Q.Clear~\boxcite{RossQ.Clear}.
+                
+            \subsubsection{Optimiser} \label{sec:optimiser}
+                \begin{figure}
+                    \centering
+                        
+                    \includegraphics[width=1.0\linewidth]{figures/background_optimisation.png}
+                        
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{Graphical representation of a \gls{2D} solution space and an optimiser stepping through this space. In the bottom left of this figure the initial estimate for some optimisation can be seen at $x$, the subsequent iterations $1$ through $4$ can then be seen taking this estimate closer to the centre of the contour plot. Here the contour plot could either be showing a maximisation or a minimisation depending on how it is visualised.} \label{fig:optimiser_optimisation}
+                \end{figure}
+                
+                The optimiser takes an initial estimate of the values that are to be optimised and at least a function to either minimise or maximise the output of with the input of the estimate. This can be seen in~\Fref{fig:optimiser_optimisation}. The method by which the optimiser goes about updating the value of the estimate is what differentiates most optimisation algorithms.
+                
+                \gls{GD} is a commonly used optimisation algorithm. \gls{GD} finds the gradient of the objective function at the current estimate %KT?you mean ``at the current estimate'' %ACW done
+                and takes steps, of a given size,  in the direction calculated from the gradient. %which most shrinks the value of the objective function. %KT ``most'' I think is only true for ``Steepest GD''. I'd cut the 2nd half of the sentence %ACW done
+                The step size of \gls{GD} can be set to a fixed value or found using a line search which optimises the step size. Momentum can be used as an improvement of \gls{GD} where the current update direction is a linear combination, with a predefined weighting, of the current gradient and the previous update direction. %KT ok, although I wouldn't call it GD anymore. I'd therefore say ``Momentum can be used as an improvement of GD'' or so %ACW done
+                %Momentum attempts to reduce the effect of local minimum solutions or non-convex solution spaces by reducing the likelihood of the current update causing the optimisation to jump back and forth between two close values. %KT I disagree with tis sentence. they just try to go faster. This methods have no clue about local minima etc %ACW done
+                
+                \gls{SGD} is an extension of \gls{GD} where the current update is calculated using the gradients of a randomly selected subset of the data, %KT of the data (not the estimate) %ACW done
+                this is significantly more computationally efficient that \gls{GD} as it reduces the number of calculations needed for each update.
+                
+                \gls{CG} is another extension of \gls{GD}. Here the direction of subsequent updates are confined so that they are orthogonal to the previous update direction, this can decrease convergence time~\boxcite{Tustison2009}. %KT remove the ``can avoid the same issue''. CG also attempts to go to a local minimum %ACW done
             
     \longsection{PET Image Reconstruction}{sec:pet_image_reconstruction}
         The data output from a \gls{PET} scan are usually expressed in \gls{kBq/mL}, however for pseudo quantitative analysis the values are usually normalised to \gls{SUV} by dividing the activity by, for instance, the mass of the patient and the injected activity. %KT previous sentence belongs in image recon section, not where you discuss the measured data %ACW done
@@ -574,7 +574,7 @@
     
         \subsection{Image Registration} \label{sec:image_registration}
             Image registration is an optimisation problem which attempts to take either an image or volume (called the static image or volume) to either a single or multiple images or volumes (called the dynamic images or volumes). The way that one image is taken to another image is through the use of a transformation. There are  different kinds of deformations including \gls{RD} and \gls{NRD} which will be discussed in the following sections. These deformations directly deform or warp the static image so that it best matches the dynamic image. %If there are multiple dynamic images then the optimisation will produce a transformation for each image.
-            The images used for image registration do not necessarily need to be from the same modality and as such \gls{CT} data can be registered to \gls{PET} data and vice versa. A common use for image registration in medical imaging is to help in the process of motion correction.
+            The images used for image registration do not necessarily need to be from the same modality and as such \gls{CT} data can be registered to \gls{PET} data and vice versa. A common use for image registration in medical imaging is to help in the process of \gls{MC}.
             
             As discussed in~\Fref{sec:optimisation_concepts} an optimisation requires an objective function. In the case of image registration the most common objective functions are \gls{MSE}, \gls{CC} and \gls{MI}. \gls{MSE} is discussed in~\Fref{sec:objective_function} but simply assumes that once the static image has been deformed to the dynamic then the images should be identical, thus \gls{MSE} is best used when the only difference between the two images is from motion, for instance. \gls{CC} and \gls{MI} are less reliant on the specific intensity values of an image and instead look for relationships between intensities, thus they are more suitable to registering between different modalities~\boxcite{Hill2001, Oliveira2014}.
             
@@ -629,7 +629,16 @@
                 \includegraphics[width=1.0\linewidth]{figures/background_amplitude_gating.png}
                     
                 \captionsetup{singlelinecheck=false, justification=raggedright}
-                \caption{Graphical representation of amplitude gating. Here the red pseudo sinusoidal signal represents the \gls{SS} and the horizontal lines, colour coded differently, represent the gates that the data upon the \gls{SS} would be binned into.} \label{fig:respiratory_gating_ampliude_gating}
+                \caption{Graphical representation of amplitude gating. Here the red pseudo sinusoidal signal represents the \gls{SS} and the horizontal lines, colour coded differently, represent the, amplitude, gates that the data upon the \gls{SS} would be binned into.} \label{fig:respiratory_gating_ampliude_gating}
+            \end{figure}
+            
+            \begin{figure}
+                \centering
+                    
+                \includegraphics[width=1.0\linewidth]{figures/background_full_phase_gating.png}
+                    
+                \captionsetup{singlelinecheck=false, justification=raggedright}
+                \caption{Graphical representation of phase gating. Here the red pseudo sinusoidal signal represents the \gls{SS} and the vertical lines, colour coded differently, represent the, phase, gates that the data upon the \gls{SS} would be binned into.} \label{fig:respiratory_gating_full_phase_gating}
             \end{figure}
             
             The method of respiratory gating was briefly touched on previously in~\Fref{sec:respiratory_motion_challenges_in_combined_pet_ct_imaging}. Here the process of specifically how respiratory gating works will be addressed. In order to either gate so that only counts in a certain window are accepted or to gate the acquired data into the respiratory phases, first a \gls{SS} which reflects the respiratory state of the patient, over time, must be acquired. This \gls{SS} can either directly reflect the amplitude of the patients breathing or can be a percentage of the phase through which the patient is in the respiratory cycle. These two types of \gls{SS} directly influence the type of gating that will be performed, these two types are:
@@ -637,7 +646,7 @@
             \begin{itemize}
                 \item Firstly, amplitude gating takes the maximum and minimum value of the \gls{SS} and splits the values between them into a number of gates, this can be seen in~\Fref{fig:respiratory_gating_ampliude_gating}. The gates can be chosen so that they are either equally spaced apart or so that each gate has a similar number of elements binned into them. The acquisition data is binned by taking its relevant \gls{SS} value and summing it in into the gate which the value falls between.
                 
-                \item Secondly, phase gating works exactly the same way as amplitude gating but rather than splitting the data up along the \gls{SS} it can be conceptualised as splitting the data up temporally by the phase of the respiratory cycle.
+                \item Secondly, phase gating works exactly the same way as amplitude gating but rather than splitting the data up along the \gls{SS} it can be conceptualised as splitting the data up temporally by the phase of the respiratory cycle, this can be seen in~\Fref{fig:respiratory_gating_full_phase_gating}.
             \end{itemize}
             
             Both types of respiratory gating can be augmented by incorporating other signals. For instance, amplitude gating can bin data into gates for both the inspiration and expiration parts of the respiratory cycle by also gating over the gradient of the \gls{SS}~\boxcite{Low2005}.
@@ -658,11 +667,11 @@
                 \begin{figure}
                     \centering
                     
-                    \includegraphics[width=1.0\linewidth]{figures/background_pc_example.png}
+                    \includegraphics[width=1.0\linewidth]{figures/background_3dpc_example.png}
                     
                     \captionsetup{singlelinecheck=false, justification=raggedright}
                     \caption{Example of a \gls{3DPC} acquired on a Microsoft Kinect camera.}
-                    \label{fig:external_devices_pc_example}
+                    \label{fig:external_devices_3dpc_example}
                 \end{figure}
                 
                 There are numerous external device methods used to track a \gls{SS}. As an example four devices are:
@@ -674,7 +683,7 @@
                     \item Secondly, a method borrowed from radiotherapy for \gls{SS} tracking is through the use of the Varian \gls{RPM}. The \gls{RPM} was designed to be used in radiotherapy to turn on and off the beam of a linear accelerator. This would work by using the infrared camera of the \gls{RPM} to track a reflective marker placed on the stomach or chest of the patient tracking the displacement of the chest wall over time. This can be seen in~\Fref{fig:external_devices_rpm}. The Anzai AZ-733V system attempts to acquire the displacement of the abdomen, similarly to the \gls{RPM}, but uses a pressure belt wrapped around the patient. In radiotherapy, as the patient moves the target of the linear accelerator would also move so its beam is only turned on when the target is within range. In \gls{PET} the \gls{RPM} has been modified to output a clock tick to the computer acquiring the \gls{PET} data, this computer will %then synchronise with the \gls{RPM} clock and 
                     record timing information into the \gls{PET} data in order to align the \gls{RPM} \gls{SS} post acquisition. This method has the advantage over the spirometer in that it is significantly less susceptible to drift. However, the use of the \gls{RPM} increases scan time and as such receives push back from radiographers.
                     
-                    \item Thirdly, optical cameras or laser based cameras, such as the Microsoft Kinect, can be used to determine a segmentation or, through the \gls{TOF} of the lasers, a \gls{3DPC} of the patient, at each time point. An example of a \gls{3DPC} acquired on a Microsoft Kinect camera can be seen in~\Fref{fig:external_devices_pc_example}. A \gls{3DPC} is a collection of coordinates measured as points on the surface of the object being scanned at some displacement. These segmentations or \gls{3DPC} can then be tracked by finding the difference in this segmentation or \gls{3DPC} over time~\boxcite{Miranda2017MarkerlessAnimals}. Advantage of this solution include;  it doesn't include the use of a reflective marker on the patient and as such should reduce scan time. Additionally, an optical or laser based camera can track motion over a larger \gls{FOV} than the \gls{RPM}. For instance, an optical or laser based camera could conceivably simultaneously track both respiratory and head motion, producing a \gls{DVF} directly for use in motion correction or a \gls{SS}. A disadvantage is that it is much more difficult to spatially and temporally align the acquisition of both a \gls{PET} scanner and a stand alone optical or laser based camera~\boxcite{Noonan2012AccurateKinect, Noonan2015RepurposingPET, Whitehead2018MotionPET/CT}.
+                    \item Thirdly, optical cameras or laser based cameras, such as the Microsoft Kinect, can be used to determine a segmentation or, through the \gls{TOF} of the lasers, a \gls{3DPC} of the patient, at each time point. An example of a \gls{3DPC} acquired on a Microsoft Kinect camera can be seen in~\Fref{fig:external_devices_3dpc_example}. A \gls{3DPC} is a collection of coordinates measured as points on the surface of the object being scanned at some displacement. These segmentations or \gls{3DPC} can then be tracked by finding the difference in this segmentation or \gls{3DPC} over time~\boxcite{Miranda2017MarkerlessAnimals}. Advantage of this solution include;  it doesn't include the use of a reflective marker on the patient and as such should reduce scan time. Additionally, an optical or laser based camera can track motion over a larger \gls{FOV} than the \gls{RPM}. For instance, an optical or laser based camera could conceivably simultaneously track both respiratory and head motion, producing a \gls{DVF} directly for use in \gls{MC} or a \gls{SS}. A disadvantage is that it is much more difficult to spatially and temporally align the acquisition of both a \gls{PET} scanner and a stand alone optical or laser based camera~\boxcite{Noonan2012AccurateKinect, Noonan2015RepurposingPET, Whitehead2018MotionPET/CT}.
                     
                     \item Finally, on \gls{MR} scanners, there is the \gls{MR} navigator. During an \gls{MR} protocol there are times when the \gls{MR}, if told to do so, can measure specific small areas of the patient anatomy. An \gls{MR} navigator can be used to measure a pencil shaped \gls{1D} area, for instance, the position of the diaphragm or the chest wall of the patient. An advantage of this is that multiple navigators can be places to track more than one \gls{SS}. This works by looking for edges along the \gls{1D} pencil and assuming that the edge reflects the current position of the diaphragm or chest wall. An advantage of this is that it does not require any other additional equipment other than the \gls{MR} scanner and does not significantly affect scan time. A disadvantage is that it requires a \gls{MR} scanner which is not available in a \gls{PET}/\gls{CT}.
                 \end{itemize}
@@ -689,15 +698,26 @@
                     \caption{Graphical representation of \gls{PCA} applied to \gls{2D} data. In the centre the \gls{2D} data points on which \gls{PCA} has been applied can be seen. From bottom left to top right the first eigenvector can be seen with most variance, from top left to bottom right the second eigenvector can be seen with less variance.} \label{fig:data_driven_pca}
                 \end{figure}
                 
-                There are numerous \gls{DD} methods used to extract a \gls{SS} directly from \gls{PET} data. Some methods require that the \gls{PET} data be reconstructed and then markers, possibly inserted into the patient, are tracked over time. Methods requiring reconstruction are mostly inferior to methods which work with \gls{PET} acquisition data. This is because requiring that reconstruction be performed takes significant time and the \gls{SS}, itself, is usually required for most motion correction so the initial reconstructions will be poor. Here, of the methods using \gls{PET} acquisition data, only \gls{PCA} will be discussed as it has been proven that most static \gls{DD} \gls{SS} extraction methods perform similarly~\boxcite{2013ComparisonData}. Additionally, \gls{PCA} is the method of choice on \gls{GE} scanners.
+                \begin{figure}
+                    \centering
+                        
+                    \includegraphics[width=1.0\linewidth]{figures/background_pca_window.png}
+                        
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{Graphical representation of the frequency spectrum for three \gls{PC}. On the right a frequency spectrum of one \gls{PC} with a frequency window between \SI{0.1}{\hertz} and \SI{0.4}{\hertz} and a low value peak in this window can be seen. In the centre another example of what can be seen on the left can be seen. On the left another frequency spectrum with a frequency window can be seen, however, here the peak in the frequency window is significantly higher than in the other two examples.} \label{fig:data_driven_pca_windoe}
+                \end{figure}
                 
-                \gls{PCA} is a dimensionality reduction technique, closely related to \gls{SVD}, which attempts to find a transformation that maps the data to a lower dimensional space where the underlying structure of the data can be better determined~\boxcite{Pearson1901LIII.Space}. \gls{PCA} produces, for the data, a series of eigenvectors and eigenvalues where the eigenvectors are the orthogonal vectors of descending variance through the data and the eigenvalues are the scale of these eigenvectors, this can be seen in~\Fref{fig:data_driven_pca}. Thus the first eigenvector from \gls{PCA} will represent the vector of greatest variance through the data, in thoracic \gls{PET} this will usually be caused by the respiratory motion of the patient.
+                There are numerous \gls{DD} methods used to extract a \gls{SS} directly from \gls{PET} data. Some methods require that the \gls{PET} data be reconstructed and then markers, possibly inserted into the patient, are tracked over time. Methods requiring reconstruction are mostly inferior to methods which work with \gls{PET} acquisition data. This is because requiring that reconstruction be performed takes significant time and the \gls{SS}, itself, is usually required for most \gls{MC} so the initial reconstructions will be poor. Here, of the methods using \gls{PET} acquisition data, only \gls{PCA} will be discussed as it has been proven that most static \gls{DD} \gls{SS} extraction methods perform similarly~\boxcite{2013ComparisonData}. Additionally, \gls{PCA} is the method of choice on \gls{GE} scanners.
+                
+                \gls{PCA} is a dimensionality reduction technique appied to data, closely related to \gls{SVD}, which attempts to find a transformation that maps the data to a lower dimensional space where the underlying structure of the data can be better determined~\boxcite{Pearson1901LIII.Space}. \gls{PCA} produces, for the data, a series of eigenvectors and eigenvalues where the eigenvectors are the orthogonal vectors of descending variance through the data and the eigenvalues are the scale of these eigenvectors, this can be seen in~\Fref{fig:data_driven_pca}. Thus the first eigenvector from \gls{PCA} will represent the vector of greatest variance through the data, in thoracic \gls{PET} this will usually be caused by the respiratory motion of the patient.
                 
                 When applied specifically to \gls{PET} acquisition data \gls{PCA} is often used on either sinograms or unlisted listmode data, the resultant sinograms are usually spatially downsampled. This is for a number of reasons including; the noise present in the full data would obscure the motion. Additionally, the large size of the \gls{PET} sinograms provides issues when it comes to storing the number needed in memory and the computational expense needed to apply \gls{PCA}, generally all of the data which the method will be applied to must be in memory simultaneously. Furthermore, the non-downsampled sinograms contain more than enough information for \gls{PCA} to be able to extract the relevant variation, thus if all the data was used then time would be wasted processing all of the data. Generally when used to extract respiratory variation the time frame of the \gls{PET} sinograms is chosen as \SI{0.5}{\second} so as to attempt to mitigate cardiac motion by allowing most of it to be averaged in each frame while still allowing for respiratory motion between frames~\boxcite{Bertolli2018Data-DrivenTomography}.
                 
-                The \gls{PC} which contains the variation present in the data caused by respiratory motion must be identified. One method to do this is as follows; first, the frequency spectrum of each \gls{PC} is required, this shows at what frequency variation occurs along each \gls{PC}. Then a frequency window is determined, this is usually between \SI{0.1}{\hertz} and \SI{0.4}{\hertz} so as to coincide with the approximate frequency of respiration. The max value or peak in the frequency spectrum is then found for each \gls{PC} in this window. The \gls{PC} which has the largest peak in the window is determined as being the one best representing variance caused by respiratory motion~\boxcite{Thielemans2011}.
+                The \gls{PC} which contains the variation present in the data caused by respiratory motion must be identified. One method to do this is as follows; first, the frequency spectrum of each \gls{PC} is required, this shows at what frequency variation occurs along each \gls{PC}. Then a frequency window is determined, this is usually between \SI{0.1}{\hertz} and \SI{0.4}{\hertz} so as to coincide with the approximate frequency of respiration. The max value or peak in the frequency spectrum is then found for each \gls{PC} in this window. The \gls{PC} which has the largest peak in the window is determined as being the one best representing variance caused by respiratory motion, this can be seen in~\Fref{fig:data_driven_pca_windoe}~\boxcite{Thielemans2011}.
                 
-                Evaluations have been performed on the \gls{PCA} method to both \gls{RPM} and \gls{MR} navigator based \gls{SS}. When compared to both external methods \gls{PCA} was shown to be relativley robust, specifically showing a correlation of $0.89$ for nine patients when compared to the \gls{MR} navigator based \gls{SS}~\boxcite{2013ComparisonData, Manber2015PracticalPET/MR.}.
+                Evaluations have been performed on the \gls{PCA} method to both \gls{RPM} and \gls{MR} navigator based \gls{SS}. When compared to both external methods \gls{PCA} was shown to be relatively robust, specifically showing a correlation of $0.89$ for nine patients when compared to the \gls{MR} navigator based \gls{SS}~\boxcite{2013ComparisonData, Manber2015PracticalPET/MR.}.
+                
+                An advantage of the \gls{PCA} \gls{SS} extraction method over external device \gls{SS} tracking is that the \gls{PCA} method allows for \gls{SS} extraction at any point during the scan, once \gls{PET} acquisition data has been acquires of the thorax, even post scan. \gls{PCA} can be applied automatically without the intervention of a clinician thus not affecting acquisition time or inserting any additional steps into clinical practise. \gls{PCA} is also usually more comfortable for the patient as it does not involve any effort from them, in either being strapped into or otherwise having to interact with a device. This is all the while, as discussed above, providing accurate results when compared to the external devices. Additionally, \gls{PCA} does not require any other modality, like \gls{MR} navigators, and as such is universally appropriate wherever \gls{PET} acquisition data is available. However, it should be noted that the \gls{SS} acquired will vary depending on the modality it is applied to, for instance, if \gls{PCA} were applied to \gls{CT} data rather than \gls{PET} then the values would not be comparable. An additional issue with \gls{PCA}, when applied to dynamic \gls{PET}, is that it is incredibly sensitive to dynamic tracer kinetics from dynamic \gls{PET} scans, as discussed in~\Fref{sec:static_and_dynamic_acquisition}. This means that while tracer kinetics are apparent in the data they will cause significantly more variation than respiratory motion would do and thus mask the respiratory \gls{SS} derived via \gls{PCA}. It is also not the case that the respiratory variation would just be displaced to another \gls{PC}, generally its variation is mixed with the variation cause by the tracer kinetics and obscured.
             
         \subsection{Motion Modelling} \label{sec:motion_modelling}
             \begin{figure}
@@ -706,27 +726,33 @@
                 \includegraphics[width=1.0\linewidth]{figures/background_motion_model.png}
                         
                 \captionsetup{singlelinecheck=false, justification=raggedright}
-                \caption{Graphical representation of . On the left .} \label{fig:motion_modelling_motion_model}
+                \caption{Graphical representation of the process of \gls{MM}. On the left the initial data acquisition of both the data and the \gls{SS} can be seen. Then in the centre the data is taken and an image registration is applied to it. Then on the right it can be seen that the \gls{SS} is taken again and a \gls{RCM} is fit on it and the \gls{DVF} from image registration. In the top right a naive example of the \gls{2D} regression fit can be seen.} \label{fig:motion_modelling_motion_model}
             \end{figure}
+            
+            \gls{MM} offer an alternative solution to \gls{MC} when compared to vanilla co-registration of respiratory gated \gls{PET}. \gls{MM}, as with the \gls{RPM} discussed in \Fref{sec:external_devices}, are a technique borrowed from radiotherapy. \gls{MM} themselves attempt to relate the \gls{DVF} from, for instance, image registration to the \gls{SS} acquired for the data used to generate the \gls{DVF}. In this case a \gls{RCM} would be generated which is fit on all of the \gls{DVF}, from all of the data, related to all of the elements in the \gls{SS}, this can be seen in~\Fref{fig:motion_modelling_motion_model}~\boxcite{McClelland2013, McClelland2006, McClelland2014, McClelland2017}.
+            
+            There are four components required to perform \gls{MM}, these are; the data itself which is to be \gls{MC}, a \gls{SS} with an element for each of the pieces of data (the \gls{SS} can be \gls{ND}), the \gls{DVF} for each piece of data (for instance b-spline interpolated \gls{CPG} \gls{DVF}) and the \gls{RCM} linking the \gls{DVF} and \gls{SS}.
+            
+            An advantage of \gls{MM} over vanilla co-registration is that it allows for prediction of data not used to fit the \gls{RCM}, this advantage is particularly useful for radiotherapy. Here, data is acquired over some time on the machine used to perform radiotherapy on the patient on the day they are to receive radiotherapy. This allows for a \gls{RCM} to be fit on the data acquired with a \gls{SS} from, for instance, the \gls{RPM}. Then, as a dose is administered to the patient, from a linear accelerator, \gls{SS} can continue to be acquired and \gls{DVF} calculated using the \gls{RCM} in order to, in real time, change the trajectory of the linear accelerator to apply a dose only in the \gls{ROI}. The new \gls{SS} need not match any of the \gls{SS} used to generate the \gls{RCM} as the \gls{RCM} is a continuous model. This advantage could provide the functionality in \gls{PET} of calculating a \gls{RCM} while acquisition is still ongoing to be used for \gls{MC} during reconstruction. An additional advantage of \gls{MM} is that compared to vanilla co-registration it provides superior sensitivity to noise. this is because, while vanilla co-registration will register each individual volume together, regardless of how well that registration fits the underlying motion of the patient, \gls{MM} will then fit on top of, for instance, a registration, smoothing the effect of outliers and noise somewhat.
             
             \subsubsection{Respiratory Correspondence Model} \label{sec:respiratory_correspondence_model}
-            \begin{figure}
-                \centering
-                        
-                \includegraphics[width=1.0\linewidth]{figures/background_rcm.png}
-                        
-                \captionsetup{singlelinecheck=false, justification=raggedright}
-                \caption{Graphical representation of . On the left .} \label{fig:motion_modelling_rcm}
-            \end{figure}
-            
+                \begin{figure}
+                    \centering
+                            
+                    \includegraphics[width=1.0\linewidth]{figures/background_rcm.png}
+                            
+                    \captionsetup{singlelinecheck=false, justification=raggedright}
+                    \caption{Graphical representation of . On the left .} \label{fig:motion_modelling_rcm}
+                \end{figure}
+                
         
         \subsection{Applying Motion Correction} \label{sec:applying_motion_correction}
-            As discussed throughout this chapter, briefly in~\Fref{sec:respiratory_motion_challenges_in_combined_pet_ct_imaging} and~\Fref{sec:respiratory_gating}, there are a number of methods through which \gls{DVF} or \gls{MM} can be taken and the information gained through their acquisition can be applied to improving artefacts and image resolution from motion. These methods mostly fit into two different classes of motion correction techniques, these are:
+            As discussed throughout this chapter, briefly in~\Fref{sec:respiratory_motion_challenges_in_combined_pet_ct_imaging} and~\Fref{sec:respiratory_gating}, there are a number of methods through which \gls{DVF} or \gls{MM} can be taken and the information gained through their acquisition can be applied to improving artefacts and image resolution from motion. These methods mostly fit into two different classes of \gls{MC} techniques, these are:
             
             \begin{itemize}
-                \item Firstly, post-image reconstruction motion correction. This class of motion correction technique either takes the \gls{DVF} from image registration or the results of \gls{MM} and applies them after the \gls{PET} acquisition data has been reconstructed into images. Usually image registration is optimised in image space using an objective function such as \gls{MI} of \gls{MSE}, discussed in~\Fref{sec:image_registration}. An example of a post-image reconstruction motion correction technique would be performing respiratory gating, reconstructing the gated volumes and then registering and summing all gates together, this was discussed briefly in~\Fref{sec:respiratory_motion_challenges_in_combined_pet_ct_imaging}. This method has the advantage that it is relatively simple to implement, each section of reconstruction and motion correction is separate and sequential. Because of this each optimisation is more likely to converge to a result without having issues of the scale of each optimisation being different or pulling the optimisation in different directions. However, because motion correction is performed post-image reconstruction then this information cannot be taken into account during image reconstruction to aid with things such as aligning the \gls{mu-map} or aiding in convergence.
+                \item Firstly, post-image reconstruction \gls{MC}. This class of \gls{MC} technique either takes the \gls{DVF} from image registration or the results of \gls{MM} and applies them after the \gls{PET} acquisition data has been reconstructed into images. Usually image registration is optimised in image space using an objective function such as \gls{MI} of \gls{MSE}, discussed in~\Fref{sec:image_registration}. An example of a post-image reconstruction \gls{MC} technique would be performing respiratory gating, reconstructing the gated volumes and then registering and summing all gates together, this was discussed briefly in~\Fref{sec:respiratory_motion_challenges_in_combined_pet_ct_imaging}. This method has the advantage that it is relatively simple to implement, each section of reconstruction and \gls{MC} is separate and sequential. Because of this each optimisation is more likely to converge to a result without having issues such as, the scale of each optimisation being different and requiring preconditioning or each iterative update being in a significantly different direction. However, because \gls{MC} is performed post-image reconstruction then this joint information cannot be taken into account during image reconstruction to aid with things such as aligning the \gls{mu-map} or improving convergence.
                 
-                \item Secondly, iterative image reconstruction and motion correction.
+                \item Secondly, iterative image reconstruction and \gls{MC}. This class of \gls{MC} technique take the optimisation for image reconstruction and either image registration or \gls{MM} and iterates between them. An example of an iterative image reconstruction and \gls{MC} technique would be \gls{ML} joint image reconstruction and motion estimation as briefly discussed in~\Fref{sec:respiratory_motion_challenges_in_combined_pet_ct_imaging}. Here, a \gls{ML} image reconstruction is iteratively optimised for in conjunction with a motion estimate which is applied to both the estimated activity volume and the \gls{mu-map} in order to find a \gls{MC} activity volume which corresponds to the position of the \gls{mu-map} at every gate~\boxcite{Bousse2016}. An advantage of this technique is that between every iteration, from image reconstruction to \gls{MC}, the improvement of the accuracy of the activity distribution aids in fitting a \gls{MC} which then inversely can improve the resolution of the reconstruction. Eventually this can lead to an improved result over post-image reconstruction \gls{MC}. However, because this class of applied \gls{MC} involves a higher level of complexity, from integrating the reconstruction and \gls{MC}, it can prove more difficult to implement well and can increase computation time of the algorithm. In some cases it is possible to attempt to optimise for both the reconstructed image and image registration or \gls{MM} simultaneously, in this case it would be a simultaneous image reconstruction and \gls{MC} technique.
             \end{itemize}
     
     \longsection{Machine Learning for PET}{sec:machine_learning_for_pet}
@@ -734,8 +760,17 @@
         
         \subsection{Machine Learning Concepts} \label{sec:machine_learning_concepts}
             
+            
+            \subsubsection{Neural Network Architecture} \label{sec:neural_network_architecture}
+                
+                
+            \subsubsection{Activation Function} \label{sec:activation_function}
+                
+            
+            \subsubsection{Regularisation} \label{sec:regularisation}
+                
         
-        \subsection{Machine Learning for PET Image Reconstruction} \label{sec:machine_learning_for_pet_image_reconstruction}
+        % \subsection{Machine Learning for PET Image Reconstruction} \label{sec:machine_learning_for_pet_image_reconstruction}
             % might want to mention this?
             
         

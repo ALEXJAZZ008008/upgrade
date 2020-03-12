@@ -72,8 +72,36 @@
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 
-\usepackage[acronym]{glossaries}
-\makeglossaries
+\usepackage[acronym,nomain]{glossaries}
+
+% Define "long-ing" key: 
+\glsaddkey* {longing}% key 
+{\glsentrylong{\glslabel}ing}% default value 
+{\glsentrylonging}% command analogous to \glsentrytext 
+{\Glsentrylonging}% command analogous to \Glsentrytext 
+{\glslonging}% command analogous to \glstext 
+{\Glslonging}% command analogous to \Glstext 
+{\GLSlonging}% command analogous to \GLStext
+
+%% Define "short-ing" key: 
+\glsaddkey* {shorting}% key 
+{\glsentryshort{\glslabel}ing}% default value 
+{\glsentryshorting}% command analogous to \glsentrytext 
+{\Glsentryshorting}% command analogous to \Glsentrytext 
+{\glsshorting}% command analogous to \glstext 
+{\Glsshorting}% command analogous to \Glstext 
+{\GLSshorting}% command analogous to \GLStext
+
+\newcommand{\glsing}[1]
+{%
+  \ifglsused{#1}{\glsshorting{#1}}{\glslonging{#1} (\glsshorting{#1})\glsunset{#1}}%
+}
+
+\newcommand{\Glsing}[1]
+{%
+  \ifglsused{#1}{\Glsshorting{#1}}{\Glslonging{#1} (\glsshorting{#1})\glsunset{#1}}%
+}
+
 \newacronym{mu-map}{mu-map}{Attenuation Map}
 \newacronym{TOF}{TOF}{Time of Flight}
 \newacronym{NTOF}{NTOF}{Non-Time of Flight}
@@ -161,6 +189,9 @@
 \newacronym{3DPC}{3DPC}{\gls{3D} Point Cloud}
 \newacronym{SVD}{SVD}{Singular Value Decomposition}
 \newacronym{PC}{PC}{Principal Component}
+\newacronym{ND}{ND}{$n$-Dimensional}
+
+\makeglossaries
 
 \usepackage[top=6.0cm,bottom=1.25cm,left=6.5cm,right=0.5cm,headheight=1.0cm]{geometry}
 
