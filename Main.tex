@@ -74,6 +74,34 @@
 
 \usepackage[acronym,nomain]{glossaries}
 
+% Define "long-s" key: 
+\glsaddkey* {longs}% key 
+{\glsentrylong{\glslabel}s}% default value 
+{\glsentrylongs}% command analogous to \glsentrytext 
+{\Glsentrylongs}% command analogous to \Glsentrytext 
+{\glslongs}% command analogous to \glstext 
+{\Glslongs}% command analogous to \Glstext 
+{\GLSlongs}% command analogous to \GLStext
+
+%% Define "short-s" key: 
+\glsaddkey* {shorts}% key 
+{\glsentryshort{\glslabel}s}% default value 
+{\glsentryshorts}% command analogous to \glsentrytext 
+{\Glsentryshorts}% command analogous to \Glsentrytext 
+{\glsshorts}% command analogous to \glstext 
+{\Glsshorts}% command analogous to \Glstext 
+{\GLSshorts}% command analogous to \GLStext
+
+\DeclareRobustCommand{\glss}[1]
+{%
+  \ifglsused{#1}{\glsshorts{#1}}{\glslongs{#1} (\glsshorts{#1})\glsunset{#1}}%
+}
+
+\DeclareRobustCommand{\Glss}[1]
+{%
+  \ifglsused{#1}{\Glsshorts{#1}}{\Glslongs{#1} (\glsshorts{#1})\glsunset{#1}}%
+}
+
 % Define "long-ing" key: 
 \glsaddkey* {longing}% key 
 {\glsentrylong{\glslabel}ing}% default value 
@@ -92,104 +120,140 @@
 {\Glsshorting}% command analogous to \Glstext 
 {\GLSshorting}% command analogous to \GLStext
 
-\newcommand{\glsing}[1]
+\DeclareRobustCommand{\glsing}[1]
 {%
   \ifglsused{#1}{\glsshorting{#1}}{\glslonging{#1} (\glsshorting{#1})\glsunset{#1}}%
 }
 
-\newcommand{\Glsing}[1]
+\DeclareRobustCommand{\Glsing}[1]
 {%
   \ifglsused{#1}{\Glsshorting{#1}}{\Glslonging{#1} (\glsshorting{#1})\glsunset{#1}}%
 }
 
-\newacronym{mu-map}{mu-map}{Attenuation Map}
-\newacronym{TOF}{TOF}{Time of Flight}
-\newacronym{NTOF}{NTOF}{Non-Time of Flight}
-\newacronym{NAC}{NAC}{Non-Attenuation Corrected}
-\newacronym{RCM}{RCM}{Respiratory Correspondence Model}
-\newacronym{MAPE}{MAPE}{Mean Absolute Percentage Error}
-\newacronym{COM}{COM}{Centre of Mass}
-\newacronym{AP}{AP}{Anterior Posterior}
-\newacronym{SI}{SI}{Superior Inferior}
-\newacronym{PET}{PET}{Positron Emission Tomography}
-\newacronym{CT}{CT}{Computed Tomography}
-\newacronym{MR}{MR}{Magnetic Resonance}
-\newacronym{OSEM}{OSEM}{Ordered Subset Expectation Maximisation}
-\newacronym{LOR}{LOR}{Line of Response}
-\newacronym{FDG}{FDG}{Fludeoxyglucose}
-\newacronym{F-FDG}{F-FDG}{Fluorine $18$ Fludeoxyglucose}
-\newacronym{STIR}{STIR}{Software for Tomographic Image Reconstruction}
-\newacronym{SIRF}{SIRF}{Synergistic Image Reconstruction Framework}
-\newacronym{FWHM}{FWHM}{Full Width at Half Maximum}
-\newacronym{SSD}{SSD}{Sum of Squared Differences}
-\newacronym{MCIR}{MCIR}{Motion Corrected Image Reconstruction}
-\newacronym{PCA}{PCA}{Principal Component Analysis}
-\newacronym{NN}{NN}{Neural Network}
-\newacronym{4D}{4D}{$4$-Dimensional}
-\newacronym{XCAT}{XCAT}{\gls{4D} Extended Cardiac Torso}
-\newacronym{MC}{MC}{Motion Correction}
-\newacronym{RM}{RM}{Respiratory Motion}
-\newacronym{RD}{RD}{Rigid Deformation}
-\newacronym{NRD}{NRD}{Non-Rigid Deformation}
-\newacronym{IR}{IR}{Image Registration}
-\newacronym{DD}{DD}{Data Driven}
-\newacronym{MM}{MM}{Motion Model}
-\newacronym{SS}{SS}{Surrogate Signal}
-\newacronym{DF}{DF}{Deformation Field}
-\newacronym{3D}{3D}{$3$-Dimensional}
-\newacronym{FOV}{FOV}{Field Of View}
-\newacronym{AC}{AC}{Attenuation Corrected}
-\newacronym{ROI}{ROI}{Region of Interest}
-\newacronym{PSMA}{PSMA}{Region of Interest}
-\newacronym{KeV}{KeV}{Kilo Electron Volt}
-\newacronym{MeV}{KeV}{Mega Electron Volt}
-\newacronym{ATP}{ATP}{Adenosine Triphosphate}
-\newacronym{MPI}{MPI}{Myocardial Perfusion Imaging}
-\newacronym{MBF}{MBF}{Myocardial Blood Flow}
-\newacronym{SPECT}{SPECT}{Single Photon Emission Computed Tomography}
-\newacronym{2D}{2D}{$2$-Dimentional}
-\newacronym{NaI}{NaI}{Sodium Iodide}
-\newacronym{BGO}{BGO}{Bismuth Germanate}
-\newacronym{LSO}{LSO}{Lutetium Oxyorthosilicate}
-\newacronym{LYSO}{LYSO}{Lutetium Yttrium Oxyorthosilicate}
-\newacronym{PMT}{PMT}{Photomultiplier tubes}
-\newacronym{APD}{APD}{Avalanche Photo-Diode}
-\newacronym{SiPM}{SiPM}{Silicon Photomultiplier}
-\newacronym{SSPM}{SSPM}{Solid State Photomultiplier}
-\newacronym{GE}{GE}{General Electric}
-\newacronym{SNR}{SNR}{Signal to Noise Ratio}
-\newacronym{kVp}{kVp}{Kilo Voltage}
-\newacronym{HU}{HU}{Hounsfield Units}
-\newacronym{kBq/mL}{kBq/mL}{Kilo Becquerel per Millilitre}
-\newacronym{SUV}{SUV}{Standard Uptake Value}
-\newacronym{MAE}{MAE}{Mean Absolute Error}
-\newacronym{MSE}{MSE}{Mean Squared Error}
-\newacronym{MLE}{MLE}{Maximum Likelihood Estimation}
-\newacronym{GD}{GD}{Gradient Descent}
-\newacronym{SGD}{GD}{Stochastic Gradient Descent}
-\newacronym{CG}{CG}{Conjugate Gradient}
-\newacronym{BP}{BP}{Backprojection}
-\newacronym{FBP}{FBP}{Filtered Backprojection}
-\newacronym{GT}{GT}{Ground Truth}
-\newacronym{ML}{ML}{Maximum Likelihood}
-\newacronym{EM}{EM}{Expectation Maximisation}
-\newacronym{MLEM}{MLEM}{Maximum Likelihood Expectation Maximisation}
-\newacronym{CC}{CC}{Cross Correlation}
-\newacronym{MI}{MI}{Mutual Information}
-\newacronym{AD}{AD}{Affine Deformation}
-\newacronym{DVF}{DVF}{Deformation Vector Field}
-\newacronym{CP}{CP}{Control Point}
-\newacronym{CPG}{CPG}{Control Point Grid}
-\newacronym{TPS}{TPS}{Thin Plate Spline}
-\newacronym{RDP}{RDP}{Relative Difference Prior}
-\newacronym{MLAA}{MLAA}{Maximum Likelihood Reconstruction of Activity and Attenuation}
-\newacronym{RPM}{RPM}{Real-time Position Management}
-\newacronym{LED}{LED}{Light Emitting Diode}
+% Define "long-ed" key: 
+\glsaddkey* {longed}% key 
+{\glsentrylong{\glslabel}ed}% default value 
+{\glsentrylonged}% command analogous to \glsentrytext 
+{\Glsentrylonged}% command analogous to \Glsentrytext 
+{\glslonged}% command analogous to \glstext 
+{\Glslonged}% command analogous to \Glstext 
+{\GLSlonged}% command analogous to \GLStext
+
+%% Define "short-ed" key: 
+\glsaddkey* {shorted}% key 
+{\glsentryshort{\glslabel}ed}% default value 
+{\glsentryshorted}% command analogous to \glsentrytext 
+{\Glsentryshorted}% command analogous to \Glsentrytext 
+{\glsshorted}% command analogous to \glstext 
+{\Glsshorted}% command analogous to \Glstext 
+{\GLSshorted}% command analogous to \GLStext
+
+\DeclareRobustCommand{\glsed}[1]
+{%
+  \ifglsused{#1}{\glsshorted{#1}}{\glslonged{#1} (\glsshorted{#1})\glsunset{#1}}%
+}
+
+\DeclareRobustCommand{\Glsed}[1]
+{%
+  \ifglsused{#1}{\Glsshorted{#1}}{\Glslonged{#1} (\glsshorted{#1})\glsunset{#1}}%
+}
+
+\newacronym[longs={Motion Compensated Images}, shorts={MCIRs}]{MCI}{MCI}{Motion Compensated Image}
+\newacronym[longs={Motion Compensated Image Reconstructions}, shorts={MCIRs}, longing={Motion Compensated Image Reconstructing}, shorting={MCIRing}, longed={Motion Compensated Image Reconstructed}, shorted={MCIRed}]{MCIR}{MCIR}{Motion Compensated Image Reconstruction}
+
 \newacronym{1D}{1D}{$1$-Dimensional}
-\newacronym{3DPC}{3DPC}{\gls{3D} Point Cloud}
-\newacronym{SVD}{SVD}{Singular Value Decomposition}
-\newacronym{PC}{PC}{Principal Component}
+\newacronym{2D}{2D}{$2$-Dimensional}
+\newacronym{3D}{3D}{$3$-Dimensional}
+\newacronym[longs={$3$-Dimensional Point Clouds}, shorts={3DPCs}]{3DPC}{3DPC}{$3$-Dimensional Point Cloud}
+\newacronym{4D}{4D}{$4$-Dimensional}
+\newacronym{4DCT}{4DCT}{$4$-Dimensional Computed Tomography}
+\newacronym[longs={Attenuation Corrections}, shorts={ACs}, longing={Attenuation Correcting}, shorting={ACing}, longed={Attenuation Corrected}, shorted={ACed}]{AC}{AC}{Attenuation Correct}
+\newacronym[longs={Affine Deformations}, shorts={ADs}, longing={Affine Deforming}, shorting={ADing}, longed={Affine Deformed}, shorted={ADed}]{AD}{AD}{Affine Deformation}
+\newacronym{AP}{AP}{Anterior Posterior}
+\newacronym{ATP}{ATP}{Adenosine Triphosphate}
+\newacronym[longs={B-Splines}, shorts={BSs}, longing={B-Splining}, shorting={BSing}, longed={B-Splined}, shorted={BSed}]{BS}{BS}{B-Spline}
+\newacronym[longs={Cross Correlations}, shorts={CCs}, longing={Cross Correlating}, shorting={CCing}, longed={Cross Correlated}, shorted={CCed}]{CC}{CC}{Cross Correlation}
+\newacronym{CCT}{CCT}{Cine Computed Tomography}
+\newacronym{CG}{CG}{Conjugate Gradient}
+\newacronym{COM}{COM}{Centre of Mass}
+\newacronym[longs={Control Points}, shorts={CPs}]{CP}{CP}{Control Point}
+\newacronym[longs={Control Point Grids}, shorts={CPGs}]{CPG}{CPG}{Control Point Grid}
+\newacronym{CT}{CT}{Computed Tomography}
+\newacronym{DD}{DD}{Data Driven}
+\newacronym{DDG}{DDG}{Data Driven Gating}
+\newacronym[longs={Deformation Vector Fields}, shorts={DVFs}]{DVF}{DVF}{Deformation Vector Field}
+\newacronym{EM}{EM}{Expectation Maximisation}
+\newacronym{FDG}{FDG}{Fludeoxyglucose}
+\newacronym{F-FDG}{F-FDG}{Fluorine-$18$ Fludeoxyglucose}
+\newacronym[longs={Fields of View}, shorts={FOVs}]{FOV}{FOV}{Field Of View}
+\newacronym{FWHM}{FWHM}{Full Width at Half Maximum}
+\newacronym{GD}{GD}{Gradient Descent}
+\newacronym{GE}{GE}{General Electric}
+\newacronym[longs={Ground Truths}, shorts={GTs}]{GT}{GT}{Ground Truth}
+\newacronym[longs={Hounsfield Units}, shorts={HUs}]{HU}{HU}{Hounsfield Unit}
+\newacronym[longs={Image Registrations}, shorts={IRs}, longing={Image Registering}, shorting={IRing}, longed={Image Registered}, shorted={IRed}]{IR}{IR}{Image Registration}
+\newacronym[longs={Kilo Becquerel per Millilitres}, shorts={KBq/mLs}]{KBq/mL}{KBq/mL}{Kilo Becquerel per Millilitre}
+\newacronym[longs={Kilo Electron Volts}, shorts={KeVs}]{KeV}{KeV}{Kilo Electron Volt}
+\newacronym[longs={Kilo Volt}, shorts={KVs}]{KV}{KV}{Kilo Volt}
+\newacronym[longs={Light Emitting Diodes}, shorts={LEDs}]{LED}{LED}{Light Emitting Diode}
+\newacronym[longs={Lines of Responce}, shorts={LORs}]{LOR}{LOR}{Line of Response}
+\newacronym[longs={Mean Absolute Errors}, shorts={MAEs}]{MAE}{MAE}{Mean Absolute Error}
+\newacronym{MAPE}{MAPE}{Mean Absolute Percentage Error}
+\newacronym{MBF}{MBF}{Myocardial Blood Flow}
+\newacronym[longs={Motion Corrections}, shorts={MCs}, longing={Motion Correcting}, shorting={MCing} longed={Motion Corrected}, shorted={MCed}]{MC}{MC}{Motion Correction}
+\newacronym{MI}{MI}{Mutual Information}
+\newacronym{ML}{ML}{Maximum Likelihood}
+\newacronym{MLAA}{MLAA}{Maximum Likelihood Reconstruction of Activity and Attenuation}
+\newacronym{MLE}{MLE}{Maximum Likelihood Estimation}
+\newacronym{MLEM}{MLEM}{Maximum Likelihood Expectation Maximisation}
+\newacronym[longs={Motion Models}, shorts={MMs}, longing={Motion Modelling}, shorting={MMing}, longed={Motion Modelled}, shorted={MMed}]{MM}{MM}{Motion Model}
+\newacronym[longs={Myocardial Perfusion Images}, shorts={MPIs}, longing={Myocardial Perfusion Imaging}, shorting={MPIing}, longed={Myocardial Perfusion Imaged}, shorted={MPIed}]{MPI}{MPI}{Myocardial Perfusion Image}
+\newacronym{MR}{MR}{Magnetic Resonance}
+\newacronym[longs={Mean Squared Errors}, shorts={MSEs}]{MSE}{MSE}{Mean Squared Error}
+\newacronym[longs={Attenuation Maps}, shorts={Mu-Maps}]{Mu-Map}{Mu-Map}{Attenuation Map}
+\newacronym[longs={Non-Attenuation Corrections}, shorts={NACs}, longing={Non-Attenuation Correcting}, shorting={NACing}, longed={Non-Attenuation Corrected}, shorted={NACed}]{NAC}{NAC}{Non-Attenuation Correct}
 \newacronym{ND}{ND}{$n$-Dimensional}
+\newacronym[longs={Non-Rigid Deformations}, shorts={NRDs}, longing={Non-Rigid Deforming}, shorting={NRDing}, longed={Non-Rigid Deformed}, shorted={NRed}]{NRD}{NRD}{Non-Rigid Deformation}
+\newacronym{NTOF}{NTOF}{Non-Time of Flight}
+\newacronym{OSEM}{OSEM}{Ordered Subset Expectation Maximisation}
+\newacronym[longs={Principal Components}, shorts={PCs}]{PC}{PC}{Principal Component}
+\newacronym{PCA}{PCA}{Principal Component Analysis}
+\newacronym{PET}{PET}{Positron Emission Tomography}
+\newacronym{PSMA}{PSMA}{Prostate Specific Membrane Antigen}
+\newacronym[longs={Respiratory Correspondence Models}, shorts={RCMs}, longing={Respiratory Correspondence Modelling}, shorting={RCMing}, longed={Respiratory Correspondence Modelled}, shorted={RCMed}]{RCM}{RCM}{Respiratory Correspondence Model}
+\newacronym[longs={Rigid Deformations}, shorts={RDs}, longing={Rigid Deforming}, shorting={RDing}, longed={Rigid Deformed}, shorted={RDed}]{RD}{RD}{Rigid Deformation}
+\newacronym{RDP}{RDP}{Relative Difference Prior}
+\newacronym[longs={Respiratory Motions}, shorts={RMs}]{RM}{RM}{Respiratory Motion}
+\newacronym[longs={Regions of Interest}, shorts={ROIs}]{ROI}{ROI}{Region of Interest}
+\newacronym{RPM}{RPM}{Real Time Position Management}
+\newacronym{SGD}{SGD}{Stochastic Gradient Descent}
+\newacronym{SI}{SI}{Superior Inferior}
+\newacronym{SIRF}{SIRF}{Synergistic Image Reconstruction Framework}
+\newacronym[longs={Signal to Noise Ratios}, shorts={SNRs}]{SNR}{SNR}{Signal to Noise Ratio}
+\newacronym[longs={Surrogate Signals}, shorts={SSs}]{SS}{SS}{Surrogate Signal}
+\newacronym{SSD}{SSD}{Sum of Squared Differences}
+\newacronym{STIR}{STIR}{Software for Tomographic Image Reconstruction}
+\newacronym[longs={Standard Uptake Values}, shorts={SUVs}]{SUV}{SUV}{Standard Uptake Value}
+\newacronym{SVD}{SVD}{Singular Value Decomposition}
+\newacronym{TOF}{TOF}{Time of Flight}
+\newacronym[longs={Thin Plate Splines}, shorts={TPSs}]{TPS}{TPS}{Thin Plate Spline}
+\newacronym{XCAT}{XCAT}{$4$-Dimensional Extended Cardiac Torso}
+
+% \newacronym[longs={Motion Corrected Image Reconstructions}, shorts={MCIRs}, longed={Motion Corrected Image Reconstructed}, shorted={MCIRed}]{MCIR}{MCIR}{Motion Corrected Image Reconstruction}
+% \newacronym[longs={Neural Networks}, shorts={NNs}]{NN}{NN}{Neural Network}
+% \newacronym[longs={Deformation Fields}, shorts={DFs}]{DF}{DF}{Deformation Field}
+% \newacronym{MeV}{MeV}{Mega Electron Volt}
+% \newacronym{SPECT}{SPECT}{Single Photon Emission Computed Tomography}
+% \newacronym{NaI}{NaI}{Sodium Iodide}
+% \newacronym{BGO}{BGO}{Bismuth Germanate}
+% \newacronym{LSO}{LSO}{Lutetium Oxyorthosilicate}
+% \newacronym{LYSO}{LYSO}{Lutetium Yttrium Oxyorthosilicate}
+% \newacronym[longs={Photomultiplier Tubes}, shorts={PMTs}]{PMT}{PMT}{Photomultiplier Tube}
+% \newacronym[longs={Avalance Photo Diodes}, shorts={APDs}]{APD}{APD}{Avalanche Photo Diode}
+% \newacronym[longs={Silicon Photomultipliers}, shorts={SiPMs}]{SiPM}{SiPM}{Silicon Photomultiplier}
+% \newacronym[longs={Solid State Photomultipliers}, shorts={SSPMs}]{SSPM}{SSPM}{Solid State Photomultiplier}
+% \newacronym{BP}{BP}{Backprojection}
+% \newacronym{FBP}{FBP}{Filtered Backprojection}
 
 \makeglossaries
 
