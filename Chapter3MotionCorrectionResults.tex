@@ -2,16 +2,16 @@
     
     
     \longsection{Impact of TOF on Respiratory Motion Model Estimation Using Pre-Gated No Intra-Cycle Motion NAC PET}{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet}
-        This section investigates the possibility of using \glsing{MM} for respiratory \gls{MC} in \gls{PET}/\gls{CT}, and in particular whether incorporating \gls{TOF} information increases the accuracy of the \glss{MM} derived from \glsed{NAC} reconstructed images.
+        This section investigates the possibility of using \gls{MM} for respiratory \gls{MC} in \gls{PET}/\gls{CT}, and in particular whether incorporating \gls{TOF} information increases the accuracy of the \glss{MM} derived from \gls{NAC} reconstructed images.
         
         \subsection{Introduction} \label{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_introduction}
         \gls{RM} reduces image quality in \gls{PET} by causing artefacts and loss of resolution in the thoracic region~\boxcite{Nehmeh2008a}. Many methods have been proposed to correct for \gls{RM}, usually involving registration between a reference volume and a set of volumes in different positions in the respiratory cycle obtained by gating~\boxcite{Oliveira2014}. However, such pair wise registration is sensitive to noise. It also does not allow prediction of the respiratory state for data not used to estimate the motion, for instance, to be used for real time \gls{MC}. \gls{SS} driven \glss{MM} attempt to overcome these deficiencies by relating the motion in the data to a number of \gls{SS} values~\boxcite{McClelland2013}. The model can output a transformation or \gls{DVF} for every value of a \gls{SS}. \glss{MM} are fit on a series of either time or gating based volumes. This is as discussed in~\Fref{sec:motion_modelling}
 
-        To avoid mis-registration due to attenuation mismatches, most existing methods rely on pair wise registration of \glsed{NAC} \gls{PET} volumes. The benefits of using \glsed{AC} \gls{PET} for \gls{IR} are unclear. If images are reconstructed using a static \gls{Mu-Map}, then artefacts caused by the misalignment between the activity distribution and the \gls{Mu-Map} would hamper \gls{IR}. It could therefore be advantageous to estimate motion on \gls{NAC} images~\boxcite{LungMotionDiaphragmBaiBib, Kalantari2017AttenuationRegistration:, Dawood2008RespiratoryAlgorithms, Dawood2006LungImages}. However, this is a challenging problem due to the low contrast and high noise of these volumes. Contrast may be too low to fit an accurate \gls{MM} and artefacts associated with the mismatch between the acquisition data and \gls{Mu-Map} could also obscure the underlying motion.
+        To avoid mis-registration due to attenuation mismatches, most existing methods rely on pair wise registration of \gls{NAC} \gls{PET} volumes. The benefits of using \gls{AC} \gls{PET} for \gls{IR} are unclear. If images are reconstructed using a static \gls{Mu-Map}, then artefacts caused by the misalignment between the activity distribution and the \gls{Mu-Map} would hamper \gls{IR}. It could therefore be advantageous to estimate motion on \gls{NAC} images~\boxcite{LungMotionDiaphragmBaiBib, Kalantari2017AttenuationRegistration:, Dawood2008RespiratoryAlgorithms, Dawood2006LungImages}. However, this is a challenging problem due to the low contrast and high noise of these volumes. Contrast may be too low to fit an accurate \gls{MM} and artefacts associated with the mismatch between the acquisition data and \gls{Mu-Map} could also obscure the underlying motion.
         
-        In the absence of \gls{TOF}, there is no information on the activity position along the \gls{LOR} and \glsed{NAC} reconstructions have high intensity near the surface and low contrast in the internal part of the body. In \gls{TOF}, the time information constrains the activity position along the \gls{LOR} changing the nature and extent of the artefacts associated with \glsed{NAC} \gls{PET} as well as changing noise properties~\boxcite{Ter-Pogossian1981}.
+        In the absence of \gls{TOF}, there is no information on the activity position along the \gls{LOR} and \gls{NAC} reconstructions have high intensity near the surface and low contrast in the internal part of the body. In \gls{TOF}, the time information constrains the activity position along the \gls{LOR} changing the nature and extent of the artefacts associated with \gls{NAC} \gls{PET} as well as changing noise properties~\boxcite{Ter-Pogossian1981}.
         
-        The aim of this section is to investigate whether \gls{TOF} can sufficiently increase the contrast and lower the noise of \glsed{NAC} images to facilitate the calculation of accurate \glss{MM}.
+        The aim of this section is to investigate whether \gls{TOF} can sufficiently increase the contrast and lower the noise of \gls{NAC} images to facilitate the calculation of accurate \glss{MM}.
         
         \subsection{Methods} \label{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_methods}
             \subsubsection{XCAT Image Generation} \label{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_methods_xcat_image_generation}
@@ -35,7 +35,7 @@
                 A generalised framework unifying registration and \gls{MM} estimation, NiftyRegResp, was used to estimate the \gls{RCM}. \glss{RCM} being the models fit on the acquired \gls{SS} and \glss{DVF} which, as a function can, take in a \gls{SS} value and return the \gls{DVF} which can be used to warp a volume to a reference position. Here, using \gls{SSD} as the objective function~\boxcite{McClelland2017}.
                 
             \subsubsection{Evaluation} \label{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_methods_evaluation}
-                Three \glss{RCM} were compared: calculated from the \gls{PET} \gls{XCAT} volumes (gold standard), \gls{NTOF} \glsed{NAC} reconstructions and \gls{TOF} \glsed{NAC} reconstructions. To test the accuracy of the \glss{RCM}, the three models were used to warp the \gls{PET} volume generated by \gls{XCAT} at the mean breathing position, to the position at each gate. The mean breathin position \gls{XCAT} volume was generated by calculating the mean \gls{SS} value and using this as an input to \gls{XCAT}. A mean position volume was used as the \gls{RCM} was fit with this as the reference position for the \gls{SS}, as discussed in~\Fref{sec:motion_modelling}. These estimated volumes were then compared to the original \gls{XCAT} input volumes. Difference volumes were obtained by subtracting the original \gls{XCAT} volume $\mathbf{f}_t$ and warped volumes $\mathbf{W}(\alpha_t) \mathbf{f}_\mathrm{ref}$ at the same gate. \gls{MAPE} were computed from these difference images. \gls{MAPE} is expressed as:
+                Three \glss{RCM} were compared: calculated from the \gls{PET} \gls{XCAT} volumes (gold standard), \gls{NTOF} \gls{NAC} reconstructions and \gls{TOF} \gls{NAC} reconstructions. To test the accuracy of the \glss{RCM}, the three models were used to warp the \gls{PET} volume generated by \gls{XCAT} at the mean breathing position, to the position at each gate. The mean breathin position \gls{XCAT} volume was generated by calculating the mean \gls{SS} value and using this as an input to \gls{XCAT}. A mean position volume was used as the \gls{RCM} was fit with this as the reference position for the \gls{SS}, as discussed in~\Fref{sec:motion_modelling}. These estimated volumes were then compared to the original \gls{XCAT} input volumes. Difference volumes were obtained by subtracting the original \gls{XCAT} volume $\mathbf{f}_t$ and warped volumes $\mathbf{W}(\alpha_t) \mathbf{f}_\mathrm{ref}$ at the same gate. \gls{MAPE} were computed from these difference images. \gls{MAPE} is expressed as:
                 
                 \begin{equation}  \label{eq:mape}
                    % M := \frac{\frac{\sum_{n}^{1}\abs{g - e}}{n}}{\frac{\sum_{n}^{1}g}{n}} \times 100
@@ -50,17 +50,17 @@
             \begin{figure}
                 \centering
                 
-                \includegraphics[width=1.0\linewidth]{figures/result_1_output.png}
+                \includegraphics[width=1.0\linewidth]{figures/motion_correction_results_1_output.png}
                 
                 \captionsetup{singlelinecheck=false, justification=raggedright}
-                \caption{All volumes correspond to end inhalation. First row from left to right: \gls{XCAT} \gls{PET} data, \glsed{NAC} \gls{NTOF} reconstructed data and \glsed{NAC} \gls{TOF} reconstructed data. Second row: \glss{RCM} applied to mean position \gls{XCAT} data with \glss{RCM} derived from \gls{XCAT} \gls{PET} data (left), \glsed{NAC} \gls{NTOF} (middle) and \glsed{NAC} \gls{TOF} (right) volumes. Colour map ranges are consistent for all images on this row. The third row from left to right:  difference between the estimated volumes from the second row with the \gls{XCAT} end inhalation volume. Colour map ranges are consistent for all images on this row.} \label{fig:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_results_output}
+                \caption{All volumes correspond to end inhalation. First row from left to right: \gls{XCAT} \gls{PET} data, \gls{NAC} \gls{NTOF} reconstructed data and \gls{NAC} \gls{TOF} reconstructed data. Second row: \glss{RCM} applied to mean position \gls{XCAT} data with \glss{RCM} derived from \gls{XCAT} \gls{PET} data (left), \gls{NAC} \gls{NTOF} (middle) and \gls{NAC} \gls{TOF} (right) volumes. Colour map ranges are consistent for all images on this row. The third row from left to right:  difference between the estimated volumes from the second row with the \gls{XCAT} end inhalation volume. Colour map ranges are consistent for all images on this row.} \label{fig:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_results_output}
             \end{figure}
             
             \begin{table}
                 \centering
                 
                 \captionsetup{singlelinecheck=false, justification=raggedright}
-                \caption{Comparison of the \gls{MAPE} between the \gls{GT} data and the volumes estimated from the \gls{XCAT} based \glss{RCM}, the volumes estimated from the \glsed{NAC} \gls{NTOF} based \gls{RCM} and the volumes estimated from the \glsed{NAC} \gls{TOF} based \gls{RCM}.}
+                \caption{Comparison of the \gls{MAPE} between the \gls{GT} data and the volumes estimated from the \gls{XCAT} based \glss{RCM}, the volumes estimated from the \gls{NAC} \gls{NTOF} based \gls{RCM} and the volumes estimated from the \gls{NAC} \gls{TOF} based \gls{RCM}.}
                 
                 \resizebox*{0.75\linewidth}{!}
                 {
@@ -84,32 +84,122 @@
             \begin{figure}
                 \centering
                 
-                \includegraphics[width=1.0\linewidth]{figures/result_1_TOF.png}
+                \includegraphics[width=1.0\linewidth]{figures/motion_correction_results_1_TOF.png}
                 
                 \captionsetup{singlelinecheck=false, justification=raggedright}
-                \caption{The path of the \gls{COM} of the lesion, in voxel indices. Horizontal (respectively vertical) axis corresponds to motion in the \gls{AP} (respectively \gls{SI}) direction over the six gates. Different curves denote \gls{COM} displacement for \gls{GT} data, the estimated data from the \gls{XCAT} based \gls{RCM}, the estimated data from the \glsed{NAC} \gls{NTOF} based \gls{RCM} and the estimated data from the \glsed{NAC} \gls{TOF} based \gls{RCM}.} \label{fig:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_results_com_graph}
+                \caption{The path of the \gls{COM} of the lesion, in voxel indices. Horizontal (respectively vertical) axis corresponds to motion in the \gls{AP} (respectively \gls{SI}) direction over the six gates. Different curves denote \gls{COM} displacement for \gls{GT} data, the estimated data from the \gls{XCAT} based \gls{RCM}, the estimated data from the \gls{NAC} \gls{NTOF} based \gls{RCM} and the estimated data from the \gls{NAC} \gls{TOF} based \gls{RCM}.} \label{fig:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_results_com_graph}
             \end{figure}
             
-             The reconstructed data, estimated volumes and difference can be seen in~\Fref{fig:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_results_output} and \gls{MAPE} are in~\Fref{tab:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_results_mape}. The mean \gls{MAPE} was found to be lower for the \glsed{NAC} \gls{TOF} data than for the \glsed{NAC} \gls{NTOF}.
+             The reconstructed data, estimated volumes and difference can be seen in~\Fref{fig:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_results_output} and \gls{MAPE} are in~\Fref{tab:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_results_mape}. The mean \gls{MAPE} was found to be lower for the \gls{NAC} \gls{TOF} data than for the \gls{NAC} \gls{NTOF}.
             
-             \gls{COM} results can be seen in~\Fref{fig:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_results_com_graph}. The path of the \glsed{NAC} \gls{TOF} data follows the \gls{GT} path much closer than the \glsed{NAC} \gls{NTOF} data, and is quite close to the gold standard \gls{XCAT}-derived motion.
+             \gls{COM} results can be seen in~\Fref{fig:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_results_com_graph}. The path of the \gls{NAC} \gls{TOF} data follows the \gls{GT} path much closer than the \gls{NAC} \gls{NTOF} data, and is quite close to the gold standard \gls{XCAT}-derived motion.
             
         \subsection{Discussion and Conclusion} \label{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_discussion_and_conclusion}
-            \glss{MM} derived from \glsed{NAC} \gls{TOF} volumes were found to be more robust than when using \glsed{NAC} \gls{NTOF}, both visually and when comparing \gls{MAPE} and \gls{COM}. This was noticeable for the lung lesion in the thoracic cavity but also for other parts of the anatomy such as the liver. This is likely due to the improved image contrast of \glsed{NAC} \gls{TOF} images.
+            \glss{MM} derived from \gls{NAC} \gls{TOF} volumes were found to be more robust than when using \gls{NAC} \gls{NTOF}, both visually and when comparing \gls{MAPE} and \gls{COM}. This was noticeable for the lung lesion in the thoracic cavity but also for other parts of the anatomy such as the liver. This is likely due to the improved image contrast of \gls{NAC} \gls{TOF} images.
 
             In the future, research will focus on investigating the robustness of the \gls{MM} estimation to different noise levels, acquisition duration and size of lesion.
     
-    \longsection{Extension of NAC TOF PET Motion Model Estimation to Inter and Intra-Respiratory Cycle Variation Using Respiratory Gating}{sec:extension_of_nac_tof_pet_motion_modelling_to_inter_and_intra_respiratory_cycle_variation_using_respiratory_gating}
+    \longsection{PET/CT Respiratory Motion Correction With a Single Attenuation Map Using NAC Derived Deformation Fields}{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields}
+        Respiratory motion correction is beneficial in positron emission tomography. Different strategies for handling attenuation correction in conjunction with motion correction exist. In clinical practice, usually a single attenuation map is available, derived from CT in one respiratory state. This can introduce an unwanted bias (through misaligned anatomy) into the motion correction algorithm. This paper builds upon previous work which suggested that non-attenuation corrected data was suitable for motion estimation, through the use of motion models, if time-of-flight data are available. Here, the previous work is expanded upon by incorporating attenuation correction in an iterative process. Non-attenuation corrected volumes are reconstructed using ordered subset expectation maximisation and used as input for motion model estimation. A single attenuation map is then warped to the volumes, using the motion model, the volumes are attenuation corrected, after which another motion estimation and correction cycle is performed. For validation, $4$-Dimensional Extended Cardiac Torso simulations are used, for one bed position, with a field of view including the base of the lungs and the diaphragm. The output from the proposed method is evaluated against a non-motion corrected reconstruction of the same data visually, using a profile as well as standardised uptake value analysis. Results indicate that motion correction of inter-respiratory cycle motion is possible with this method, while accounting for attenuation deformation. Future research includes the possibility of directly incorporating the motion model estimation into the reconstruction algorithm as well as  attempting to simultaneously estimate deformations for the attenuation map as well as the activity distribution.
         
+        \subsection{Introduction} \label{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_introduction}
+            Respiratory motion reduces image resolution in \gls{PET} by introducing blurring and mis-alignment artefacts~\cite{Nehmeh2008a}. Unless gated \gls{CT} are available (which themselves increase dose to the patient), to avoid mis-registration due to attenuation mismatches, most existing \gls{MC} methods rely on pair-wise registration of gated \gls{NAC} \gls{PET} volumes~\cite{LungMotionDiaphragmBaiBib}~\cite{Oliveira2014}. 
+            This is a challenging problem due to the low contrast and high noise of these volumes. Other \gls{MC} methods can incorporate, directly, both \gls{MC} and \glss{Mu-Map} estimation into reconstruction, however, these can be computationally expensive~\cite{Bousse2016b}.
+            
+            In our previous work we investigated the possibility of using a \gls{MM} for respiratory \gls{MC} where the \gls{MM} was derived from \gls{NAC} \gls{PET}. One of the advantages of using a \gls{MM} approach over pair-wise registering the data is that the \gls{MM} approach is more robust to noise in the images. We found that \gls{NAC} \gls{TOF} \gls{PET} was suitable to estimate the motion from gated PET data without inter-respiratory cycle variation~\cite{Whitehead2019ImpactPET}. This work extends the method towards attenuation correction with a single \gls{Mu-Map} (from any position).
         
-        \subsection{Introduction} \label{sec:extension_of_nac_tof_pet_motion_modelling_to_inter_and_intra_respiratory_cycle_variation_using_respiratory_gating_introduction}
-        
-        \subsection{Methods} \label{sec:extension_of_nac_tof_pet_motion_modelling_to_inter_and_intra_respiratory_cycle_variation_using_respiratory_gating_methods}
+        \subsection{Methods} \label{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_methods}
+            \subsection{XCAT Volume Generation} \label{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_xcat_volume_generation} \gls{XCAT}~\cite{Segars2010} was used to generate $240$ volumes over a \SI{120}{\second} respiratory trace (with inter-respiratory cycle variation) derived from data captured using a \gls{RPM}. The max displacement of \gls{AP} and \gls{SI} motion was set to \SI{1.2}{\centi\metre} and \SI{2.0}{\centi\metre} respectively. Activity concentrations were derived from a static \gls{FDG} patient scan. The \gls{FOV} included the base of the lungs, diaphragm and the top of the liver with a \SI{20}{\milli\metre} diameter spherical lesion placed into the centre of the right lung.
+    
+            \subsection{PET Acquisition Simulation} \label{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_pet_acquisition_simulation}
+                \gls{PET} acquisitions were simulated (and reconstructed) using \gls{STIR}~\cite{Thielemans2012, Efthimiou2018} through the \gls{SIRF}~\cite{Ovtchinnikov2017} to forward project the data using the geometry of a \gls{GE} Discovery $710$ with a \gls{TOF} resolution of \SI{375}{\pico\second}. This \gls{TOF} resolution is higher than that of the $710$, but is closer to the newer \gls{GE} Signa \gls{PET}/MR system. \gls{TOF} mashing was used to reduce computation time resulting in $13$ \gls{TOF} time bins of size \SI{376.5}{\pico\second}. Attenuation was included using the relevant \glss{Mu-Map} generated by \gls{XCAT}. Scatter and randoms were not taken into account. Multiple noise realisations were generated to simulate an acquisition over \SI{120}{\second}, emulating a standard single bed position acquisition. A respiratory \gls{SS} was generated using \gls{PCA}~\cite{Thielemans2011}. This was used to gate the data into $10$ respiratory bins using displacement gating. For the purpose of the \gls{MM} fitting, \gls{SS} values were ascertained for the post-gated data by taking an average of the \gls{SS} values of the data in each bin.
             
+            \subsection{Non-Attenuation Corrected Image Reconstruction} \label{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_non-attenuation_corrected_image_reconstruction}
+                Data were reconstructed without \gls{AC} using OSEM with two full iterations and $24$ subsets~\cite{Hudson1994}.
+                Volumes were post-filtered using a Gaussian blur with a kernel size of \SI{6.4}{\milli\metre} full width half maximum.
             
-        \subsection{Results} \label{sec:extension_of_nac_tof_pet_motion_modelling_to_inter_and_intra_respiratory_cycle_variation_using_respiratory_gating_results}
+            \subsection{Motion Model Estimation} \label{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_motion_model_estimation}
+                The \gls{MM} method, in this work, makes use of \gls{3D} B-spline \glss{CPG} with the corresponding warping operation denoted as $\mathbf{W}(\mathbf{\alpha}_t)$, with $\mathbf{\alpha}_t$ a vector with motion parameters at time $t$ and the breathing surrogate signal $\mathbf{s}$:
+                
+                \begin{equation}
+                    \forall t \in [1, n_t],\quad \alpha_{n, t} := R_{1, n} s_{1, t} + R_{2, n}
+                \end{equation}
+                
+                \noindent where $\alpha_{n, t}$ is the motion parameter $n$ at time point $t$ and $R_{i, n}$ are the model parameters where $i = [1, 2]$~\cite{McClelland2017}. A generalised framework unifying image registration and respiratory \glss{MM} were used to estimate \glss{MM} and \glss{MCI}~\cite{McClelland2017}. Sum of squared differences was used as the similarity measure and bending energy was used as a penalty. The \gls{CPG} spacing and penalty weight were tuned using a grid search.
             
+            \subsection{Attenuation Map Warping} \label{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_attenuation_map_warping}
+                A \gls{Mu-Map} close to the mean respiratory position was selected from the \glss{Mu-Map} generated by \gls{XCAT}. This \gls{Mu-Map} was then registered (using \gls{NMI}) to the mean position \gls{NAC} \gls{MCI} generated using the \gls{MM}.
+                The \gls{MM} was then used to generate \glss{DVF} for the \gls{SS} values of each bin, which were then used to warp the \gls{Mu-Map} from the mean respiratory position to each bin.
             
-        \subsection{Discussion and Conclusion} \label{sec:extension_of_nac_tof_pet_motion_modelling_to_inter_and_intra_respiratory_cycle_variation_using_respiratory_gating_discussion_and_conclusion}
+            \subsection{Motion Corrected Image Reconstruction with AC} \label{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_attenuation_corrected_image_reconstruction}
+                Data were re-reconstructed, with \gls{AC}, using the \glss{Mu-Map} from~\Fref{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_attenuation_map_warping}. The same reconstruction parameters as in~\Fref{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_attenuation_corrected_image_reconstruction} were used. These data were then either motion corrected using the original \gls{NAC} \gls{MM} or a new \gls{MM} was fit on the \gls{AC} volumes as in~\Fref{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_motion_model_estimation}.
             
+            \subsection{Evaluation} \label{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_evaluation}
+                To evaluate the validity of the \gls{MM} results, the \gls{COM} of the lesion, over time, was tracked for both \gls{NAC} and \gls{AC} reconstructions. This was achieved by warping a volume only including the lesion in the reference position, and then computing its \gls{COM}.
+                
+                In addition to the reconstructions performed in~\Fref{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_attenuation_corrected_image_reconstruction} data were also reconstructed after simply summing all gates together, using either a sum of all \glss{Mu-Map} (to emulate an average CINE-CT) or one \gls{Mu-Map}, positioned close to the mean respiratory position. This process matches current clinical practice. 
+                
+                Comparisons used included: A profile over the lesion and \gls{SUV}\textsubscript{max}, \gls{SUV}\textsubscript{median} and \gls{SUV}\textsubscript{peak}. \gls{SUV}\textsubscript{peak} here was defined following \gls{EANM} guidelines~\cite{Boellaard2015FDG2.0}
             
+        \subsection{Results} \label{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_results}
+            \begin{figure}
+                \centering
+                
+                \includegraphics[width=0.5\linewidth]{figures/motion_correction_results_2_com.png}
+                
+                \captionsetup{singlelinecheck=false, justification=centering}
+                \caption{The path of the \gls{COM} of the lesion. Horizontal (respectively vertical) axis corresponds to motion in the \gls{SI} (respectively \gls{AP}). Different curves denote \gls{COM} displacement for  ground truth data, the estimated data from the \gls{NAC} based \gls{MM} and the estimated data from the \gls{AC} based \gls{MM}.}
+                \label{fig:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_com}
+            \end{figure}
+            
+            \gls{COM} results can be seen in~\Fref{fig:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_com}, the \gls{COM} of both the \gls{NAC} and \gls{AC} matches closely the ground truth \gls{COM}.
+            
+            \begin{figure}
+                \centering
+                
+                \includegraphics[width=0.9\linewidth]{figures/motion_correction_results_2_visual_analysis.png}
+                
+                \captionsetup{singlelinecheck=false, justification=centering}
+                \caption{Ground truth and reconstructions using; ungated (CINE-\gls{CT}), ungated (static \gls{CT}), \gls{NAC} \gls{MM}, \gls{AC} \gls{MM}. Colour map ranges are consistent for all images.}
+                \label{fig:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_visual_analysis}
+            \end{figure}
+            
+            \begin{figure}
+                \centering
+                
+                \includegraphics[width=1.0\linewidth]{figures/motion_correction_results_2_profile.png}
+                
+                \captionsetup{singlelinecheck=false, justification=centering}
+                \caption{A profile across the lesion for; ungated (CINE-\gls{CT}), ungated (static \gls{CT}), \gls{NAC} \gls{MM}, \gls{AC} \gls{MM}.}
+                \label{fig:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_profile}
+            \end{figure}
+            
+            \begin{table}
+                \centering
+                
+                \captionsetup{singlelinecheck=false, justification=centering}
+                \caption{Comparison of \gls{SUV}\textsubscript{max}, \gls{SUV}\textsubscript{median} and \gls{SUV}\textsubscript{peak} between; ungated (CINE-\gls{CT}), ungated (static \gls{CT}), \gls{NAC} \gls{MM}, \gls{AC} \gls{MM}.}
+                
+                \resizebox*{0.8\linewidth}{!}
+                {
+                    \begin{tabular}{||c|ccc||}
+                        \hline
+                        \textbf{\gls{SUV}} & \textbf{Max} & \textbf{Median} & \textbf{Peak} \\
+                        \hline
+                        \textbf{Ungated (CINE-\gls{CT})}    & $4.63$ & $2.73$ & $3.39$ \\
+                        \textbf{Ungated (static \gls{CT})}  & $4.66$ & $3.05$ & $3.54$ \\
+                        \hline
+                        \textbf{\gls{NAC} \gls{MM}}         & $5.56$ & $3.18$ & $4.07$ \\
+                        \textbf{\gls{AC} \gls{MM}}          & $5.43$ & $3.18$ & $4.00$ \\
+                        \hline
+                    \end{tabular}
+                }
+                \label{tab:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_suv}
+            \end{table}
+            
+             The ungated and the \gls{MM} data can be seen in~\Fref{fig:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_visual_analysis}. When compared visually structures can be seen, less blurred, in the \gls{MM} data that cannot be seen in the ungated data, for instance, structures at the boundary between the diaphragm and the lung. The different levels of blurring in the ungated (CINE-\gls{CT}) and static \gls{CT} could be attributed to the constraint put on the reconstruction by having a sharp \gls{Mu-Map} in one respiratory position in the static \gls{CT} case. Additionally the lesion itself can be seen to be more homogeneous, this can be observed in the profile across the lesion in~\Fref{fig:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_profile}. \gls{SUV} results can be seen in~\Fref{tab:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_suv} and consistently show that \glss{SUV} are greater for the \gls{MM} over the ungated method.
+            
+        \subsection{Discussion and Conclusion} \label{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_discussion_and_conclusion}
+            Results from both a visual analysis, a comparison of profiles and \glss{SUV} show that the \gls{MM} provides volumes more free from blurring and less susceptible to artefacts when compared to the ungated data. Results also indicate that the \gls{NAC} \gls{MM} provides similar volumes while not requiring the additional computation of the \gls{AC} \gls{MM}.
+    
+            In the future, we will incorporate the estimated \glss{DVF} into the reconstruction. We will also compare more complex methods of combining motion estimation and image reconstruction based on \cite{Bousse2016b}.
