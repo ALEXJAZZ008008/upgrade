@@ -3,28 +3,32 @@
     
     \longsection{PET}{sec:pet}
         % general intro
+        This section of the report introduces the physics of \gls{PET}. First a general overview of \gls{PET} is given, including what and how it images in basic terms and a general use of this clinically. This general overview is followed by a description of a \gls{PET} scan from the compounds which are injected into the patient and detected by the scanner right up to how these compounds break down in the patient and the interaction of the byproducts of annihilation with matter. Along the way common clinical scanning procedures will be highlighted as well as issues related to the \gls{FOV} of the scanner and how these are approached when larger regions of a patient are to imaged.
+            
+        Secondly, a subsection of the report deals with the physical way in which the \gls{PET} scanner detects individual events. Including; discussing the programmatic ways in which events are determined to be associated, for instance, the timing and energy windows of the scanner, as well as introducing the concept of \gls{TOF} and how this can affect the data acquired. Next this subsection covers the expected output data format from the scanner as well as the effects which determine the maximum resolution of this output.
         
+        The final subsection of this section addresses the combined \gls{PET}/\gls{CT} scanner. Here, the physics of \gls{CT} are discussed in brief before methods of \gls{AC} are introduced and \gls{CT} derived \glss{Mu-Map} are covered. Advantages of \gls{AC} are supplied before potential pitfalls are highlighted and competing solutions are listed.
         
         \subsection{The Physics of PET} \label{sec:the_physics_of_pet}
             % write something about radiotracer, functional imaging, radiounclide decays, and photon interaction with matter
             
+            \gls{PET} is an example of a type of modality known as functional imaging. It is functional as rather than directly capturing images of anatomy, for instance the structure and density of bones, it images the metabolic processes of a living thing. This metabolic function is exemplified by how blood flows through and into parts of the body (perfusion) or how glucose is transported to and metabolised by certain cells. This is useful because, in the case of imaging glucose metabolism, it is possible to quantify the amount of energy that a tissue is using. Some cancerous tissues make use of far more energy than non-cancerous tissues meaning that when quantifying the amount of glucose processed by the tissue the cancerous tissue may use more, this will be discussed further below. Some cancerous tissues would be difficult to observe anatomically as they may have a similar density to the surrounding healthy tissue, this would be a case where functional imaging could add to diagnosis. Functional modalities are also useful when imaging the brain, here it could be used to highlight active regions of the brain.
+            
             \subsubsection{Radiotracers} \label{sec:radiotracers}
-                \gls{PET} is an example of a type of imaging known as functional imaging. It is functional as rather than capturing images of anatomy, for instance the structure and density of bones, it images the metabolic processes of a living thing. This metabolic function is, for instance, how blood flows through and into parts of the body (perfusion) or how glucose is transported to and metabolised by certain cells.
-
                 %KT the radiotracer is not a ``solution''. it's a molecule. also overlap between first and 2nd sentence. so maybe ``a patient is injected with a solution containing a chemical compunt called a radiotracer. This is a ...''
                 %ACW done
-                The process through which a \gls{PET} scan takes place is as follows; firstly, a patient is injected with a chemical compound called a radiotracer. This is a biologically active molecule which has been labelled with a positron emitting radionuclide. The molecule will have been selected knowing that it will have significant uptake in the \gls{ROI} depending on the target tissue. %In other words, after perfusion (through the circulatory system) it will appear with a greater frequency within certain types of cells (post-metabolism). %KT not quite accurateas ``perfusion''means somethng else. I also find''frequency'' the wrongword.I'd just cut the previous sentence %ACW done
+                The process through which a \gls{PET} scan takes place is as follows; firstly, a patient is injected with a chemical compound called a radiotracer. This is a biologically active molecule which has been labelled with a positron emitting radionuclide. The molecule will have been selected knowing that it has significant uptake in the \gls{ROI} depending on the target tissue. %In other words, after perfusion (through the circulatory system) it will appear with a greater frequency within certain types of cells (post-metabolism). %KT not quite accurateas ``perfusion''means somethng else. I also find''frequency'' the wrongword.I'd just cut the previous sentence %ACW done
                 The positron emitting radionuclide is selected because it has the capacity to be labelled to the molecule by replacing one of its groups, not all radionuclides can be labelled to all molecules. % After injection the radiotracer perfuses through the circulatory system of the patient.
                 
                 Some examples of common radionuclides used in radiotracers include; fluorine-$18$, gallium-$68$, and rubidium-$82$. %KT gallium 67 is used in SPECT (single photon emitter). cut %ACW done
-                The rate at which a radionuclide decays is measured in terms of half life. The half-life is defined as the amount of time in which the number of atoms of a radioactive material reduces by half. Half lives for various radioisotopes can range from a few microseconds to billions of years. For the examples above these half lifes are approximately; \SI{110}{\minute}, \SI{66}{\minute} and \SI{66}{\second} respectively~\boxcite{FDGGuidelines}. %KT 4 radionuclides, 3 half-lives... F1118 half-life is 6586.26s.by sayying 6600.0 you give the impression you quote it at high accuracy, but you don't. check others. %ACW done
+                The rate at which a radionuclide decays is measured in terms of half-life. The half-life is defined as the amount of time in which the number of atoms of a radioactive material reduces by half. Half-lives for various radioisotopes can range from a few microseconds to billions of years. For the examples above these half-lives are approximately; \SI{110}{\minute}, \SI{66}{\minute} and \SI{66}{\second} respectively~\boxcite{FDGGuidelines}. %KT 4 radionuclides, 3 half-lives... F1118 half-life is 6586.26s.by sayying 6600.0 you give the impression you quote it at high accuracy, but you don't. check others. %ACW done
                 
                 An example of the use of some of these radionuclides are:
                 
                 \begin{itemize}
                     %KT could shorten FDG item, as some repetition and much longer than the others
-                    \item Glucose molecules (specifically \gls{FDG}) can be labelled with fluorine-$18$ called \gls{F-FDG}. %KT always labelled with F18! %ACW done
-                    Glucose is used by cells, through glycolosis, in the carbohydrate metabolisation process to produce \gls{ATP} to make energy available to a cell. When a cell requires more energy it also requires more glucose and as such uptaken of \gls{F-FDG} is increased in these regions. The concentration of fluorine-$18$ intra-cellularly increases in certain areas over time because; fluorine-$18$ labelled \gls{F-FDG} cannot be fully metabolised due to the group which is replaced by fluorine-$18$ being missing and required for this process. Thus the distribution of fluorine-$18$ is a good reflection of glucose metabolisation and uptake over time. \gls{F-FDG} is by far the most commonly used radiotracer in \gls{PET}~\boxcite{WeissBook, FDGGuidelines}.
+                    \item Glucose molecules (specifically \gls{FDG}) can be labelled with fluorine-$18$ and thus called \gls{F-FDG}. %KT always labelled with F18! %ACW done
+                    Glucose is used by cells, through glycolosis, in the carbohydrate metabolisation process to produce \gls{ATP} to make energy available to a cell. When a cell requires more energy it also requires more glucose and as such uptaken of \gls{F-FDG} is increased in these regions. The concentration of fluorine-$18$ intra-cellularly increases in certain areas over time because; fluorine-$18$ labelled \gls{F-FDG} cannot be fully metabolised due to the missing group, replaced by fluorine-$18$, being required for this process. Thus the distribution of fluorine-$18$ is a good reflection of glucose metabolisation and uptake over time. \gls{F-FDG} is by far the most commonly used radiotracer in \gls{PET}~\boxcite{WeissBook, FDGGuidelines}.
                     
                     \item Gallium $68$ is often used to target \gls{PSMA} which can be used in the detection of prostate cancer. \gls{PSMA} is a protein which is present in prostate cancer cells.
                     
@@ -50,9 +54,9 @@
                     \caption{Graphical example of positron range. Here on the right of the figure an atom can be seen travelling with some velocity, a positron is emitted from the nucleus of the atom by $\beta+$-decay. The path that this positron takes can be seen in the centre of the figure represented by a blue line, this path is the positron range. On the left of the figure the annihilation of the positron with an electron occurs and the $\gamma$-photons emitted $\SI{180}{^{\circ}}$ apart are shown.} \label{fig:decay_and_annihilation_positron_range}
                 \end{figure}
                 
-                Radionucleides used in \gls{PET} undergo a type of decay called $\beta+$-decay~\boxcite{conti_beta}. This is due to an instability of the radionuclide, given to an imbalance of neutrons to protons. As a consequence, a proton in its nucleus converts into a neutron releasing a positron and a neutrino, this can be seen in~\Fref{fig:decay_and_annihilation_beta_plus_decay}. The emitted positron travels with some decreasing velocity, from sequential collisions, through the body of the patient, for a distance called positron range, before its final collision and annihilation with its antiparticle the electron, this can be seen in~\Fref{fig:decay_and_annihilation_positron_range}~\boxcite{EvansPositronBib}. %KT citation probably not  needed
+                Radionucleides used in \gls{PET} undergo a type of decay called $\beta+$-decay~\boxcite{conti_beta}. This is due to an instability of the radionuclide, due to an imbalance of the number of neutrons to protons. As a consequence, a proton in the molecules nucleus is converted into a neutron subsequently releasing a positron and a neutrino, this can be seen in~\Fref{fig:decay_and_annihilation_beta_plus_decay}. The emitted positron travels with some decreasing velocity, from sequential collisions, through the body of the patient, for a distance called positron range, before its final collision and annihilation with the positrons antiparticle the electron, this can be seen in~\Fref{fig:decay_and_annihilation_positron_range}~\boxcite{EvansPositronBib}. %KT citation probably not  needed
                 
-                The annihilation causes the emission of two $511$ \gls{KeV} $\gamma$-photons at $\SI{180}{^{\circ}}$ apart from one another. However, because the positron-electron pair may not be at rest at the moment of their annihilation, the two emitted photons can show a certain degree of non-collinearity, according to the laws of conservation of momentum. This means that the $\gamma$-photons are almost never exactly $\SI{180}{^{\circ}}$ apart~\boxcite{pet_basic}. %KT I'd cut the last sentence. repetition and you don't want to over-elaborate this
+                The annihilation of positron and electron causes the emission of two $511$ \gls{KeV} $\gamma$-photons at $\approx\SI{180}{^{\circ}}$ apart from one another, thus travelling in approximately opposite directions. However, because the positron-electron pair may not be at rest at the moment of their annihilation, the two emitted photons can show a certain degree of non-collinearity, according to the laws of conservation of momentum. This means that the $\gamma$-photons are almost never exactly $\SI{180}{^{\circ}}$ apart~\boxcite{pet_basic}. %KT I'd cut the last sentence. repetition and you don't want to over-elaborate this
                 %, because the positron will usually have a small kinetic energy going into the annihilation. This kinetic energy is conserved after the annihilation as a force in a different direction, usually, to that of the force from the annihilation itself.
                 
                 A \gls{PET} scanner thus does not image, directly, the emission of the positron but, in fact, more closely images the location of the annihilation. %KT move this sentence down a bit %ACW done
@@ -61,10 +65,10 @@
                 There are two main types of \gls{PET} scan useful for determining separate processes. These types of scans and uses are:
                 
                 \begin{itemize}
-                    \item The first and most common type of \gls{PET} scan is a static \gls{PET} scan~\boxcite{Muzi2012QuantitativeImaging}. The patient is scanned only when the injected radiotracer has distributed through their body and eventually approximately stabilised. %KT ``perfused'' is wrong. I'd say''distributed''. ``consistent'' sounds weird, so I'd say ``eventually approximately stabilised'' %ACW done, thank you
-                    The time elapsed between injection and acquisition depends on the half life and metabolisation of the radiotracer. For \gls{F-FDG} about \SI{3600}{\second} is given.
+                    \item The first and most common type of \gls{PET} scan is a static \gls{PET} scan~\boxcite{Muzi2012QuantitativeImaging}. The patient is scanned only when the injected radiotracer has distributed throughout their body and eventually approximately stabilised. %KT ``perfused'' is wrong. I'd say''distributed''. ``consistent'' sounds weird, so I'd say ``eventually approximately stabilised'' %ACW done, thank you
+                    The time elapsed between injection and acquisition depends on the half life and metabolisation of the radiotracer. For \gls{F-FDG} about \SI{60}{\minute} is given.
                     
-                    \item The second type of \gls{PET} scan is a dynamic scan. The acquisition begins before the radiotracer is injected into the patient. The injection of the radiotracer during the acquisition allows for the kinetics of the tracer to be observed and quantified with the use of compartmental modelling~\boxcite{Lammertsma2017}. For example, from dynamic \gls{PET} \gls{MPI}: %KT cut the ``direct parametric reconstruction'' here. not used in clinical practice. just say ``dynamic PET MPI''
+                    \item The second type of \gls{PET} scan is a dynamic scan. The acquisition of data for this scan begins before the radiotracer is injected into the patient. The injection of the radiotracer during the acquisition allows for the kinetics of the tracer to be observed and quantified with the use of compartmental modelling~\boxcite{Lammertsma2017}. For example, from dynamic \gls{PET} \gls{MPI}: %KT cut the ``direct parametric reconstruction'' here. not used in clinical practice. just say ``dynamic PET MPI''
                     in-vivo studies used in conjunction with tracer kinetic modelling enables the quantification of \gls{MBF}, often measured using rubidium-$82$. %Radiotracers such as rubidium $82$ are particularly indicated for dynamic scans given their short half life, seen in~\Fref{sec:decay_and_annihilation}. %KT doesn't have anything to do with halflife but with chemistry (calcium analogue). By the way, the ideal ``tracer'' to measure MBF is (radioactive) water! but that needs cycltron on site etc due to very short half-life. In contrast, Rb82 is produced in a generator. so say ``... MBF, often measured using Rb82.'' %ACW done, thank you, i didnt phrase the half life comment well, i mean that none perfusion or dynamic scans would be difficult with it
                 \end{itemize}
             
@@ -78,7 +82,7 @@
                     \caption{Graphical representation of the difference between a total body \gls{PET} scanner and a standard \gls{PET} scanner. On the left of the figure a total body \gls{PET} scanner can be seen where the rings of detectors completely engulf the patient. However, on the right of the figure a standard \gls{PET} scanner can be seen where the rings of detectors only cover a portion of the patient. On the case on the right of the figure in order to take a scan over the entire body either individual acquisitions will be needed and concatenated or the bed would have to move while the acquisition was ongoing.} \label{fig:pet_fov_total_body_pet}
                 \end{figure}
                 
-                The \gls{FOV} of the scanner is the area in which it can detect the $\gamma$-photons. Current clinical \gls{PET} scanners, usually, have a cylindrical \gls{FOV} with a length of between \SI{15.0}{\centi\metre} and \SI{25.0}{\centi\metre} and a diameter of between \SI{50.0}{\centi\metre} and \SI{70.0}{\centi\metre}~\boxcite{Pan2019}.
+                The \gls{FOV} of the scanner is the area in which $\gamma$-photons can be detected. Current clinical \gls{PET} scanners, usually, have a cylindrical \gls{FOV} with a length of between \SI{15.0}{\centi\metre} and \SI{25.0}{\centi\metre} and a diameter of between \SI{50.0}{\centi\metre} and \SI{70.0}{\centi\metre}~\boxcite{Pan2019}.
                 
                 There are multiple ways to acquire data over more than the axial length of scanner, three of these methods are:
                 
@@ -89,7 +93,7 @@
                     A disadvantage of this though is that it introduces another source of motion to the acquisition from moving the bed. This makes standard \gls{MC} much more difficult.
                     
                     \item Alternatively, total body \gls{PET} scanners are becoming more viable for research. %KT let's remove the ``high potential for  clinical applicatoin''. as you note below,price prevents this %ACW done
-                    Total body \gls{PET} scanners have an axial \gls{FOV} which contains most of the patients body making multiple acquisitions less necessary while also increasing the sensitivity to detecting annihilations, this can be seen in~\Fref{fig:pet_fov_total_body_pet}~\boxcite{Cherry2018}. However, the increased price and size constitute a limitation.
+                    Total body \gls{PET} scanners have an axial \gls{FOV} which contains most of the patients body making multiple acquisitions less necessary while also increasing the sensitivity of the scanner, this can be seen in~\Fref{fig:pet_fov_total_body_pet}~\boxcite{Cherry2018}. However, the increased price and size constitute a limitation.
                 \end{itemize}
             
             \subsubsection{Attenuation} \label{sec:attenuation}
@@ -115,10 +119,10 @@
                     %ACW done
                     %\item Pair production can be thought of as the inverse process compared to annihilation (as discussed above). This is where a subatomic particle and its antiparticle, such as a electron and a positron, are created from a fundamental particle, such as a photon, usually in close proximity to an atomic nucleus~\boxcite{Hubbell2006Electron-positronOverview}. However, because of conservation of energy a photon would need to be of at least $1.022$ \gls{MeV} which is not generally possible for photons created through electron positron annihilation.
                     
-                    \item Rayleigh scattering is the elastic scattering of photons without loss of significant energy by particles which are much smaller than the wavelength of the photon. A common example of Rayleigh scattering is the scattering of sunlight in the atmosphere which is causes the blue colour of the sky during the day and the red colour of the sky at sunset. Because the wavelength of $\gamma$-photons is comparably small, compared to most particles, the probability of Rayleigh scattering occurring is negligible and thus it is normally ignored in \gls{PET}.
+                    \item Rayleigh scattering is the elastic scattering of photons, without loss of significant energy, by particles which are much smaller than the wavelength of the photon. A common example of Rayleigh scattering is the scattering of sunlight in the atmosphere which causes the blue colour of the sky during the day and the red colour of the sky at sunset. Because the wavelength of $\gamma$-photons is comparably small, compared to most particles, the probability of Rayleigh scattering occurring is negligible and thus it is normally ignored in \gls{PET}.
                     
                     \item Absorption through the photoelectric effect is the process through which the high energy $\gamma$-photon hits and transfers its energy to a material causing the emission of lower energy electrons. The likelihood of the photoelectric effect is inversely proportional to the cube of the photon energy; it also increases as the atomic number of the attenuating material increases. In the matter of the patient the photoelectric effect is most prevalent at photon energies below $100$ \gls{KeV} and as such the probability of the photoelectric effect occurring for the \gls{PET} $\gamma$-photons is minimal~\boxcite{petspringer}. %KT ``here'' say instead ``for the PET gamma photons'' or so. phtoelectirc effect does occur for CT X-rays %ACW done
-                    Photoelectric effect occurs mostly in the detectors of the scanner.
+                    Attenuation through the photoelectric effect occurs mostly in the detectors of the scanner.
                     
                     \item Compton scattering comprises the majority of interactions between the photon and matter in \gls{PET}, it occurs where the photon interacts with an electron in a close by atom. The recoiling electron causes the photon to be deflected along another path transferring energy from photon to electron, this can be seen in~\Fref{fig:attenuation_scatter}. Compton scattering is also known as incoherent scattering because of its effect on the trajectory of the photon. The probability of Compton scattering is indirectly proportional to the energy of the photon~\boxcite{petspringer}.
                 \end{itemize}
@@ -150,12 +154,12 @@
             Because of the photons interaction in matter shown in~\Fref{sec:attenuation}, there are four different types of event or coincidences that can be detected by the scanner, these are:
             
             \begin{itemize}
-                \item Firstly, the coincidences that originate from the same annihilation event and pass through the body of the patient to the detector without being scattered or attenuated. These coincidences are called true coincidences as they approximately accurately reflect the position of the originating annihilation.
+                \item Firstly, the coincidences that originate from the same annihilation event and pass through the body of the patient to the detector without being scattered or attenuated. These coincidences are called true coincidences as they approximately accurately reflect the position of the originating annihilation and thus underlying activity distribution.
                 
-                \item Secondly, there are coincidences which may have originated from the same annihilation event but, from which one or more of the incident photons has undergone Compton scattering before detection. These coincidences are called scattered coincidences.
+                \item Secondly, there are coincidences which may have originated from the same annihilation event but, from which one or more of the incident photons has undergone Compton scattering before detection. These coincidences are called scattered coincidences. Scattered coincidences can attempt to be corrected for if an accurate \gls{Mu-Map} is given, the density of the matter through which the photons must have travelled indicate the liklihood of scattering.
                 
                 \item Thirdly, there are coincidences where the \gls{LOR} is determined from two photons from two distinct annihilation events, thus the \gls{LOR} does not reflect an actual annihilation in reality. This could occur because one or more of the photons, from the original pair of photons, may have been attenuated or scattered so that it does not arrive at the detector within a reasonable time of its photon pair or that its \gls{LOR} doesn't go through one of the detectors. %KT  much more likely is that its LOR actually doesn't go through one of the detectors! (it's a 3D process of course) %ACW done
-                These are called random coincidences.
+                These are called random coincidences. Random coincidences can attempt to be corrected for if acquisition data of the background noise level of the scan exists.
                 
                 \item Fourthly, there could be a situation where three or more photons are detected within close temporal proximity to one another. Because of the close time of detection, in this case it is not possible to determine which photons reflect an actual annihilation and which are random coincidences. These coincidences are called multiple coincidences. In normal procedures this is rare. %KT I recommend say that this is in normal procedures  rare. Otherwise an obvious viva question would be what people would do with them (as they're not in your equation below) %ACW done
             \end{itemize}
@@ -253,7 +257,7 @@
                 %KT first sentence sounds a bit weird. what does an LOR have to do with this? I'd shorten it.
                 %ACW done
                 %In order for a \gls{LOR} to be determined, the annihilation from which pairs of detected photons come from must be determined, in other words, they must be paired together in some way, as briefly mentioned above in~\Fref{sec:data_acquisition}.
-                In order to form coincidences, the incident photons must be paired together to an annihilation event. First, before forming coincidences, the photons are filtered by selecting ones which only fall within an energy window of the scanner, for the \gls{GE} Discovery 690/710 \gls{PET}/\gls{CT} this energy window fall approximately between $425$ and $600$ \gls{KeV}~\boxcite{Bettinardi2011}. Additionally, to attempt to determine temporally if two detected photons belong to the same annihilation event a coincidence window is used. If the events arrive more than the time of the coincidence window apart then they are determined to be unrelated. A standard coincidence window size would be about \SI{5.0}{\nano\second}. A naive representation of the workflow for coincidence processing can be seen in~\Fref{fig:coincidence_processing_coincidence_processing}.
+                In order to form coincidences, the incident photons must be paired together to an annihilation event. First, before forming coincidences, the photons are filtered by selecting ones which only fall within an energy window of the scanner, for the \gls{GE} Discovery $690$/$710$ \gls{PET}/\gls{CT} this energy window fall approximately between $425$ and $600$ \gls{KeV}~\boxcite{Bettinardi2011}. Additionally, to attempt to determine temporally if two detected photons belong to the same annihilation event a coincidence window is used. If the events arrive more than the time of the coincidence window apart then they are determined to be unrelated. A standard coincidence window size would be about \SI{5.0}{\nano\second}. A naive representation of the workflow for coincidence processing can be seen in~\Fref{fig:coincidence_processing_coincidence_processing}.
             
             \subsubsection{Time of Flight PET} \label{sec:time_of_flight_pet}
                 \begin{figure}
@@ -283,8 +287,8 @@
                     \caption{Example of some \gls{NAC} \gls{TOF} data, with noise, with no motion, randoms or scatters, of the thorax with a spherical lesion in the lungs. Coronal view.} \label{fig:time_of_flight_pet_tof_example}
                 \end{figure}
                 
-                As stated above in~\Fref{sec:coincidence_processing}, in order for the coincidence window based method to determine which specific detected photons represent \gls{LOR}, the scanner must be able to asses the difference in arrival time of each photon. %Because of this the scanner must record the absolute time at which it detects each incident photon. %KT delete previous sentence. it isn't really  necessary and essentially irrelevant anyway %ACW done
-                It had been hypothesised for some time (since the 1960s) that given the speed of light and the difference in arrival time at each detector, for each photon that makes a specific \gls{LOR}, then it should be possible to approximately calculate the position upon the \gls{LOR} at which a given annihilation occurred. %, known as \gls{TOF}. %KT ``know as TOF'' doesn't flow with the rest of the sentence %ACW done
+                As stated above in~\Fref{sec:coincidence_processing}, in order for the coincidence window based method to determine which specific detected photons represent \glss{LOR}, the scanner must be able to asses the difference in arrival time of each photon. %Because of this the scanner must record the absolute time at which it detects each incident photon. %KT delete previous sentence. it isn't really  necessary and essentially irrelevant anyway %ACW done
+                It had been hypothesised for some time (since the $1960$s) that given the speed of light and the difference in arrival time at each detector, for each photon that makes a specific \gls{LOR}, then it should be possible to approximately calculate the position upon the \gls{LOR} at which a given annihilation occurred. %, known as \gls{TOF}. %KT ``know as TOF'' doesn't flow with the rest of the sentence %ACW done
                 This can be seen in~\Fref{fig:time_of_flight_pet_tof}~\boxcite{Surti2015, TOFPhotodetectorsBib}.
                 
                 The reason for the uncertainty of the position along the \gls{LOR} is because of the relatively course timing resolution of each given scanner. Generally modern \gls{PET}/\gls{CT} scanners have a timing resolution ranging between \SI{200.0}{\pico\second} and \SI{600.0}{\pico\second}, which represents an approximate spatial uncertainty of between \SI{30.0}{\milli\metre} and \SI{90.0}{\milli\metre}. %KT I think you forgot to divide by 2 %ACW done
@@ -297,7 +301,7 @@
                 Currently, \gls{TOF} is a focus for research because of the drastic improvements that it can have on the \gls{SNR}~\boxcite{Lecoq2017, Cates2018}. %\gls{TOF} has such an impact on the resolution and reconstruction of \gls{PET} that it is used as a pseudo attenuation correction technique outside of the \gls{FOV} of the \gls{MR} in some \gls{PET}/\gls{MR} systems, such as the \gls{GE} Signa~\boxcite{Pan2019}. %KT I'd cut the previous sentence. This is  far more complicated than this (needs MLAA etc) %ACW done
                 An example of some \gls{NAC} \gls{NTOF} and \gls{NAC} \gls{TOF} data can be seen in~\Fref{fig:time_of_flight_pet_non_tof_example} and~\Fref{fig:time_of_flight_pet_tof_example} respectively, notice the difference in distribution of counts in the centre of the thorax and lungs.
                 
-                The \gls{PET}/\gls{CT} scanner with the highest \gls{TOF} resolution which is commercially available is the Siemens Vision with an approximate \gls{FWHM} of \SI{210.0}{\pico\second} or \SI{31.5}{\milli\metre}~\boxcite{VanSluis2019}. The \gls{PET}/\gls{MR} scanner with the highest \gls{TOF} resolution which is commercially available is the \gls{GE} Signa with an approximate \gls{FWHM} that is sub \SI{400.0}{\pico\second} or \SI{60.0}{\milli\metre}~\boxcite{SIGNA, Hsu2017StudiesSystem, Grant2016NEMASystem, Caribe2019NEMAIsotopes}. %KT again factor 2in the mm %ACW done
+                The current (as of $2020$) \gls{PET}/\gls{CT} scanner with the highest \gls{TOF} resolution which is commercially available is the Siemens Vision with an approximate \gls{FWHM} of \SI{210.0}{\pico\second} or \SI{31.5}{\milli\metre}~\boxcite{VanSluis2019}. The \gls{PET}/\gls{MR} scanner with the highest \gls{TOF} resolution which is commercially available is the \gls{GE} Signa with an approximate \gls{FWHM} that is sub \SI{400.0}{\pico\second} or \SI{60.0}{\milli\metre}~\boxcite{SIGNA, Hsu2017StudiesSystem, Grant2016NEMASystem, Caribe2019NEMAIsotopes}. %KT again factor 2in the mm %ACW done
             
             \subsubsection{Data Output} \label{sec:data_output}
                 \begin{figure}
@@ -327,7 +331,7 @@
                 
                 \begin{itemize}
                     \item The most common way, that is used in clinical practise, is a format called a sinogram. During acquisition, if a sinogram output is specified, then the coincidences detected by the scanner are binned into a histogram which represents their plane orthogonal to the scanner, their orientation angle, their average axial location and their distance from the centre of the gantry. \gls{TOF} can be added as an additional dimension if it is used. %KT and TOF... %ACW done
-                    If a single point source were imaged it would produce a sinusoid when binned into a sinogram, hence the name. An example of some siogram and viewgram data, with no noise, can be seen in~\Fref{fig:data_output_sinogram_data_example} and~~\Fref{fig:data_output_viewgram_data_example} respectively. Because data is being binned into a histogram with this method,  information is lost, it could be considered a lossy compression method.
+                    If a single point source were imaged it would produce a sinusoid when binned into a sinogram, hence the name. An example of some siogram and viewgram data, with no noise, can be seen in~\Fref{fig:data_output_sinogram_data_example} and~\Fref{fig:data_output_viewgram_data_example} respectively. Because data is being binned into a histogram with this method, information is lost, it could be considered a lossy compression method.
                     
                     \item A less common method but one which is becoming more prevalent is a format called listmode data. Here each coincidence is recorded sequentially in a file. The information stored for each coincidence includes its arrival time, the coordinates of the detector and its detected energy. \gls{TOF} information can also be stored if it is used. %KT what do you mean with ``and coincidence''. don't forget TOF info... %ACW done
                     A listmode file can be directly reconstructed or first unlisted into a sinogram post acquisition. %Because a listmode file does not compress the output from the scanner, such as by binning the data into a histogram like with a sinogram, then the size of a listmode file will always be inherently larger than an equivalent sinogram. %KT cut previous sentence. it's not correct because of 2 reasons. If you have only 2 counts, the listmode file will be shorter. Siemens does compress info in the listmode file (to save space) %ACW done
@@ -337,7 +341,7 @@
                 There are five main effects which impact the resolution of a \gls{PET} acquisition, these are:
                 
                 \begin{itemize}
-                    \item Firstly, there is, as has been discussed above in~\Fref{sec:decay_and_annihilation}, the effect of positron range. Because the positron travels a small distance before annihilating the \gls{PET} scanner will always, at best, be measuring the position of the annihilation rather than the position of the decay and as such not directly measuring the position of the radiotracer~\boxcite{PositronRangeLevinHoffmanBib}.
+                    \item Firstly, there is, as has been discussed above in~\Fref{sec:decay_and_annihilation}, the effect of positron range. Because the positron travels a small distance before undergoing annihilation the \gls{PET} scanner will always, at best, be measuring the position of the annihilation rather than the position of the decay and as such not directly measuring the position of the radiotracer~\boxcite{PositronRangeLevinHoffmanBib}.
 
                     %KT ``as discussed''. exactly. so cut most of the remaining text!
                     %ACW done
@@ -347,7 +351,7 @@
                     %\item Thirdly, the size of each detector dictates the angular resolution of the scanner, %KTangular?
                     %or the number of \gls{LOR} covering any $\SI{360}{^{\circ}}$ slice is directly proportional to the number of detectors in each ring. Thus the resolution at which you can reconstruct before the sparsity of the \gls{LOR} means that some voxels will have zero \gls{LOR} passing through them is determined by the size of each individual detector~\boxcite{Nieman2015}. %KT I don't understand at all what you're trying to see with the rest of this. cut! %ACW done
                     
-                    \item Thirdly, the block construction of each detector negatively impacts the resolution. This is because a number of scintillation crystals is paired with, usually, fewer photodetectors %, this can be seen in~\Fref{fig:photon_detection_detector}
+                    \item Thirdly, the block construction of each detector negatively impacts the resolution. This is because a number of scintillation crystals is paired with, usually, fewer photodetectors%, this can be seen in~\Fref{fig:photon_detection_detector}
                     . This means if a photon interacts with one crystal it may incorrectly be attributed to another crystal~\boxcite{Nieman2015}. So called digital \gls{PET} scanners are beginning to be seen which use a $1:1$ ratio of photodetectors to scintillation crystal, effectively removing issues related to block construction~\boxcite{Schillaci2019DigitalImaging}.
                     
                     \item Finally, %as discussed in~\Fref{sec:photon_detection}, 
@@ -357,14 +361,14 @@
         \subsection{Combined PET/CT} \label{sec:combined_pet_ct}
             A \gls{CT} scanner consists of two devices which sit one on either side of the bore of the scanner. %KT ``straight parallel''? cut
             One device is an X-ray emitter and the other is an X-ray detector. If the X-ray emitter were to operate in one fixed position the result would be similar to a standard diagnostic X-ray, the difference comes in that for \gls{CT} during a continuous acquisition the device spins around the axis of the scanner taking continuous measurements. This allows for an X-ray image at every angular position. While the \gls{CT} is acquiring the bed of the scanner travels along the axis of the scanner, %KT doesn't  make sense if you think about. instead, it's the bed that's moving %ACW done
-            this allows for the collection of data over a \gls{3D} volume (as what \gls{PET} collects over).
+            this allows for the collection of data over a \gls{3D} volume (similar as to what \gls{PET} collects over). This method of acquiring \gls{3D} data by taking measurements at a number of angles or section around a subject using a penetrating wave is known as tomography and is the same as the tomography of \gls{PET}.
             
             When the X-ray beam intersects with the body of a patient it is possible for the beam to be attenuated by the photoelectric effect or scattered,%KT also Compton %ACW done
-            similarly to discussed in~\Fref{sec:attenuation}. Where the intensity of the beam detected is less it can be assumed that there is a more dense object attenuating more of the beam between it and the emitter. If this information is collected over a \gls{3D} volume it allows for the generation of a \gls{3D} volume that reflects the attenuation of the body of the patient, for instance. This attenuation is normally expressed in \glss{HU}.
+            similarly to discussed in~\Fref{sec:attenuation}. Where the intensity of the beam detected is less then it can be assumed that there is a more dense object attenuating more of the beam between it and the emitter. If this information is collected over a \gls{3D} volume it allows for the generation of a \gls{3D} volume that reflects the attenuation of the body of the patient, for instance. This attenuation is normally expressed in \glss{HU}.
             
             The energy of the X-ray used in \gls{CT} consists of many different wavelengths, or polychromatic. The wavelength range usually used in a \gls{PET}/\gls{CT} acquisition is between $40$ and $140$ \gls{KeV}~\boxcite{CTattenuationenergyBib}. The wavelength range is determined by the settings of the scanner, these mainly consist of the peak \gls{KV} and the electric current applied, in \SI{}{\milli\ampere}.
             
-            In a standard \gls{PET}/\gls{CT} scan the \gls{CT} component comes first before the \gls{PET}. In modern \gls{PET}/\gls{CT} scanners the \gls{CT} and \gls{PET} are inline with the same bed, however the first \gls{PET}/\gls{CT} scans were taken on different machines entirely and as such the position of the patient differed more drastically between scans. A standard \gls{CT} scan over the thoracic region will last approximately between \SI{2.0}{\second} and \SI{3.0}{\second}~\boxcite{PETCTImagingTechnicalConsiderationsBib}.
+            In a standard \gls{PET}/\gls{CT} scan the \gls{CT} component comes first before the \gls{PET}. In modern \gls{PET}/\gls{CT} scanners the \gls{CT} and \gls{PET} are inline with the same bed, however the first \gls{PET}/\gls{CT} scans were taken on different machines entirely and as such the position of the patient differed more drastically between scans. A standard \gls{CT} scan over the thoracic region specifically will last approximately between \SI{2.0}{\second} and \SI{3.0}{\second}~\boxcite{PETCTImagingTechnicalConsiderationsBib}.
         
             \subsubsection{Attenuation Correction} \label{sec:attenuation_correction}
                 \begin{figure}
@@ -396,7 +400,7 @@
                 
                 As discussed previously in~\Fref{sec:attenuation} attenuation represents the loss of coincidences by photon interactions in matter. Attenuation is an issue in \gls{PET} as it causes the loss of signal and a degradation in image quality, this is the opposite for \gls{CT} where the modality itself relies on attenuation in order to differentiate anatomical structure, an example of a \gls{Mu-Map} can be seen in~\Fref{fig:combined_pet_ct_mu_map_example}. An example of some \gls{NAC} \gls{TOF} and \gls{AC} \gls{TOF} data can be seen in~\Fref{fig:combined_pet_ct_nac_tof_example} and~\Fref{fig:combined_pet_ct_ac_tof_example} respectively. %In order to find reasonable quantitative results the attenuation of the patient must be taken into account in \gls{PET}. Both \gls{PET} and \gls{CT} follow the Beer-Lambert law. %KT cut last sentence.not  relevant here %ACW done
                 
-                Methods to acquire \gls{Mu-Map}, for attenuation correction include; to take a transmission scan of a known point source rotated around the body of the  prior to the injection of the radiotracer. This allows for the estimation of the attenuation for each angle~\boxcite{TransmissionatnBib}. Another method involves the use of the known attenuation from the \gls{CT} scan.
+                Methods to acquire \gls{Mu-Map}, for attenuation correction include; to take a transmission scan of a known point source rotated around the body of the patient prior to the injection of the radiotracer. This allows for the estimation of the attenuation for each angle~\boxcite{TransmissionatnBib}. Another method involves the use of the known attenuation from the \gls{CT} scan.
                 
                 In order to apply the \gls{CT} based \gls{Mu-Map} to attenuation correction in \gls{PET} first it must undergo either bilinear or trilinear conversion to asses the attenuation coefficient factors, this is because of the relative energy difference of the two modalities~\boxcite{Carney2006}. As discussed above in~\Fref{sec:coincidence_processing} and~\Fref{sec:combined_pet_ct} \gls{PET} and \gls{CT} operate at two different energy levels of between between $425$ and $600$ \gls{KeV} and between $40$ and $140$ \gls{KeV} respectively~\boxcite{Bettinardi2011, CTattenuationenergyBib}.
                 
@@ -404,7 +408,7 @@
                 %KT  Briefly mention MLAA here
                 %ACW done
                 
-                Recently a method to jointly estimate both the activity and attenuation distributions has been proposed called \gls{MLAA}. This method takes one objective function which is defined in terms of the activity and attenuation and iterativley optimises for one of the distributions. This can be considered as at each step performing either emission or transmission tomography depending on the distribution being optimised for. Alternatively, it is also possible to optimise jointly for both distributions in one step~\boxcite{Fuin2017, Brusaferri2019}. A disadvantage of this solution is that without \gls{TOF} information it is possible for there to be significant cross talk artefacts between the activity and attenuation estimate~\boxcite{MLAASalomonBib, MLAADefriseBib}. Additionally, optimising for the attenuation distribution increases the complexity and computational effort required of a reconstruction algorithm.
+                Recently a method to jointly estimate both the activity and attenuation distributions has been proposed called \gls{MLAA}. This method takes one objective function which is defined in terms of the activity and attenuation and iterativley optimises for both of the distributions. This can be considered as at each step performing either emission or transmission tomography depending on the distribution being optimised for. Alternatively, it is also possible to optimise jointly for both distributions in one step~\boxcite{Fuin2017, Brusaferri2019}. A disadvantage of this solution is that without \gls{TOF} information it is a highly ill-posed problem and even with \gls{TOF} data the solution can only be found up to an arbitrary scaling factor. It is also possible for there to be significant cross talk artefacts between the activity and attenuation estimate~\boxcite{MLAASalomonBib, MLAADefriseBib}. Additionally, optimising for the attenuation distribution increases the complexity and computational effort required of a reconstruction algorithm.
                 
     \longsection{Inverse Problems and Optimisation}{sec:inverse_problems_and_optimisation}
         
@@ -412,14 +416,14 @@
         \subsection{Inverse Problem Concepts} \label{sec:inverse_problem_concepts}
             An inverse problem is one where the original conditions of a system are attempted to be derived from the effects of the system. For instance, the data from a \gls{PET} scanner represents the observations of the distribution of the radiotracer in the patient, reconstruction is an attempt to find the distribution from these observations.
             
-            Because it is not usually possible to directly invert to find the solution, because of the size of a given matrix for instance causing the computation time to find an inverse to be large, then the solution must be optimised for. In order to attempt to find the solution to an inverse problem there are two things which are required; first the forward operator is required which is the inverse of the inverse problem, which is being solved, or the forward problem, %KT true, but do you understand this? simplify by cutting
+            Because it is not usually possible to directly invert to find the solution, due to the size of a given matrix for instance causing the computation time to find an inverse to be large, then the solution must be optimised iteratively for. In order to attempt to find the solution to an inverse problem there are two things which are required; first the forward operator is required which is the inverse of the inverse problem, which is being solved, or the forward problem, %KT true, but do you understand this? simplify by cutting %ACS I'm pretty sure I do now
             second, ideally, a model of the noise present in the system is required. %KT what ``at least''. I'd say ``ideally'' %ACW done
         
         \subsection{Optimisation Concepts} \label{sec:optimisation_concepts}
-            Optimisation means to find some values that best paramatrise some given function based on some criteria or objective. %KT I feel it needs something else ``based on some criteria'' or ``objective'' or ... %ACW done
-            For instance, in reconstruction an optimisation could be to find the image that when it has the forward operator applied to it best matches the measured data. Another example of an optimisation would be to find the motion parameters that when applied to a given image most closely warp that image to match another image. Optimisation is also used in fields such as when training neural networks. Here the optimisation finds parameters for a model that maps one set of values to another, this will be discussed later in~\Fref{sec:machine_learning_for_pet}.
+            Optimisation means to find some values that best paramatrise some given function based on a criteria or objective. %KT I feel it needs something else ``based on some criteria'' or ``objective'' or ... %ACW done
+            For instance, in reconstruction an optimisation could be to find the image that when it has the forward operator applied it best matches the measured data. Another example of an optimisation would be to find the motion parameters that when applied to a given image most closely warp that image to match another image. Optimisation is also used in fields such as when training neural networks. Here the optimisation finds parameters for a model that maps one set of values to another.%, this will be discussed later in~\Fref{sec:machine_learning_for_pet}.
             
-            In order to perform a basic optimisation there are four things which are required; an objective function to optimise  and a method to optimise some given values based on this function. Also, an initial estimate, which could be a volume the size of the output image filled with ones or zeros, and some method to cease execution, for instance stopping when the objective function reaches a certain value or the number of iterations exceeds a threshold, are also necessary. These will be discussed in the following sections in~\Fref{sec:objective_function} and~\Fref{sec:optimiser} respectively.
+            In order to perform a basic optimisation there are four components; an objective function to optimise and a method to optimise some given values based on this function. Also, an initial estimate, which could be a volume the size of the output image filled with ones or zeros, and some method to cease execution, for instance stopping when the objective function reaches a certain value or the number of iterations exceeds a threshold, are also necessary. These will be discussed in the following sections in~\Fref{sec:objective_function} and~\Fref{sec:optimiser} respectively.
         
             \subsubsection{Objective Function} \label{sec:objective_function}
                 Optimisation of some values requires a function that represents, for instance, the similarity of two measures or the likelihood of something given a measure. This function is required because in a sense the optimiser attempts to find some solution by either maximising or minimising the result of applying this function iteratively until either a maximum number of iterations or some other stopping criteria is reached.
@@ -763,73 +767,73 @@
                 \item Secondly, iterative \gls{IR} and \gls{MC}. This class of \gls{MC} techniques take the optimisation for \gls{IR} and either image registration or \gls{MM} and iterate between them. An example of an iterative \gls{IR} and \gls{MC} technique would be \gls{ML} joint \gls{IR} and motion estimation as briefly discussed in~\Fref{sec:respiratory_motion_challenges_in_combined_pet_ct_imaging}. Here, a \gls{ML} \gls{IR} is iteratively optimised for in conjunction with a motion estimate which is applied to both the estimated activity volume and the \gls{Mu-Map} in order to find a \gls{MC} activity volume which corresponds to the position of the \gls{Mu-Map} at every gate~\boxcite{Bousse2016}. An advantage of this technique is that between every iteration, from \gls{IR} to \gls{MC}, the improvement of the accuracy of the activity distribution aids in fitting a \gls{MC} which then inversely can improve the resolution of the reconstruction. Eventually this can lead to an improved result over post \gls{IR} \gls{MC}. However, because this class of applied \gls{MC} involves a higher level of complexity, from integrating the reconstruction and \gls{MC}, it can prove more difficult to implement well and can increase computation time of the algorithm. In some cases it is possible to attempt to optimise for both the reconstructed image and image registration or \gls{MM} simultaneously, in this case it would be a simultaneous \gls{IR} and \gls{MC} technique.
             \end{itemize}
     
-    \longsection{Machine Learning for PET}{sec:machine_learning_for_pet}
+%    \longsection{Machine Learning for PET}{sec:machine_learning_for_pet}
         
         
-        \subsection{Machine Learning Concepts} \label{sec:machine_learning_concepts}
+%        \subsection{Machine Learning Concepts} \label{sec:machine_learning_concepts}
             
             
-            \subsubsection{Neural Network Architecture} \label{sec:neural_network_architecture}
-                \begin{figure}
-                    \centering
+%            \subsubsection{Neural Network Architecture} \label{sec:neural_network_architecture}
+%                \begin{figure}
+%                    \centering
                             
-                    \includegraphics[width=1.0\linewidth]{figures/background_fully_connected.png}
+%                    \includegraphics[width=1.0\linewidth]{figures/background_fully_connected.png}
                             
-                    \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{Graphical representation of . On the left .} \label{fig:neural_network_architecture_fully_connected}
-                \end{figure}
+%                    \captionsetup{singlelinecheck=false, justification=raggedright}
+%                    \caption{Graphical representation of . On the left .} \label{fig:neural_network_architecture_fully_connected}
+%                \end{figure}
                 
-                \begin{figure}
-                    \centering
+%                \begin{figure}
+%                    \centering
                             
-                    \includegraphics[width=1.0\linewidth]{figures/background_cnn.png}
+%                    \includegraphics[width=1.0\linewidth]{figures/background_cnn.png}
                             
-                    \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{Graphical representation of . On the left .} \label{fig:neural_network_architecture_cnn}
-                \end{figure}
+%                    \captionsetup{singlelinecheck=false, justification=raggedright}
+%                    \caption{Graphical representation of . On the left .} \label{fig:neural_network_architecture_cnn}
+%                \end{figure}
                 
-                \begin{figure}
-                    \centering
+%                \begin{figure}
+%                    \centering
                             
-                    \includegraphics[width=1.0\linewidth]{figures/background_lstm.png}
+%                    \includegraphics[width=1.0\linewidth]{figures/background_lstm.png}
                             
-                    \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{Graphical representation of . On the left .} \label{fig:neural_network_architecture_lstm}
-                \end{figure}
+%                    \captionsetup{singlelinecheck=false, justification=raggedright}
+%                    \caption{Graphical representation of . On the left .} \label{fig:neural_network_architecture_lstm}
+%                \end{figure}
                 
-            \subsubsection{Activation Function} \label{sec:activation_function}
-                \begin{figure}
-                    \centering
+%            \subsubsection{Activation Function} \label{sec:activation_function}
+%                \begin{figure}
+%                    \centering
                             
-                    \includegraphics[width=1.0\linewidth]{figures/background_activation_functions.png}
+%                    \includegraphics[width=1.0\linewidth]{figures/background_activation_functions.png}
                             
-                    \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{Graphical representation of . On the left .} \label{fig:activation_function_activation_functions}
-                \end{figure}
+%                    \captionsetup{singlelinecheck=false, justification=raggedright}
+%                    \caption{Graphical representation of . On the left .} \label{fig:activation_function_activation_functions}
+%                \end{figure}
                 
-                \begin{figure}
-                    \centering
+%                \begin{figure}
+%                    \centering
                             
-                    \includegraphics[width=1.0\linewidth]{figures/background_selu.png}
+%                    \includegraphics[width=1.0\linewidth]{figures/background_selu.png}
                             
-                    \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{Graphical representation of . On the left .} \label{fig:activation_function_selu}
-                \end{figure}
+%                    \captionsetup{singlelinecheck=false, justification=raggedright}
+%                    \caption{Graphical representation of . On the left .} \label{fig:activation_function_selu}
+%                \end{figure}
             
-            \subsubsection{Regularisation} \label{sec:regularisation}
-                \begin{figure}
-                    \centering
+%            \subsubsection{Regularisation} \label{sec:regularisation}
+%                \begin{figure}
+%                    \centering
                             
-                    \includegraphics[width=1.0\linewidth]{figures/background_dropout.png}
+%                    \includegraphics[width=1.0\linewidth]{figures/background_dropout.png}
                             
-                    \captionsetup{singlelinecheck=false, justification=raggedright}
-                    \caption{Graphical representation of . On the left .} \label{fig:regularisation_dropout}
-                \end{figure}
+%                    \captionsetup{singlelinecheck=false, justification=raggedright}
+%                    \caption{Graphical representation of . On the left .} \label{fig:regularisation_dropout}
+%                \end{figure}
                 
         
         % \subsection{Machine Learning for PET Image Reconstruction} \label{sec:machine_learning_for_pet_image_reconstruction}
             % might want to mention this?
             
         
-        \subsection{Machine Learning for Motion Correction} \label{sec:machine_learning_for_motion_correction}
+%        \subsection{Machine Learning for Motion Correction} \label{sec:machine_learning_for_motion_correction}
             
