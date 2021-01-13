@@ -576,6 +576,17 @@
     \@mkboth{\@impactstatement}{\@impactstatement}%
 }{%
 }
+%    \end{macrocode}
+%  \end{environment}
+%  \begin{environment}{publications}
+%  Also need an environment for doing the publications (ADDED)
+%    \begin{macrocode}
+\newcommand \@publications{List of Publications}
+\newenvironment{publications}{%
+    \chapter*{\@publications}%
+    \@mkboth{\@publications}{\@publications}%
+}{%
+}
 
 %    \end{macrocode}
 %  \end{environment}
