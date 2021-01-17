@@ -427,15 +427,16 @@
 %%%    \normalsize
 %%%
     \begin{center}%
-        {\huge \bfseries \@title}\\[5em]%
-        {\Large \itshape \@author}\\%
+        {\huge \bfseries \@title}\\[4em]%
+        {\Large \itshape \@author}\\[2em]%
     \end{center}%
-    \vfill%
+    % \vfill%
         \begin{center}
             Supervisors:\\
             \@supervisors
     \end{center}
-    \vfill%
+    % \vfill%
+    \vspace{1em}%
     \begin{center}%
     A dissertation submitted in partial fulfillment \\
     of the requirements for the degree of \\
@@ -444,12 +445,12 @@
     \@field \\
     \textbf{University College London}.
     \end{center}%
-    \vspace{2em}%
+    \vspace{1em}%
     \begin{center}%
     \@department \\
     University College London\\
     \end{center}%
-    \vspace{2em}%
+    \vspace{1em}%
     \begin{center}%
     \@date%
     \end{center}%
