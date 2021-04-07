@@ -5,126 +5,135 @@
         
     
     \longsection{PCA Data Driven Surrogate Signal Extraction Methods for Dynamic PET}{sec:pca_data_driven_surrogate_signal_extraction_methods_for_Dynamic_pet}
-        Respiratory motion correction is beneficial in positron emission tomography. Methods of motion correction include gated reconstruction, where the acquisition is binned based on a respiratory trace. To acquire these respiratory traces an external device like the \gls{RTPM} system or a data driven method such as \gls{PCA} can be used. Data driven methods have the advantage that they are non-invasive and can be performed post-acquisition. However, data driven methods have the disadvantage that they are adversely affected by the tracer kinetics of a dynamic acquisition.
-        
-        This work seeks to evaluate several adaptions of the \gls{PCA} method through which it  can be used with dynamic data. The methods explored in this work include using a moving window, and re-use of the principal component from a later time frames to estimate the surrogate signal from earlier data. The respiratory traces acquired were evaluated by calculating their cross correlation with a \gls{RTPM} surrogate signal and also by performing and comparing gated reconstructions using the traces. The results indicate that all methods produce better surrogate signals than when applying static \gls{PCA} to dynamic data. Re-using a late principal component for the start of the scan produced the most promising results. Future research includes further tuning the hyper parameters, evaluating the methods on a larger set of data, and using the extract respiratory signal in more complex motion correction algorithms for dynamic \glss{PET}.
+        This section investigates \gls{DD} methods to extract \gls{SS} from dynamic \gls{PET}. In particular this section will discuss methods using \gls{PCA} and compare them to similar methods, from the literature, which use \gls{SAM}.
         
         \subsection{Introduction} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_introduction}
-            Respiratory motion reduces image resolution in \gls{PET} by introducing blurring and mis-alignment artefacts~\boxcite{Nehmeh2008a}. This is often combated through the use of gated reconstruction and motion correction, potentially as a first step towards obtaining motion corrected images. Gating requires a \gls{SS} which reflects the position in which the internal organs are in the respiratory cycle. Methods to determine \glss{SS} include those which use an external devices, like the \gls{RPM}. However, a disadvantage of these methods are that they require the use of additional equipment and a change to clinical practise. Thus, \gls{DD} methods to extract \glss{SS} have become an alternative, these include \gls{PCA}~\boxcite{Thielemans2011}. To the best of our knowledge, current \gls{DD} \gls{SS} extraction methods fail for dynamic \gls{PET} data where the tracer kinetics, at the start of the acquisition, offer more variance than the respiratory motion does. Previously, a moving window based approach using the spectral analysis method was proposed~\boxcite{Schleyer2014}. This work seeks to implement a moving window method using \gls{PCA} and then compare this to static \gls{PCA} and other \gls{PCA} based dynamic \gls{DD} \gls{SS} extraction methods.
+            As discussed in~\Fref{sec:respiratory_motion_in_pet} and \Fref{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_nac_pet} respiratory motion correction is beneficial in positron emission tomography. Respiratory motion reduces image resolution in \gls{PET} by introducing blurring and mis-alignment artefacts~\boxcite{Nehmeh2008a}. Methods of motion correction include gated reconstruction, where the acquisition is binned based on a respiratory trace. Gating requires a \gls{SS} which reflects the position the patient is in the respiratory cycle over time. Methods to determine \glss{SS} include those which use an external devices, like the \gls{RPM}. However, a disadvantage of these methods are that they require the use of additional equipment and a change to clinical practise.
+            
+            Thus, \gls{DD} methods to extract \glss{SS} have become an alternative, these include \gls{PCA}~\boxcite{Thielemans2011}, for more detail see~\Fref{sec:data_driven}. However, data driven methods have the disadvantage that they are adversely affected by the tracer kinetics of a dynamic acquisition. To the best of our knowledge, current \gls{DD} \gls{SS} extraction methods fail for dynamic \gls{PET} data where the tracer kinetics, at the start of the acquisition, offer more variance than the respiratory motion does. Previously, a moving window based approach using \gls{SAM} was proposed~\boxcite{Schleyer2014}. This section seeks to evaluate several adaptions of the \gls{PCA} method through which it can be used with dynamic data. The methods explored in this section include using the use of a moving window, and re-use of the \glss{PC} from a later time point to estimate the \gls{SS} from earlier time points.
         
         \subsection{Methods} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods}
+            \begin{figure}
+                \centering
+                
+                \includegraphics[width=0.6\linewidth]{figures/data_driven_surrogate_signal_extraction_results_1_flowchart.png}
+                
+                \captionsetup{singlelinecheck=false, justification=centering}
+                \caption{A diagram showing the possible ways in which the method could be executed.}
+                \label{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_flowchart}
+            \end{figure}
+            
+            The following subsections will address the method with respect to the diagram seen in~\Fref{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_flowchart}.
+            
             \subsection{Data Acquisition} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_data_acquisition}
-                Five dynamic \gls{FDG} acquisitions, with a \gls{FOV} covering the upper lung and heart, were acquired on a \gls{GE} Discovery $710$. Each acquisition lasted approximately \SI{20}{\minute} with the acquisition starting before injection of the radiotracer. \glss{SS} were acquired in parallel using a \gls{RPM}.
+                $21$ dynamic \gls{18F-FDG} acquisitions, with a \gls{FOV} covering the upper lung and heart, were acquired on a \gls{GE} Discovery $710$. Each acquisition lasted approximately \SI{20}{\minute} with the acquisition starting before injection of the radiotracer. \glss{SS} were acquired in parallel using a \gls{RPM}.
                 
             \subsection{Data Preparation} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_data_preparation}
-                Data were unlisted into low resolution sinograms, at a time interval of \SI{500}{\milli\second}, using the \gls{GE} PetToolbox following~\boxcite{Bertolli2018Data-DrivenTomography}. Data was preprocessed by removing the first and last sinogram in the axial direction and applying a Freeman-Tukey transformation to stabilise the variance of the Poisson data \boxcite{Freeman1950TransformationsRoot}. The Freeman-Tukey transformation is defined as:
+                Data were unlisted into low resolution sinograms, at a time interval of \SI{500}{\milli\second}, using the \gls{GE} PetToolbox following~\boxcite{Bertolli2018Data-DrivenTomography} resulting in sinograms with dimensions $95 x 16 x 47 x 11$ (radial positions $x$ angles $x$ transaxial plane $x$ \gls{TOF}). Data was preprocessed by first applying a Freeman-Tukey transformation~\boxcite{Freeman1950TransformationsRoot} before then applying a Yeo-Johnson power transformation~\boxcite{Yeo2000ASymmetry} this is in order to attempt to transform the Poisson distributed data to be more Gaussian-like. The Freeman-Tukey transformation was applied before the Yeo-Johnson power transformation as it was found that the Freeman-Tukey transformation made the Yeo-Johnson power transformation more reliable. Furthermore, it was also found that the Yeo-Johnson power transformation gave better results than the Freeman-Tukey transformation.
+                
+                The Freeman-Tukey transformation is defined as:
 
                 \begin{equation} \label{eq:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_freeman_tukey}
-                    S_g := 2 \sqrt{S_p + \frac{3}{8}}
+                    S_g := \sqrt{S_p + 1} + \sqrt{S_p}
                 \end{equation}
 
                 \noindent where in~\Fref{eq:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_freeman_tukey} $S_g$ is the resultant, Gaussian distributed, sinogram of applying the Freeman-Tukey transformation to Poisson distributed sinogram $S_p$~\boxcite{Freeman1950TransformationsRoot}.
+                
+                The Yeo-Johnson power transformation is defined as:
+
+                \begin{equation} \label{eq:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_yeo_johnson}
+                    S_g := \begin{cases}
+                                ((S_p + 1)^\lambda - 1) / \lambda                   & \quad \text{if } \lambda \neq 0 \text{, } S_p \geq 0 \\
+                                \log(S_p + 1)                                       & \quad \text{if } \lambda = 0 \text{, } S_p \geq 0    \\
+                                -[(-S_p + 1)^{(2 - \lambda)} - 1)] / (2 - \lambda)  & \quad \text{if } \lambda \neq 2 \text{, } S_p < 0    \\
+                                -\log(-S_p + 1)                                     & \quad \text{if } \lambda = 2 \text{, } S_p < 0
+                            \end{cases}
+                \end{equation}
+
+                \noindent where in~\Fref{eq:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_yeo_johnson} $S_g$ is the resultant, Gaussian distributed, sinogram of maximising the log likelihood of the Yeo-Johnson power transformation to Poisson distributed sinogram $S_p$~\boxcite{Yeo2000ASymmetry}.
             
             \subsection{Surrogate Signal Extraction} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_surrogate_signal_extraction}
-                In a first attempt static \gls{PCA} was applied to the entire acquisition. This was compared with:
+                \subsubsection{Pre-Processing} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_pre_processing}
+                    Following the diagram in~\Fref{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_flowchart} the first major split in the method is between using \gls{PCA} or \gls{SAM}. \gls{SAM} is included, as mentioned previously in~\Fref{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_introduction}, as a comparison for the \gls{PCA} based methods. Thus, the \gls{SAM} based methods are less developed here to conform to literature, seen in~\boxcite{Schleyer2014}.
+                    
+                    Both the \gls{PCA} and \gls{SAM} based methods have the capacity for the input data to be Gaussian smoothed and further downsampled, different parameters are used for both methods. It has been found through experimentation that Gaussian smoothing can improve results, especially in the case of the \gls{SAM} methods. Further downsampling can be performed post smoothing to reduce memory usage, in this case Akima spline interpolation is used~\boxcite{Akima1970AProcedures}, however linear interpolation has been found to be satisfactory and additionally is less computationally expensive to calculate.
+                        
+                    Additionally, both types of method can be used with a mask, their implementation differs slightly however. In both cases the mask itself is defined as being true for any value in the sinogram above a predetermined threshold. In the case of the \gls{PCA} based methods, when calling \gls{PCA} values not in the mask are removed prior. However, in the \gls{SAM} case values not in the mask are set to be equal to zero.
                 
-                \subsubsection{Moving Window} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_moving_window}
-                    This method takes data window by window (with half a window overlap) and extracts a \gls{SS} using \gls{PCA}. The final \gls{SS} is constructed by determining the sign of the current \gls{SS} (using \gls{CC} in the overlap with the previous window), flipping it if necessary, and then, taking the mean where it overlaps, and concatenating it with the previous \gls{SS}. The size of the window increases as the acquisition goes on. The motivation is that at early time points the variation caused by the tracer kinetics obscures that which comes from respiratory motion, and reducing the window size decreases the change in the data due to the tracer kinetics.
+                \subsubsection{Applying PCA} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_applying_pca}
+                    Again, as can be seen from the diagram in~\Fref{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_flowchart} there are two methods of applying either \gls{PCA} or \gls{SAM} which are common to both routes.
+                    
+                    \begin{itemize}
+                        \item Firstly there is what shall be referred to as the static method. Here, either \gls{PCA} or \gls{SAM} is applied to the entire data set in one go as it would be if the data were from a static acquisition, hence the name.
+                        
+                        \item Secondly there is the moving window method. Here the data is split into a series of windows, where each subsequent window overlaps with the previous window by half its length. The size of each window is predetermined and selected experimentally. \gls{PCA} or \gls{SAM} is applied independently on each window and the results are averaged together. The windows overlap as the sign of the signal from each window is arbitrary and the overlapping allows for a common sign to be found by comparing the \gls{CC} of neighbouring windows and flipping windows where the \gls{CC} is negative. The motivation for attempting the moving window method is that small windows can be used at early time points, where the tracer kinetics are at their most severe, and longer windows can be used at later time points. Smaller windows may help to extract \gls{RM} where they are shorter than the frequency of the tracer kinetics.
+                    \end{itemize}
+                    
+                    Additionally there is one method which is not possible to implement using \gls{SAM}.
+                    
+                    \begin{itemize}
+                        \item The one \gls{PC} method splits the data into two channels, one which only contains late time point data where the tracer kinetics have diminished and one which contains all the data. The cutoff between early and late time point data is determined experimentally. \gls{PCA} is applied to the late time point data only. The \glss{PC} from the late time point data can then be taken and multiplied by the channel containing all of the data to give the weights contributing to that \gls{PC} for all time points. The motivation for attempting this method is that it was observed that \glss{PC} for late time point data didn't vary significantly when different windows were selected, however that was not true for early time point data. It could be hypothesised that because the \gls{RM} should be semi-consistent throughout the acquisition, then if a \gls{PC} is capturing the \gls{RM} at late time points then it should do the same at early time points.
+                    \end{itemize}
                 
-                \subsubsection{One PC} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_one_pc}
-                    This method takes a late time point \gls{PC} and applies it to early time point data using the normal formula to find the weight at a particular time point. The motivation is that the \glss{PC} of late time point data capture mostly the respiratory motion only. This was verified by checking that the late time point \glss{PC} did not vary substantially.
+                \subsubsection{Combining PCs} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_combining_pcs}
+                    Furthermore, as an additional development of the previous methods a way to combine \glss{PC} was proposed. The motivation for this was that it could be observed that signals in the frequency window of \gls{RM} could be seen outside of the first few \glss{PC}. Additionally, a significant number of these had far less of a frequency contribution in the frequency window of the tracer kinetics. Although they may not be selected if only one \gls{PC} is used and determined by the greatest mean frequency contribution in the respiratory window, as in~\boxcite{Thielemans2011}, and~\boxcite{Bertolli2018Data-DrivenTomography}
+                    
+                    In order to achieve the above goals first the \gls{PSD} of each signal must be calculated using \gls{FFT}. These \gls{PSD} contain the frequency contribution of each signal between the frequencies of zero and one Hertz. Next frequency windows representing the content of information related to tracer kinetics, \gls{RM} and noise are defined. In this case they are defined as \SI{0.0}{\hertz} to \SI{0.1}{\hertz}, \SI{0.1}{\hertz} to \SI{0.4}{\hertz} and above \SI{0.4}{\hertz} respectively. The respiratory contribution within each windows is determined for each \gls{PC} by finding the mean magnitude within the windows. Ratios are then determined between the kinetic window and the respiratory window and the respiratory window and the noise window. Data are ordered such that the respiratory to kinetic window ratio is maximised, in other words the \gls{PC} which contributes the most respiratory information without contributing much kinetic information goes first. Any \gls{PC} where more noise is contributed than useful respiratory information is then thrown away.
+                    
+                    In the order determined in the previous step the \glss{PC} are iterated through and both summed and subtracted with a weighting based on their respiratory contribution and a new \gls{PSD} is found for both resulting signals. If one of the signals increases the respiratory frequency contribution more than the kinetic or noise contribution then it becomes the new best \gls{PC} and goes to the next iteration. \glss{PC} are both summed and subtracted to deal with the arbitrary sign problem mentioned earlier~\Fref{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_applying_pca}. A similar method of combining signals can be seen in~\boxcite{Kesner2010AMethods}
+                
+                \subsubsection{Post-Processing} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_post_processing}
+                    Regardless of method used there is still some effects of the tracer kinetics to be expected at early time points and noise throughout. Thus a method of parallel compression has been proposed to deal with the remaining tracer kinetics and a plethora of smoothing to deal with the noise.
+                    
+                    \begin{itemize}
+                        \item Firstly there is what shall be referred to as parallel compression. This is a method borrowed from audio engineering whereby the signal is split into two channels, one has its dynamic range decimated and then they are summed back together. This has the effect of reducing large differences in the dynamic range of the signal without losing a lot of breath to breath variability. In order to achieve this here the signal is split into two channels and one channel is further split into a series of small moving windows. The channel comprised of moving windows now has the median value of each window subtracted and each window is divided by its \gls{MAD}. This channel then has its windows averaged back together before being combined with the unadulterated channel. The channels are combined following the head count signal. The head count signal is the gradient of the sum of the sinogram at each time point, this signal is normalised between zero and one and where it is larger more of the compressed signal is summed.
+                        
+                        \item Even though most of the large macro changes in intensity are dealt with by parallel compression some momentary spikes still make it through the process. Thus outliers are removed where they are outside a threshold of the quantile of the signal and new values are interpolated.
+                        
+                        \item Smoothing is applied first through the use of a bandpass filter before a Savitzky-Golay filter is applied. A Savitzky-Golay filter is a moving window polynomial filter. The parameters of both are determined through experimentation.
+                    \end{itemize}
             
             \subsection{Evaluation} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_evaluation}
-                \subsubsection{Cross Correlation} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_cross_correlation}
-                    The \gls{CC} of each \gls{SS} between each method and the \gls{RPM}, for all acquisitions, has been calculated. Additionally, the early time point \glss{SS} for each method have been plotted against the \gls{RPM}, for the first acquisition.
-                
-                \subsubsection{Reconstruction} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_reconstruction}
-                    Data has been reconstructed, for the first acquisition, using each \gls{SS} to displacement gate the data into $10$ bins. Reconstructions were performed using \gls{GE} Duetto with \gls{TOF} \gls{OSEM} using two full iterations and $24$ subsets~\boxcite{Hudson1994}.
-                    Attenuation, scatter and randoms were not taken into account. Volumes were post-filtered using a Gaussian blur with a kernel size of \SI{6.4}{\milli\metre} \gls{FWHM}.
-                    
-                    Comparisons between these motion corrected reconstructed volumes include: A profile over the aorta and \gls{SUV}\textsubscript{max}, \gls{SUV}\textsubscript{median} and \gls{SUV}\textsubscript{peak}. \gls{SUV}\textsubscript{peak} here was defined following \gls{EANM} guidelines~\boxcite{Boellaard2015FDG2.0}
+                \subsubsection{Correlation Coefficient} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_cross_correlation}
+                    The \gls{CC} of each \gls{SS} between each method and the \gls{RPM}, for all acquisitions, has been calculated. Additionally, the early time point \glss{SS} for each method have been plotted against the \gls{RPM}.
             
         \subsection{Results} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results}
-            \begin{table}
-                \centering
-                
-                \captionsetup{singlelinecheck=false, justification=centering}
-                \caption{A comparison of the \gls{CC} between the \gls{RPM} \gls{SS} and the \gls{SS} from the static \gls{PCA}, the moving window and the one \gls{PC} method for five acquisitions.}
-                
-                \resizebox*{1.0\linewidth}{!}
-                {
-                    \begin{tabular}{||c|ccccccc||}
-                        \hline
-                        \textbf{\gls{CC}} & \textbf{Static \gls{PCA}} & \textbf{Static Zscore \gls{PCA}} & \textbf{Moving Window \gls{PCA}} & \textbf{One \gls{PC}} & \textbf{Static \gls{SAM}} & \textbf{Static Zscore \gls{SAM}} & \textbf{Moving Window \gls{SAM}} \\
-                        \hline
-                        \textbf{Acquisition One} & $0.043383$ & $0.81595$ & $0.85313$ & $0.87891$ & $0.15342$ & $0.86527$ & $0.85316$ \\
-                        \hline
-                    \end{tabular}
-                }
-                \label{tab:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_cross_correlation}
-            \end{table}
-            
-            A comparison of \gls{CC} can be seen in~\Fref{tab:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_cross_correlation}. The results for both the moving window and the one \gls{PC} method show that they perform better than static \gls{PCA}, as expected. The results for the moving window method are more varied than the one \gls{PC} method as it has far more hyper parameters and is substantially more sensitive to them.
-            
             \begin{figure}
                 \centering
                 
-                \includegraphics[width=1.0\linewidth]{figures/data_driven_surrogate_signal_extraction_results_1_surrogate_signal.png}
+                \includegraphics[width=1.0\linewidth]{figures/data_driven_surrogate_signal_extraction_results_1_vanilla_surrogate_signal.png}
                 
                 \captionsetup{singlelinecheck=false, justification=centering}
-                \caption{A visual comparison between the \gls{RPM} \gls{SS} and the \gls{SS} from the static \gls{PCA}, the moving window and the one \gls{PC} for acquisition one between \SI{40}{\second} and \SI{110}{\second}.}
-                \label{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_surrogate_signal}
+                \caption{A visual comparison between the \gls{RPM} \gls{SS} and the \gls{SS} from the static \gls{PCA} method using only the first \gls{PC} for three patients between \SI{20}{\second} and \SI{160}{\second}.}
+                \label{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_vanilla_surrogate_signal}
             \end{figure}
             
             \begin{figure}
                 \centering
                 
-                \includegraphics[width=0.8\linewidth]{figures/data_driven_surrogate_signal_extraction_results_1_visual_analysis_pca.png}
+                \includegraphics[width=1.0\linewidth]{figures/data_driven_surrogate_signal_extraction_results_1_combined_surrogate_signal.png}
                 
                 \captionsetup{singlelinecheck=false, justification=centering}
-                \caption{Gated reconstructions of acquisition one using the \gls{RPM}, static \gls{PCA}, moving window and one \gls{PC} method \gls{SS}. Colour map ranges are consistent for all images.}
-                \label{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_visual_analysis}
+                \caption{A visual comparison between the \gls{RPM} \gls{SS} and the \gls{SS} from the static \gls{PCA} method by combining the first $20$ \glss{PC} for three patients between \SI{20}{\second} and \SI{160}{\second}.}
+                \label{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_combined_surrogate_signal}
             \end{figure}
             
             \begin{figure}
                 \centering
                 
-                \includegraphics[width=1.0\linewidth]{figures/data_driven_surrogate_signal_extraction_results_1_profile_pca.png}
+                \includegraphics[width=1.0\linewidth]{figures/data_driven_surrogate_signal_extraction_results_1_box_plot.png}
                 
                 \captionsetup{singlelinecheck=false, justification=centering}
-                \caption{A profile across the aorta, in the superior-inferior direction, for gated reconstructions of acquisition one using the \gls{RPM}, static \gls{PCA}, moving window and one \gls{PC} method \gls{SS}.}
-                \label{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_profile}
+                \caption{A box plot of the \gls{CC} between static \gls{PCA} method both when using only the first \gls{PC} and by combining the first $20$ \glss{PC} for all patients between \SI{20}{\second} and \SI{160}{\second} and for the entire acquisition.}
+                \label{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_box_plot}
             \end{figure}
             
-            \begin{table}
-                \centering
-                
-                \captionsetup{singlelinecheck=false, justification=centering}
-                \caption{Comparison of \gls{SUV}\textsubscript{max}, \gls{SUV}\textsubscript{median} and \gls{SUV}\textsubscript{peak} between gated reconstructions of acquisition one using the \gls{RPM}, static \gls{PCA}, moving window and one \gls{PC} method \gls{SS}.}
-                
-                \resizebox*{0.75\linewidth}{!}
-                {
-                    \begin{tabular}{||c|ccc||}
-                        \hline
-                        \textbf{\gls{SUV}} & \textbf{Max} & \textbf{Median} & \textbf{Peak} \\
-                        \hline
-                        \textbf{\gls{RPM}}          & $18.4$ & $10.9$ & $12.6$ \\
-                        \hline
-                        \textbf{Static \gls{PCA}}   & $12.8$ & $10.6$ & $11.4$ \\
-                        \textbf{Moving Window}      & $14.5$ & $10.6$ & $11.3$ \\
-                        \textbf{One \gls{PC}}       & $18.5$ & $10.9$ & $12.6$ \\
-                        \hline
-                    \end{tabular}
-                }
-                \label{tab:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_suv}
-            \end{table}
-            
-            A plot of the \gls{SS} for all methods can be seen in~\Fref{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_surrogate_signal}, the one \gls{PC} method matches the \gls{RPM} best in this example. The reconstructed data, using \glss{SS} from all methods can be seen in~\Fref{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_visual_analysis}, the clarity of the reconstruction around the aorta seems diminished in the static \gls{PCA} example, it is similar in all other examples. A profile across the aorta can be seen in~\Fref{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_profile}, this shows that the static \gls{PCA} method differs in its distribution. \gls{SUV} results can be seen in~\Fref{tab:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_suv} and show that \glss{SUV} are consistent with \gls{RPM} for both the one \gls{PC} method.
+            A plot of the \gls{SS} for static \gls{PCA} using only one \gls{PC} for three patients at early time points can be seen in~\Fref{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_vanilla_surrogate_signal}, it can be observed in this example that only using the static \gls{PCA} method and one \gls{PC} does not give satisfactory results at early time points. A plot of the \gls{SS} for static \gls{PCA} using a combination of the first $20$ \glss{PC} for three patients at early time points can be seen in~\Fref{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_combined_surrogate_signal}, here for all patients from very early in the acquisition it can be seen that the method gives comparable results to the \gls{RPM}. A box plot of the \gls{CC} of the \gls{SS} for static \gls{PCA} using only one \gls{PC} compared to the \gls{RPM} and the \gls{CC} of the \gls{SS} for static \gls{PCA} using a combination of the first $20$ \glss{PC} compared to the \gls{RPM} for all patients at both early time points and all time points and  can be seen in~\Fref{fig:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_results_box_plot}, here the improvement by incorporating multiple \glss{PC} is most apparent. It must be noted that for these results that no pre or post processing of the sinograms nor signal is used, as such further improvement is to be expected.
             
         \subsection{Discussion and Conclusion} \label{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_discussion_and_conclusion}
-            Results from a comparison of \gls{CC}, profiles and \glss{SUV} show that the moving window and one \gls{PC} show promise in \gls{DD} extraction of \gls{SS} from dynamic data when compared to the static method.
+            Results from a visual comparison of early time point signals from both an \gls{RPM} and static \gls{PCA} indicates that while using only one \gls{PC} leads to poor results the method of combining \glss{PC} presented here has good promise, this is further reinforced when the \gls{CC} is examined.
             
-            In the future, research will focus on further development of the one \gls{PC} method, including tuning its hyper parameters as well as testing it on a wider array of data.
+            In the future, research will focus on further development of method, tuning the parameters of the additional methods to the point where they can be compared.
     
 %    \longsection{Feasibility Study of Neural Network Based Data Driven Surrogate Signal Extraction Methods for Dynamic PET}{sec:feasibility_study_of_neural_network_based_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet}
         
