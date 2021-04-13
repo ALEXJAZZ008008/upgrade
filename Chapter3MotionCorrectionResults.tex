@@ -35,7 +35,7 @@
                 \gls{3D} \gls{BS}s were used to model spatial deformations with the corresponding warping operation denoted as $\mathbf{W}(\mathbf{\alpha}_t)$, with $\mathbf{\alpha}_t$ a vector with \gls{BS} coefficients at time $t$. The breathing \glss{SS} $\mathbf{s}$ contained two components: the \gls{AP} and \gls{SI} motion signals used by \gls{XCAT}. Following~\boxcite{McClelland2017} a direct correspondence \gls{MM} was used where the \gls{BS} coefficients at time $t$ are expressed as a linear combination of the two \gls{SS}, $s_{1,t}$ and $s_{2,t}$:
             
                 \begin{equation}\label{eq:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_methods_motion_parameters}
-                    \forall t \in [[1,n_t]], \alpha_{k,t} := R_{1,k} s_{1,t} + R_{2,k} s_{2,t} + R_{3,k}
+                    \forall t \in [[1, n_t]], \alpha_{k, t} := R_{1, k} s_{1, t} + R_{2, k} s_{2, t} + R_{3, k}
                 \end{equation}
                 
                 \noindent where in~\Fref{eq:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_methods_motion_parameters} $\alpha_{k,t}$ is the \gls{3D} \gls{BS} coefficient for node $k$ at time point $t$, and $R_{i,k}$ are the model parameters, this is as discussed in~\Fref{sec:motion_modelling}.
@@ -55,7 +55,7 @@
                 In addition, the \gls{COM} of the lesion was also tracked over the six gates, by warping a volume only including the lesion in the reference position as above, and then computing the \gls{COM}. The \gls{COM} along each dimension is calculated using the following equation:
                 
                 \begin{equation} \label{eq:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_methods_com}
-                   C_{d} := \frac{1}{n}\sum_{i=1}^{n} d_{i}
+                   C_{d} := \frac{1}{n}\sum_{i = 1}^{n} d_{i}
                 \end{equation}
                 
                 \noindent where in~\Fref{eq:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_methods_com} $n$ is the number of distinct points along dimension $d_1 \dotso d_n$.
@@ -156,7 +156,7 @@
                 To evaluate the validity of the \gls{MM} results, the \gls{COM} of the lesion, over time, was tracked for both \gls{NAC} and \gls{AC} reconstructions. This was achieved by warping a volume only including the lesion in the reference position, and then computing its \gls{COM}. The \gls{COM} along each dimension is calculated using the following equation:
                 
                 \begin{equation} \label{eq:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_methods_com}
-                   C_{d} := \frac{1}{n}\sum_{i=1}^{n} d_{i}
+                   C_{d} := \frac{1}{n}\sum_{i = 1}^{n} d_{i}
                 \end{equation}
                 
                 \noindent where in~\Fref{eq:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_methods_com} $n$ is the number of distinct points along dimension $d_1 \dotso d_n$.
