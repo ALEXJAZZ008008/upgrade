@@ -8,13 +8,87 @@
         \begin{figure}
             \centering
                 
-            \includegraphics[width=1.0\linewidth]{figures/data_driven_surrogate_signal_extraction_results_1_box_plot_processed.png}
+            \includegraphics[width=1.0\linewidth]{figures/future_work_gantt_chart.png}
                 
             \captionsetup{singlelinecheck=false, justification=centering}
-            \caption{}
+            \caption{This figure shows a Gantt chart broken up into months from April $2021$ until September $2022$. The tasks which are currently foreseen are broken up into rows and the box under the months in which each activity is expected to take place in is coloured in green.}
             \label{fig:future_work_gantt_chart}
         \end{figure}
         
-        \begin{itemize}
-            \item 
-        \end{itemize}
+        The following subsections will address future work which will be performed. The subsections follow on from a more general discussion of future work in each of the previous chapters, which can be found here~\Fref{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_discussion}, here~\Fref{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_discussion}, here~\Fref{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_nac_pet_conclusion} and here~\Fref{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_discussion_and_conclusion}. For a breakdown of the time allocated to completing the following work please see the Gantt chart provided here~\Fref{fig:future_work_gantt_chart}.
+        
+        \subsection{Motion Correction} \label{sec:future_work_motion_correction}
+            The following is specifically related to the future work to complete the bulk of what is required for the \gls{MC} portion of the thesis and expands up and clarifies what was discussed specifically here~\Fref{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_pre_gated_no_intra_cycle_motion_nac_pet_discussion}, here~\Fref{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields_discussion}, and here~\Fref{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_nac_pet_conclusion}.
+            \begin{itemize}
+                \item \gls{NAC} \gls{MC} parameter search: This work is required for the submission deadline for \gls{MIC} $2021$, as will be discussed further in~\Fref{sec:future_work_conferences_and_papers}. Currently pairwise and groupwise methods to \gls{MC} very noisy \gls{NAC} \gls{PET} data have been implemented, with and without a \gls{LR} based \gls{MM} (from here on referred to as a simple \gls{MM}). However, good parameters to best demonstrate each method have not yet been found. In order to find good parameters simulations such as those presented in~\Fref{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields} have been created and a grid search must be performed, using each method.
+    
+                \item Post reconstruction \gls{NAC} \gls{MC} evaluation: Again, this is the minimum threshold for work to be completed before \gls{MIC} $2021$. This section of work is specifically related to taking the parameters found from the previous step and using them in, combination with each relevant method, to generate results. Then, these results must be evaluated using methods such as examining a profile across a lesion inserted into the simulation data, as well as generating pseudo \gls{SUV} and ideally tracking the result of applying the \glss{DVF} generated only to the lesion, in isolation, to establish the quality of the motion captured. These evaluation metrics have all be mentioned before in~\Fref{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_nac_pet}.
+    
+                \item Pilot study into \gls{MC} with patient data: Ideally this target will be met before the deadline for \gls{MIC} $2021$. However, regardless it is an important milestone for the work in general to test it on patient data, as this will be the most difficult environment for it and will lead a lot of credibility, more so than testing on simulations. Because a \gls{GT} does not exist for patient data it will be a lot more difficult to evaluate, however, similar methods to those employed previously can still be used. For instance, a profile across the diaphragm can show how well gates are registered together, the greater the intensity of the diaphragm and the sharper the drop in intensity going into the lung the better. Additionally, \gls{SUV} are often used as a measure of \gls{MC}, the higher the value in a given \gls{ROI} the better. Furthermore, all methods of calculating \gls{SUV} from the literature have already been implemented.
+    
+                \item Investigation into stochastic \gls{MM} methods: As mentioned in~\Fref{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_nac_pet_conclusion} at this point there should be time to investigate the effects of implementing a stochastic-like \gls{MM} based \gls{MC} method. This could mean either or updating the target volume more frequently than at the end of every iteration, for instance updating the target volume after a subset of the data to speed up convergence, or using a subset of the data at each iteration and extrapolating \glss{DVF} for unseen data in the \gls{MC} using the \gls{MM} and \gls{SS} values of the unseen data. These methods could be considered to be similar in a way to the updates proposed to \gls{MLEM} by \gls{OSEM} and may provide similar benefits.
+    
+                \item Investigation into robust \gls{MM} methods: Again as mentioned in~\Fref{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_nac_pet_conclusion} it may be beneficial to investigate robust \gls{MM} methods. It has been observed that the simple \gls{LR} based \gls{MM} methods used currently do not fit the input data well, this could be because either the input data is very noisy (and the \gls{MM} is helping to smooth this) or the \gls{MM} is not able to fit the data well due to outliers affecting the result. Additionally, the effect seen could be a combination of the two hypothesis mentioned previously. Thus to see which is the case a study into the impact of robust regression methods could be employed here. If results are improved by robust regression then results are better, which is always appreciated, if results are degraded then it lends evidence to the \gls{MM} methods excellent noise suppression capabilities. Robust regression methods which could be tested include the Huber objective function for a \gls{SGD} based regression or \gls{RANSAC}.
+    
+                \item \gls{AC} \gls{MC} parameter search: Although it may be possible to apply the method above to \gls{AC} data using the parameters from the \gls{NAC} based parameter search. It would be ideal to do a further parameter search on \gls{AC} data due to the significant differences in expectation for both and the possibility of significantly improved results.
+    
+                \item Post reconstruction \gls{AC} \gls{MC} evaluation
+    
+                \item Iterative \gls{MC} evaluation
+    
+                \item Full study into \gls{MC} with patient data
+    
+                \item Implement sinogram space registration
+    
+                \item Implement sinogram space simple \gls{MM}
+    
+                \item Post reconstruction sinogram space simple \gls{MM} evaluation
+    
+                \item Iterative sinogram space simple \gls{MM} evaluation
+    
+                \item Implement sinogram space complex \gls{MM}
+    
+                \item Post reconstruction sinogram space complex \gls{MM} evaluation
+    
+                \item Iterative sinogram space complex \gls{MM} evaluation
+            \end{itemize}
+        
+        \subsection{Dynamic Data Driven Surrogate Signal Extraction} \label{sec:future_work_dynamic_data_driven_surrogate_signal_extraction}
+            The following is specifically related to the future work to complete the tangential work performed in the domain of dynamic \gls{DD} \gls{SS} extraction and expands up and clarifies what was discussed specifically here~\Fref{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_discussion_and_conclusion}.
+            
+            \begin{itemize}
+                \item Dynamic \gls{SS} extraction parameter search: Values of parameters were initially selected to validate the efficacy of the underlying assumptions of the method. Now that it has been proven that those assumptions were not entirely wrong, new parameters must be found for the dynamic \gls{SS} extraction methods which are generalisable to the entire data set. This process involves running all possible combinations of the method with a subset of the data and trying different combinations of possible parameters in a logical manner, keeping the best result each time. It has been found that the method is sensitive to the selection of parameters and such it is an important step to find the best results. However, because of the time taken for each execution and because now testing each parameter means running the method with multiple data sets this is a very time consuming process.
+    
+                \item Implement volume based \gls{SS} evaluation: Currently, the collection of dynamic \gls{SS} extraction methods are only evaluated using metrics which are calculated based on the signal itself directly. Because an important use case of this work would be to \gls{MC} dynamic \gls{PET} data, such as by methods such as those discussed in~\Fref{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_nac_pet}, it would be beneficial to also evaluate the result of doing this using the \glss{SS} generated here. For instance, \gls{MC} could be applied, first on late time point data and then extrapolating to early time point data to avoid issues related to the aorta (thus being another application of \gls{MM}, for the extrapolation), before being evaluated by looking at profiles of the data and \gls{SUV}.
+    
+                \item Evaluation of \gls{NN} based \gls{SS} selection method: Following on from the discussion in~\Fref{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_discussion_and_conclusion} a \gls{NN} based method to discriminate between signals which reflect good respiratory \gls{SS} and those which do not has recently been made available. It would be a positive piece of research, and also quick to implement, to test the select and combined method, presented in~\Fref{sec:pca_data_driven_surrogate_signal_extraction_methods_for_dynamic_pet_methods_selecting_and_combining_pcs} but by replacing the frequency window discrimination method with the \gls{NN} based method.
+            \end{itemize}
+        
+        \subsection{Conferences and Papers} \label{sec:future_work_conferences_and_papers}
+            The following is a quick breakdown of the conferences which work will be submitted to as a minimum and otherwise the papers which could feasibly be written regarding the future work.
+            
+            \begin{itemize}
+                \item \gls{MIC} $2021$ submission: This is self explanatory, the intention is to continue as before with submitting work to the \gls{MIC} each year. Previously we have submitted, and had accepted, three pieces of work, two as first author and one as second author. These pieces of work were~\boxcite{Whitehead2019ImpactPET}~\boxcite{Efthimiou2019PreliminaryPET} and a submission stemming from the work presented in~\Fref{sec:pet_ct_respiratory_motion_correction_with_a_single_attenuation_map_using_nac_derived_deformation_fields}. Work submitted in $2021$ will focus on the evaluation of different types of registration methods and a comparison of when using and not using \gls{MM}, additionally provided that permission is given the work presented in~\Fref{sec:pca_data_driven_surrogate_signal_extraction_methods_for_Dynamic_pet} will also be submitted.
+                
+                \item Attend \gls{MIC} $2021$: Again this is self explanatory, provided that work is accepted from the previous step then time will be allocated to attending the \gls{MIC} in $2021$. This conference is currently scheduled to be executed online, thus normal working hours can be expected alongside attending the conference.
+    
+                \item \gls{MIC} $2022$ submission: As of yet it is not possible to say what will be submitted to the \gls{MIC} in $2022$, however it is safe to say that as long as work goes as expected with \gls{MSc} Supervision, as seen in~\Fref{sec:future_work_miscellaneous}, that it would be possible to submit this along with any work performed after the $2021$ deadline. The date of the conference itself is beyond the forecast of this section, however it is always positive to increase the number of quality publications regardless of other factors.
+                
+                \item Write dynamic \gls{SS} extraction paper: Thus far it appears that there could be enough material from the dynamic \gls{SS} extraction work to warrant a full paper submission to a relevant journal, this is especially true if the additional work suggested in~\Fref{sec:future_work_dynamic_data_driven_surrogate_signal_extraction} is complete in a timely manner and with positive results. Similar papers have been published previously with roughly equivalent results so this doesn't seem unreasonable~\boxcite{Schleyer2014}~\boxcite{Kesner2010AMethods}.
+                
+                \item Write image space \gls{MC} paper: This is the minimum achievable goal, if no other paper is submitted or accepted at least this one must be in order for the work be considered successful at all. This paper should contain the work expressed in~\Fref{sec:impact_of_tof_on_respiratory_motion_model_estimation_using_nac_pet} plus the work which is planned to be submitted to \gls{MIC} $2021$ plus the advancements mentioned in~\Fref{sec:future_work_motion_correction} which are focused solely on registrations taking place where their objective function is in image space. This can still include iterative \gls{MC} methods as well as being applied to patient data ideally.
+                
+                \item Write sinogram space \gls{MC} paper: This is the ideal goal, as well as the paper mentioned above the main aim of future work is to extend to performing \gls{MC} using a registration method with an objective function calculated directly on the sinograms, rather than the reconstructed volumes. This should provide better results faster than with an image space based metric, as well as meaning that the objective function of both the registration method and reconstruction would be using objective functions in the same space.
+                
+                \item Write thesis: It should go without saying that it is necessary to write the final thesis. It may be wishful thinking to assume that six months is adequate to complete this in, however a lot of what is written here can be used in the thesis. Regardless it is likely that the thesis will be updated incrementally as work is performed before the allocated time in the Gantt chart above in~\Fref{fig:future_work_gantt_chart}.
+    
+                \item Edit thesis: Realistically editing of the thesis should be an ongoing process throughout the writing phase. However, this is here as a buffer at the end of the writing process specifically to address comments on drafts of the thesis as well as to allow the writing process itself to overflow, if it must, slightly.
+            \end{itemize}
+        
+        \subsection{Miscellaneous} \label{sec:future_work_miscellaneous}
+            The following are miscellaneous activities which are intended to be carried out along the way or simultaneously of performing the above.
+            \begin{itemize}
+                \item \gls{MSc} supervision: We have an \gls{MSc} student working on continuing previous work into \gls{SS} extraction directly using a \gls{NN}. Ideally if this work proves fruitful then it would seem logical to attempt to adapt the work to rival the more traditional approaches presented previously to extract \gls{SS} from dynamic data. A brief description of the methodology is as follows, train an autoencoder to reduce the dimensionality of the input sinograms to a sufficiently low level in the latent layer, this can be trained unsupervised on all sinograms available. Next a network will take the latent layer variables and learn to combine them in such a way to lead to the desired output. This method is similar to the method presented in~\Fref{sec:pca_data_driven_surrogate_signal_extraction_methods_for_Dynamic_pet}, however the autoencoder replaces \gls{PCA} and the network to combine latent layer variables replaces the select and combine procedure.
+    
+                \item Harvard image derived input function collaboration: There is an ongoing collaboration with Harvard which intends to use a similar method \gls{NN} based method to that one presented above, however replacing the input with dynamic reconstructions and replacing the output with the blood curve required for kinetic modelling.
+            \end{itemize}
