@@ -434,6 +434,9 @@
             Optimisation means to find values that best parametrise a given function based on some criteria or objective. %KT I feel it needs something else ``based on some criteria'' or ``objective'' or ... %ACW done
             For instance, in reconstruction an optimisation could be to find the image that when the forward operator is applied to it the result best matches the measured data. Another example of an optimisation would be to find the motion parameters that when applied to a given image most closely warp that image to match another image. Optimisation is also used in fields such as deep learning to train \glss{NN}, here the optimisation is used to find parameters for a model that maps one set of values to another.%, this will be discussed later in~\Fref{sec:machine_learning_for_pet}.
             
+            % CHECK IF PAGE BOUNDARY LOOPS
+            \newpage
+            
             In order to perform a basic optimisation four components are required; most importantly an objective function (which returns the goodness of the current estimate) and a method to optimise the estimate based on this function are paramount. Additionally, an initial estimate (the closer this is to the ideal estimate then the less computation time is required overall) and a method to determine when optimisation should cease (for instance when the objective function exceeds a threshold or the number of iterations becomes so large) are also necessary. These will be discussed in the following sections in~\Fref{sec:objective_function} and~\Fref{sec:optimiser} respectively.
         
             \subsubsection{Objective Function} \label{sec:objective_function}
